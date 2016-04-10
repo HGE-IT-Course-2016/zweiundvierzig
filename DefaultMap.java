@@ -31,17 +31,24 @@ public class DefaultMap extends Map
          * Hier werden später sämtliche Provinzen der Standard-Map erstellt.
          * Dies funktioniert folgendermassen:
          * 
-         * Province <Name> = new Province(<Anzahl Sterne>,"<Anzeigename>");
+         * nextProvinces = new int[<Anzahl angrenzende Provinzen>];
+         * <Zuweisung der angrenzenden Provinzen>
+         * Province <Name> = new Province(<Provinz-ID>,<Kontinent-ID>,<Anzahl Sterne>,"<Anzeigename>",nextProvinces);
          * addObject(<Name>,<x-Position>,<y-Position>);
          * 
          * Zwei Provinzen sind bereits als Beispiel erstellt.
-         * Muss später ggf. korrigiert werden!
+         * Muss später auf jeden Fall korrigiert werden!
          */
+        int[] neighbours;
 
-        Province Irkutsk = new Province(1,"Irkutsk");
-        addObject(Irkutsk,1000,100);
+        neighbours = new int[1];
+        neighbours[0] = 2;        
+        Province Mongolei = new Province(1,1,1,"Mongolei",neighbours);
+        addObject(Mongolei,1000,100);
 
-        Province China = new Province(2,"China");
+        neighbours = new int[1];
+        neighbours[0] = 1;
+        Province China = new Province(2,1,2,"China",neighbours);
         addObject(China,1000,350);
     }
 }
