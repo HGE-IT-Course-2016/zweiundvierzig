@@ -17,7 +17,7 @@ public class GUI_Ingame extends World
     {    
         // Createcells with a cell size of 1x1 pixels.
         super(1920, 1080, 1);
-        addObject(Menue_Button,100,100);
+        //addObject(Menue_Button,100,100);
     }
     
     
