@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class CurrentPlayerArrow extends Actor
+public class CurrentPlayerArrow extends GUI_Interface
 {
     /**
      * Act - do whatever the CurrentPlayerArrow wants to do. This method is called whenever

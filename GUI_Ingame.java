@@ -15,9 +15,11 @@ public class GUI_Ingame extends World
      */
     public GUI_Ingame()
     {    
-        // Createcells with a cell size of 1x1 pixels.
+        // 
         super(1920, 1080, 1);
-        //addObject(Menue_Button,100,100);
+        addObject(new Menue_Button(),100,38);
+        addObject(new Würfel_Button(),100,1000);
+        addObject(new Würfel_Button(),1814,1000);
     }
     
     
