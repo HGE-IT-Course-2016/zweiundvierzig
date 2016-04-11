@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version 0.0.1
  */
 
-public class DefaultMap extends Map
+public class Map_World extends Map
 {
     /**
      * Anzahl der Provinzen

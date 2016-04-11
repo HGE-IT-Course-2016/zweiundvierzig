@@ -47,21 +47,26 @@ Der Spieler kann mithilfe der Welt dann herausfinden, welche Provinzen ihm gehö
 
 ### Worlds
 
-- *Province* (von Achim)
-- *Player*
 - *GeneralMap*
 - Alle spezifischen Maps
-- *Dice* (Würfel)
+	- *Map_World* (gesamte Weltkarte)
 - *MainMenu*
 - *GameOptions*
 
 ### Actors
 
--
+- *Province* (von Achim)
+- *Player*
+- *Dice* (Würfel)
 
 ### Sonstige Actors (Control Elemente)
 
+- *GUI_Interface*
 - *Label*
+- *Button*
+	- *Menue_Button*
+	- *Roll_Button*
+- *CurrentPlayerArrow*
 
 ### Sonstige
 
@@ -93,7 +98,7 @@ Diese Oberklasse kümmert sich dabei um die Anzeigen, die Spielmechanik und die 
 Für diese Klasse wird der Konstruktor nicht direkt von den Eigenschaften festgelegt, sondern muss folgende Argumente annehmen:
 
 1. Spielerliste mit den Namen **String[]**
-2. 
+2. ...
 
 ### Explizite Eigenschaften
 
@@ -319,6 +324,14 @@ Berechnet eine Zufallszahl von 1 bis 6, speichert diese ab und gibt sie auch so 
 
 ---
 
+## GUI_Interface
+
+Die Oberklasse für alle Interfaces.
+
+Besitzt noch keine relevanten Eigenschaften
+
+---
+
 ## Label
 
 Zeigt einen Text auf dem Bildschirm an. Zuvor wurde dieses Objekt "Text" genannt, "Label" ist der fachlichere Ausdruck dafür.
@@ -331,3 +344,9 @@ Zeigt einen Text auf dem Bildschirm an. Zuvor wurde dieses Objekt "Text" genannt
 
 Dieser Text wird von dem Actor aus zu sehen sein.
 Mit **String getText()** und **String setText(String)** bekommt Zugriff darauf.
+
+---
+
+## Button
+
+Die Hauptklasse für Buttons, wird durch Erbung spezifiziert.
