@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version 0.0.1
  */
 
-public class Map_World extends Map
+public class Map_World extends GeneralMap
 {
     /**
      * Anzahl der Provinzen
@@ -23,9 +23,10 @@ public class Map_World extends Map
      * Muss später ggf. korrigiert werden!
      */
 
-    public DefaultMap()
+    public Map_World()
     {
         super(1280,720,1);
+        int[] neighbours;
 
         /**
          * Hier werden später sämtliche Provinzen der Standard-Map erstellt.
@@ -39,7 +40,6 @@ public class Map_World extends Map
          * Zwei Provinzen sind bereits als Beispiel erstellt.
          * Muss später auf jeden Fall korrigiert werden!
          */
-        int[] neighbours;
 
         neighbours = new int[1];
         neighbours[0] = 2;        

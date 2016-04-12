@@ -29,7 +29,7 @@ public class GeneralMap extends World
          */
         super(1920, 1080, 1);
         addObject(new Menue_Button(),100,38);
-        addObject(new Würfel_Button(),100,1000);
-        addObject(new Würfel_Button(),1814,1000);
+        addObject(new Roll_Button(),100,1000);
+        addObject(new Roll_Button(),1814,1000);
     }
 }
