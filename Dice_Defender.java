@@ -24,7 +24,7 @@ public class Dice_Defender extends Dice
      * Die Methode für das Würfeln mit bis zu drei Würfeln des Angreifers, es wird ein Array mit den drei Zahlen zurückgegeben, höchster Wert befindet sich immer an dritter Stelle.
      * @param troupNumberDefender Anzahl der Truppen auf dem ausgewählten Feld
      */
-    public int[] dice_offender(int troupNumberDefender)
+    public int[] dice_defender(int troupNumberDefender)
     {
         if(troupNumberDefender == 1)
         {
@@ -46,7 +46,7 @@ public class Dice_Defender extends Dice
         
     }
     
-    public int[] max(int troupNumberDefender)
+    public int[] max_defender(int troupNumberDefender)
     {
        if(troupNumberDefender == 1)
         {
