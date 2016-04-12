@@ -19,7 +19,7 @@ public class GeneralMap extends World
     /** Konstruktor für nicht weiter definierte Map, sollte im Moment nicht benutzt werden.
      * Später als Konstruktor für Default-Map denkbar.
      */
-    public Map(int x, int y, int p)
+    public GeneralMap(int x, int y, int p)
     {    
         /**
          * Erstellt eine leere Karte mit den übergebenen Eigenschaften
