@@ -62,7 +62,7 @@ public class Dice_Offender extends Dice
         
     }
     
-    public int[] max(int troupNumberOffender)
+    public int[] max_offender(int troupNumberOffender)
     {
         if(troupNumberOffender == 1)
         {
