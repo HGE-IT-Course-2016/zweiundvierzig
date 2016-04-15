@@ -6,6 +6,4 @@ Genutzt wird hierfür die Umgebung von [Greenfoot](http://www.greenfoot.org/over
 
 [Link zum Architekturplan](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
 
-[Link zur GitHub Anleitung](https://sway.com/okMacr2VwpaJETmu)
-
 **Weitere Informationen hier werden folgen.**

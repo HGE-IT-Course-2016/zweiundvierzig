@@ -27,9 +27,9 @@ public class GeneralMap extends World
          * @param y Y-Ausdehnung
          * @param p Kantenlänge der Felder in Pixeln
          */
-        super(1920, 1080, 1);
+        super(1600, 900, 1);
         addObject(new Menue_Button(),100,38);
-        addObject(new Roll_Button(),100,1000);
-        addObject(new Roll_Button(),1814,1000);
+        addObject(new Roll_Button(),84,835);
+        addObject(new Roll_Button(),1513,835);
     }
 }
