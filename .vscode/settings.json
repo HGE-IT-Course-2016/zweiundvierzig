@@ -6,6 +6,9 @@
 		"*.class": true,
 		"*.ctxt": true,
 		"project.greenfoot": true,
-		"**/.vscode": true
+		"**/.vscode": true,
+		"*.ods": true,
+		"*.xls": true,
+		"*.xlsx": true
 	}
 }

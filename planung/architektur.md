@@ -4,7 +4,9 @@
 
 **Stand: 10.04.2016** (TT.MM.JJJJ / DD.MM.YYYY)
 
-[Hier die neuste Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md Link zu GitHub.com)
+[Hier die neuste offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
+
+[Hier zur übersichtlicheren Funktionsliste](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/funktionsliste.md)
 
 Hier ein möglicher Architekturplan von *Felix Stupp*.
 Dieser Plan wird regelmäßig angepasst, oben am Datum zu erkennen.
@@ -20,8 +22,6 @@ Die Authoren sollen nur Fragen zu bisher vorhandenen Methoden erhalten.
 Die englischen Begriffe *World* und *Actor* stehen für die gegebenen Oberklassen von Greenfoot.
 
 ### Generell
-
-- Alle Funktionen, die einen Wert für ihre Eigenschaft festlegen sollen, sollen auch den aktuellen Wert, denn sie dann gegebenenfalls eintragen (beziehungsweise den alten Wert, falls aus irgend einem Grund doch nichts geändert wird), wieder zurückgeben, um im Code später Abkürzungen verwenden zu können oder direkt die Änderung überprüfen zu können.
 
 - Allgemein wird vom Konstruktor erwartet, dass er alle feste Eigenschaften einer Klasse in der Reihenfolge, wie hier in den Listen vorzufinden, und als die angegebenen Typen annimmt und korrekt speichert. Es kann aber auch spezifische Konstruktoren geben.
 
@@ -179,11 +179,11 @@ Speichert Informationen zu den einzelnen Provinzen ab und stellt diese später a
 
 ### Explizite Eigenschaften
 
-- Provinznummer (fest, **int**)
-- X/Y-Position auf der Karte (fest; **int**,**int**)
-- Angrenzende Provinzen (fest, **boolean[]**)
-- Anzeigename (fest, **String**)
-- Sterne (fest, **int**)
+- Provinznummer (über Konstruktor festgelegt, **int**)
+- X/Y-Position auf der Karte (über Konstruktor festgelegt; **int**,**int**)
+- Angrenzende Provinzen (über Konstruktor festgelegt, **boolean[]**)
+- Anzeigename (über Konstruktor festgelegt, **String**)
+- Sterne (über Konstruktor festgelegt, **int**)
 - Besitzer
 - Einheitenanzahl
 
@@ -220,7 +220,7 @@ Dieser Wert wird für die zufällige Verteilung von Einheiten benötigt (laut Ac
 
 Über die Methode **int getOwner()** bekommt ihr den aktuellen Besitzer zurück (-1 = keiner, 0 = Spieler 1, ...).
 
-Die Methode **setOwner(int)** speichert einen neuen Besitzer ab.
+Die Methode **boolean setOwner(int)** speichert einen neuen Besitzer ab. Sie gibt den Erfolg des Setzens zurück, falls also die Zahl kleiner -1 oder größer gleich als die Spieleranzahl sein sollte, wird die Änderung nicht durchgeführt und es wird **false** zurückgegeben.
 
 #### Einheitenanzahl
 
@@ -245,8 +245,8 @@ Stellt die Spieler da, speichert Informationen zu diesen ab. Wird von der Weltka
 
 ### Explizite Eigenschaften
 
-- Spielernummer (fest, **int**)
-- Anzeigename (fest, **String**)
+- Spielernummer (über Konstruktor festgelegt, **int**)
+- Anzeigename (über Konstruktor festgelegt, **String**)
 - Sternanzahl
 - Statistiken
 	1. Eroberte Provinzen
@@ -272,7 +272,7 @@ Ist der lesbare Name des Spielers, damit nicht nur "Spieler 1", ... usw. zu sehe
 
 Die Anzahl der Sterne, die ein Spieler besitzt und gegebenenfalls dann in Einheiten umtauschen kann.
 
-**int getStars()**, **int addToStars(int)**, **int removeFromStars(int)**, **int setStars(int)** sind zum Bearbeiten des Werts da.
+**int getStars()**, **int addToStars(int)**, **int removeFromStars(int)**, **int setStars(int)** sind zum Bearbeiten des Werts da. Auch sie geben danach den nun aktuellen Wert zurück.
 
 **boolean canStarsRemoved(int)** gibt zurück, ob der Spieler diese Anzahl an Sternen verwenden kann (Vereinfachung).
 
@@ -299,6 +299,10 @@ Diese Methode muss zwingend mit der Welt interagieren, um diese Informationen zu
 #### getProvinceCount()
 
 Gibt die Anzahl der Provinzen, die der Spieler hat, zurück. Gut für die Statistik und die Anzeigen.
+
+#### redrawPlayer()
+
+Erzwingt das erneute Zeichnen des Player Objekts, um alle sichtbaren Eigenschaften erneut zu zeichnen.
 
 ---
 
