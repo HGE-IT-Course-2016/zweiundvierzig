@@ -29,9 +29,11 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Funktio
 
 ## Province
 
-- **Province(int, int, int, boolean[], String, int)**
+- **Province(int, int, int, int, int, String, int[])**
+- **Province(int, int, int, int, int, String, boolean[])**
 
 - **int getID()**
+- **int getContinentID()**
 - **boolean isProvinceNear(int)**
 - **String getDisplayName()**
 - **int getStars()**
