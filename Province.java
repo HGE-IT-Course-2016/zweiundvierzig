@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class Province here.
  * 
  * @author GruenerWal
- * @version 0.0.1
+ * @version 0.0.2
  */
 public class Province extends Actor
 {
@@ -14,6 +14,9 @@ public class Province extends Actor
     private int owner;
     private boolean[] nextProvinces;
     private int continentID;
+    private int xPos;
+    private int yPos;
+    private int eCount;
     
     /**
      * leere Act-Methode
@@ -24,50 +27,56 @@ public class Province extends Actor
         // GruenerWal war hier :3
     }
     
-    // Konstruktor, benötigt Sterne
-    public Province(int i1, int i2, int i3, String s1, int[] ia1)
+    // Haupt-Konstruktor
+    public Province(int pID, int cID, int x, int y, int st, String s1, int[] ia1)
     {
-        provinceID = i1;
-        continentID = i2;
-        stars = i3;
+        provinceID = pID;
+        continentID = cID;
+        xPos = x;
+        yPos = y;
+        if(st > 0) {
+            stars = st;
+        }
         displayName = s1;
         // Der Teil, der sich um die Konvertierung des int-Array in ein boolean-Array kümmert.
         int maxNum = 0;
-        for(int i = 0; i < ia1.length(); i++) {
+        for(int i = 0; i >= ia1.length(); i++) {
             if(maxNum < ia1[i]) {
                 maxNum = ia1[i];
             }
         }
         nextProvinces = new boolean[ia1.length];
-        for(int i = 0; i < ia1.length(); i++) {
+        for(int i = 0; i >= ia1.length(); i++) {
             if(ia1[i] >= 0) {
                 nextProvinces = ia1[i];
             }
         }
     }
     
-    // Liefert die Sterne als Integer
-    public int getStars()
+    // Zweiter Konstruktor, um auch das boolean-Array gegebenenfalls verwenden zu könnnen.
+    public Province(int pID, int cID, int x, int y, int st, String s1, boolean[] ba1)
     {
-        return stars;
+        provinceID = pID;
+        continentID = cID;
+        xPos = x;
+        yPos = y;
+        if(st > 0) {
+            stars = st;
+        }
+        displayName = s1;
+        nextProvinces = Utils.copyArray(ba1);
     }
     
     // Liefert die Provinz-ID als Integer
-    public int getProvinceID()
+    public int getID()
     {
         return provinceID;
     }
     
-    // Liefert den Anzeigenamen als String
-    public String getDisplayName()
-    {
-        return displayName;
-    }
-    
-    // Liefert den Owner als String
-    public int getOwner()
-    {
-        return owner;
+    // Liefert die Kontinent-ID als Integer
+    public int getContinentID()
+    { 
+        return continentID;
     }
     
     // Fragt ab, ob die angegebene Provinz in der Nähe von dieser liegt.
@@ -78,16 +87,60 @@ public class Province extends Actor
         return nearProvinces[i];
     }
     
-    // Liefert die Kontinent-ID als Integer
-    public int getContinentID()
-    { 
-        return continentID;
+    // Liefert den Anzeigenamen als String
+    public String getDisplayName()
+    {
+        return displayName;
+    }
+    
+    // Liefert die Sterne als Integer
+    public int getStars()
+    {
+        return stars;
+    }
+    
+    // Liefert den Owner als String
+    public int getOwner()
+    {
+        return owner;
     }
     
     // Setzt den Owner, benötigt String
     public void setOwner(int o)
     {
+        if(o < -1) {
+            o = -1;
+        }
         owner = o;
+    }
+    
+    public int getEntityCount() {
+        return eCount;
+    }
+    
+    private void checkEntityCount() {
+        if(eCount < 0) {
+            eCount = 0;
+        }
+    }
+    
+    public int addToEntities(int a) {
+        eCount = eCount + a;
+        checkEntityCount();
+    }
+    
+    public int removeFromEntities(int a) {
+        eCount = eCount - a;
+        checkEntityCount();
+    }
+    
+    public int setEntityCount(int a) {
+        eCount = a;
+        checkEntityCount();
+    }
+    
+    public void redrawProvince() {
+        //Platzhalter
     }
     
 }

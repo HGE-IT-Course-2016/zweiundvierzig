@@ -34,6 +34,8 @@ Die englischen Begriffe *World* und *Actor* stehen für die gegebenen Oberklasse
 		return (GeneralMap) super.getWorld();
 	}
 
+- Schaut bitte in die *Utils*-Klasse hinein, diese kann euch den Code übersichtlicher gestalten, da häufige Methoden in dieser gebündelt werden sollen.
+
 ### Explizite Eigenschaften
 
 Explizite Eigenschaften sind speziell Eigenschaften, die von der Klasse selbst gehalten werden und bevorzugt auch nur von ihr festgehalten werden.
@@ -70,7 +72,7 @@ Der Spieler kann mithilfe der Welt dann herausfinden, welche Provinzen ihm gehö
 
 ### Sonstige
 
-Noch keine geplant.
+- *Utils*
 
 ---
 
@@ -180,29 +182,23 @@ Speichert Informationen zu den einzelnen Provinzen ab und stellt diese später a
 ### Explizite Eigenschaften
 
 - Provinznummer (über Konstruktor festgelegt, **int**)
+- Kontinentnummer (über Konstruktor festgelegt, **int**)
 - X/Y-Position auf der Karte (über Konstruktor festgelegt; **int**,**int**)
-- Angrenzende Provinzen (über Konstruktor festgelegt, **boolean[]**)
 - Anzeigename (über Konstruktor festgelegt, **String**)
 - Sterne (über Konstruktor festgelegt, **int**)
+- Angrenzende Provinzen (über Konstruktor als **int[]** festgelegt, als **boolean[]** gespeichert)
 - Besitzer
 - Einheitenanzahl
 
-#### Provinznummer
+#### Provinz-ID und Kontinent-ID
 
-Stellt die ID der Provinz dar und ist mit **int getID()** abrufbar.
+- Stellt die ID der Provinz dar und ist mit **int getID()** abrufbar.
+- Stellt die ID des Kontinentes dar und ist mit **int getContinentID()** abrufbar.
 
 #### Position
 
 Diese zwei Werte legen fest, wo die sichtbaren Eigenschaften der Provinz angezeigt werden sollen.
 Sind nach dem Erstellen der Provinz nicht mehr abrufbar.
-
-#### Angrenzende Provinzen
-
-Dies ist ein Array von allen Provinzen, die es gibt (Provinznummer als Index), diese jeweils mit einem **Boolean**-Wert, der festlegt, ob ein Kampf oder ein Weitergeben von Einheiten möglich ist.
-
-	boolean[] nearProvinces;
-
-Über die Methode **boolean isProvinceNear(int)** kann man sich die Einträge einzeln als Booleans ausgeben lassen.
 
 #### Anzeigename
 
@@ -215,6 +211,16 @@ Kann über **String getDisplayName()** abgerufen werden, falls benötigt.
 Dieser Wert wird für die zufällige Verteilung von Einheiten benötigt (laut Achim).
 
 Über **int getStars()** soll dieser Wert abrufbar sein.
+
+#### Angrenzende Provinzen
+
+Dies ist ein Array von allen Provinzen, die es gibt (Provinznummer als Index), diese jeweils mit einem **Boolean**-Wert, der festlegt, ob ein Kampf oder ein Weitergeben von Einheiten möglich ist.
+
+	boolean[] nearProvinces;
+
+Dem Konstruktor kann stattdessen auch ein **int[]** mit allen angrenzenden Provinzen als Werte übergeben werden, dieses wird dann automatisch konvertiert.
+
+Über die Methode **boolean isProvinceNear(int)** kann man sich die Einträge einzeln als Booleans ausgeben lassen.
 
 #### Besitzer
 
@@ -354,3 +360,13 @@ Mit **String getText()** und **String setText(String)** bekommt Zugriff darauf.
 ## Button
 
 Die Hauptklasse für Buttons, wird durch Erbung spezifiziert.
+
+---
+
+## Utils
+
+Eine finale Klasse mit vielen kleinen Methoden, die den restlichen Code verkleinern und besser lesbar gestalten soll. Ergänzungen in Form von eigenen Funktionen dürfen selbst eingebracht werden.
+
+### copyArray()
+
+Kopiert ein Array des Types **boolean**, **int** oder **String** mit identischer Größe.
