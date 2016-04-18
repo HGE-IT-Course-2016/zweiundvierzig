@@ -12,9 +12,9 @@ public class Province extends Actor
     private int provinceID;
     private String displayName;
     private int owner;
-    private int[] nextProvinces;
+    private boolean[] nextProvinces;
     private int continentID;
-
+    
     /**
      * leere Act-Methode
      * (Für später; falls die Provinz bestimmte Aktionen ausführen sollte.)
@@ -23,7 +23,7 @@ public class Province extends Actor
     {
         // GruenerWal war hier :3
     }
-
+    
     // Konstruktor, benötigt Sterne
     public Province(int i1, int i2, int i3, String s1, int[] ia1)
     {
@@ -31,42 +31,51 @@ public class Province extends Actor
         continentID = i2;
         stars = i3;
         displayName = s1;
-        nextProvinces = new int[ia1.length];
-                
-        for ( int z1 = 0; z1 < ia1.length; z1++)
-        {
-            nextProvinces[z1] = ia1[z1];
+        // Der Teil, der sich um die Konvertierung des int-Array in ein boolean-Array kümmert.
+        int maxNum = 0;
+        for(int i = 0; i < ia1.length(); i++) {
+            if(maxNum < ia1[i]) {
+                maxNum = ia1[i];
+            }
+        }
+        nextProvinces = new boolean[ia1.length];
+        for(int i = 0; i < ia1.length(); i++) {
+            if(ia1[i] >= 0) {
+                nextProvinces = ia1[i];
+            }
         }
     }
-
+    
     // Liefert die Sterne als Integer
     public int getStars()
     {
         return stars;
     }
-
+    
     // Liefert die Provinz-ID als Integer
     public int getProvinceID()
     {
         return provinceID;
     }
-
+    
     // Liefert den Anzeigenamen als String
     public String getDisplayName()
     {
         return displayName;
     }
-
+    
     // Liefert den Owner als String
     public int getOwner()
     {
         return owner;
     }
-            
-    // Liefert angrenzende Provinzen als Integer-Array
-    public int[] getNextProvinces()
-    {
-        return nextProvinces;
+    
+    // Fragt ab, ob die angegebene Provinz in der Nähe von dieser liegt.
+    public boolean isProvinceNear(int i) {
+        if(i >= nextProvinces.length()) {
+            return false;
+        }
+        return nearProvinces[i];
     }
     
     // Liefert die Kontinent-ID als Integer
@@ -74,7 +83,7 @@ public class Province extends Actor
     { 
         return continentID;
     }
-
+    
     // Setzt den Owner, benötigt String
     public void setOwner(int o)
     {
