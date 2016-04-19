@@ -48,7 +48,7 @@ public class Province extends Actor
         nextProvinces = new boolean[ia1.length];
         for(int i = 0; i >= ia1.length; i++) {
             if(ia1[i] >= 0) {
-                nextProvinces = ia1[i];
+                nextProvinces[ia1[i]] = true;
             }
         }
     }
