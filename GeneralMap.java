@@ -4,8 +4,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Oberklasse für verschiedene Maps;
  * neue Maps werden als Unterklasse dieser Klasse eingefügt.
  * 
- * @author GruenerWal
- * @version 0.0.1
+ * @author GruenerWal, MaxiJohl
+ * @version 0.2.0
  */
 public class GeneralMap extends World
 {
@@ -13,7 +13,7 @@ public class GeneralMap extends World
      *  Felder, im Moment nur Anzahl der Provinzen
      *  Später evtl. weitere Werte wie Schwierigkeit denkbar
      */
-    
+
     protected int provinzen;    
 
     /** Konstruktor für nicht weiter definierte Map, sollte im Moment nicht benutzt werden.
@@ -32,4 +32,73 @@ public class GeneralMap extends World
         addObject(new Roll_Button(),84,835);
         addObject(new Roll_Button(),1513,835);
     }
+
+    static GeneralMap generateMap(int mapID)
+    {
+        //Platzhalter
+        return null;
+    }
+
+    int getPlayerCount()
+    {
+        //Platzhalter
+        return 4;
+    }
+
+    String getPlayerName()
+    {
+        //Platzhalter
+        return null;
+    }
+
+    String getPlayerName(int plID)
+    {
+        //Platzhalter
+        return null;
+    }
+
+    int getPlayerStars()
+    {
+        //Platzhalter
+        return 0;
+    }
+
+    int getProvinceOwner(int prID)
+    {
+        //Platzhalter
+        return 0;
+    }
+
+    int[] getProvinceOwners()
+    {
+        //Platzhalter; viel Arbeit :3
+        int[] provinceOwners = new int[1];
+        provinceOwners[0] = 0;
+        return provinceOwners;
+    }
+
+    int getProvinceEntityCount(int prID)
+    {
+        //Platzhalter
+        return 0;
+    }
+
+    int getProvincesEntityCounts(int[] prArr)
+    {
+        //Platzhalter
+        return 0;
+    }
+
+    int getProvincesEntityCounts(boolean[] prArr)
+    {
+        //Platzhalter
+        return 0;
+    }
+
+    int getProvincesEntityCounts(int plID)
+    {
+        //Platzhalter
+        return 0;
+    }
+
 }
