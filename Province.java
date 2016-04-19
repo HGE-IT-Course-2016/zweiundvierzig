@@ -40,15 +40,15 @@ public class Province extends Actor
         displayName = s1;
         // Der Teil, der sich um die Konvertierung des int-Array in ein boolean-Array kümmert.
         int maxNum = 0;
-        for(int i = 0; i >= ia1.length(); i++) {
+        for(int i = 0; i >= ia1.length; i++) {
             if(maxNum < ia1[i]) {
                 maxNum = ia1[i];
             }
         }
         nextProvinces = new boolean[ia1.length];
-        for(int i = 0; i >= ia1.length(); i++) {
+        for(int i = 0; i >= ia1.length; i++) {
             if(ia1[i] >= 0) {
-                nextProvinces = ia1[i];
+                nextProvinces[ia1[i]] = true;
             }
         }
     }
@@ -81,7 +81,7 @@ public class Province extends Actor
     
     // Fragt ab, ob die angegebene Provinz in der Nähe von dieser liegt.
     public boolean isProvinceNear(int i) {
-        if(i >= nextProvinces.length()) {
+        if(i >= nextProvinces.length {
             return false;
         }
         return nearProvinces[i];
@@ -127,16 +127,19 @@ public class Province extends Actor
     public int addToEntities(int a) {
         eCount = eCount + a;
         checkEntityCount();
+        return eCount;
     }
     
     public int removeFromEntities(int a) {
         eCount = eCount - a;
         checkEntityCount();
+        return eCount;
     }
     
     public int setEntityCount(int a) {
         eCount = a;
         checkEntityCount();
+        return eCount;
     }
     
     public void redrawProvince() {
