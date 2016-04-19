@@ -34,7 +34,7 @@ public class Map_World extends GeneralMap
          * 
          * nextProvinces = new int[<Anzahl angrenzende Provinzen>];
          * <Zuweisung der angrenzenden Provinzen>
-         * Province <Name> = new Province(<Provinz-ID>,<Kontinent-ID>,<Anzahl Sterne>,"<Anzeigename>",nextProvinces);
+         * Province <Name> = new Province(<Provinz-ID>,<Kontinent-ID>,<X-Position>,<Y-Position>,<Anzahl Sterne>,"<Anzeigename>",nextProvinces);
          * addObject(<Name>,<x-Position>,<y-Position>);
          * 
          * Zwei Provinzen sind bereits als Beispiel erstellt.
@@ -43,12 +43,12 @@ public class Map_World extends GeneralMap
 
         neighbours = new int[1];
         neighbours[0] = 2;        
-        Province Mongolei = new Province(1,1,1,"Mongolei",neighbours);
+        Province Mongolei = new Province(1,1,1000,100,1,"Mongolei",neighbours);
         addObject(Mongolei,1000,100);
 
         neighbours = new int[1];
         neighbours[0] = 1;
-        Province China = new Province(2,1,2,"China",neighbours);
+        Province China = new Province(2,1,1000,350,2,"China",neighbours);
         addObject(China,1000,350);
     }
 }
