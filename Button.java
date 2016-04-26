@@ -1,19 +1,31 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Menue_Button here.
+ * Diese Klasse stellt einen Button dar.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Stupp
+ * @version 26.04.2016
  */
-public class Button extends GUI_Interface
-{
+public class Button extends GUI_Interface {
+    
+    ButtonEvent handler;
+    
     /**
-     * Act - do whatever the Menue_Button wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Erstellt einen Button mit dem gegebenen Objekt als Event-Handler.
+     * 
+     * @param h Der Handler mit dem Interface ButtonEvent implementiert.
      */
-    public void act() 
-    {
-        // Add your action code here.
-    }    
+    public Button(ButtonEvent h) {
+        handler = h;
+    }
+    
+    /**
+     * Fragt ab, ob ein Klick auf den Button gekommen ist.
+     */
+    public void act() {
+        if(Greenfoot.mouseClicked(this)) {
+            handler.buttonClicked(this);
+        }
+    }
+    
 }
