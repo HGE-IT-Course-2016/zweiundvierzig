@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Felix Stupp 
  * @version 10.05.2016
  */
-public class GUI_Interface extends Actor
+public abstract class GUI_Interface extends Actor
 {
 	protected int sx = 1;
 	protected int sy = 1;

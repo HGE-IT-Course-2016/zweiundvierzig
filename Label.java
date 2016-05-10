@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import System.awt.Color;
+import Java.awt.Color;
 
 /**
  * Zeigt einen Text an.

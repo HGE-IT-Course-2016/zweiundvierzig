@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import Java.awt.Color;
 
 /**
  * Diese Klasse stellt einen Button dar.
