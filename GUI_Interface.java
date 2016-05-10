@@ -8,29 +8,30 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GUI_Interface extends Actor
 {
-    protected int sx = 1;
-    protected int sy = 1;
-    
-    public int getWidth() {
-        return sx;
-    }
-    
-    public int getHeight() {
-        return sy;
-    }
-    
-    public void setSize(int w, int h) {
-        if(w < 0 || h < 0) {
-            return;
-        }
-        sx = w;
-        sy = h;
-    }
-    
-    public void act() 
-    {
-        // Add your action code here.
-    }
-    
-    public abstract void redraw();
+	protected int sx = 1;
+	protected int sy = 1;
+	
+	public int getWidth() {
+		return sx;
+	}
+	
+	public int getHeight() {
+		return sy;
+	}
+	
+	public void setSize(int w, int h) {
+		if(w < 0 || h < 0) {
+			return;
+		}
+		sx = w;
+		sy = h;
+		redraw();
+	}
+	
+	public void act() 
+	{
+		// Add your action code here.
+	}
+	
+	public abstract void redraw();
 }
