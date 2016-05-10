@@ -1,19 +1,36 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class GUI_Interface here.
+ * Oberklasse für sämtliche GUI Objekte, wie Labels und Buttons
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Stupp 
+ * @version 10.05.2016
  */
 public class GUI_Interface extends Actor
 {
-    /**
-     * Act - do whatever the GUI_Interface wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    protected int sx = 1;
+    protected int sy = 1;
+    
+    public int getWidth() {
+        return sx;
+    }
+    
+    public int getHeight() {
+        return sy;
+    }
+    
+    public void setSize(int w, int h) {
+        if(w < 0 || h < 0) {
+            return;
+        }
+        sx = w;
+        sy = h;
+    }
+    
     public void act() 
     {
         // Add your action code here.
-    }    
+    }
+    
+    public abstract void redraw();
 }

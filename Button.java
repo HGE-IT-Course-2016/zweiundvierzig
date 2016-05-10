@@ -8,6 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Button extends GUI_Interface {
     
+    boolean autoSize = true;
+    Color foreC = Color.WHITE
+    Color backC = Color.BLACK
+    int textSize = 1;
+    String text = "";
+    
     ButtonEvent handler;
     
     /**
@@ -28,4 +34,61 @@ public class Button extends GUI_Interface {
         }
     }
     
+    public boolean getAutoSize() {
+        return autoSize;
+    }
+    
+    public void setAutoSize(boolean b) {
+        autoSize = b;
+        if(autoSize) {
+            redraw();
+        }
+    }
+    
+    public int getTextSize() {
+        return textSize;
+    }
+    
+    public void setTextSize(int s) {
+        if(textSize != s && s > 0) {
+            textSize = s;
+            redraw();
+        }
+    }
+    
+    public String getText() {
+        return text;
+    }
+    
+    public void setText(String s) {
+        if(text != s) {
+            text = s;
+            redraw();
+        }
+    }
+    
+    private void redraw() {
+        GreenfootImage tI = new GreenfootImage(text,textSize,foreC,backC);
+        GreenfootImage corner = new GreenfootImage("images/Button_Corner.png");
+        int csx = corner.getWidth();
+        int csy = corner.getHeight();
+        GreenfootImage side = new GreenfootImage("images/Button_Side.png");
+        if(autoSize) {
+            sx = tI.getWidth() + (csx * 2);
+            sy = tI.getHeight() + (csy * 2);
+        }
+        GreenfootImage all = new GreenfootImage(sx,sy);
+        all.drawImage(corner,0,0);
+        corner.rotate(90);
+        all.drawImage(corner,sx-csx,0);
+        corner.rotate(90);
+        all.drawImage(corner,sx-csx,sy-csy);
+        corner.rotate(90);
+        all.drawImage(corner,0,sy-csy);
+        for(int i = csx; i < (sx-csx+1); i++) {
+            
+        }
+        all.drawImage(tI,(sx-tI.getWidth())/2,(sy-tI.getHeight())/2);
+        setImage(all);
+    }
 }

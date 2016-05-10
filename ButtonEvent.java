@@ -8,5 +8,7 @@ import greenfoot.*;
  * @version 26.04.2016
  */
 public interface ButtonEvent {
+	
 	public void buttonClicked(Button obj);
+	
 }
