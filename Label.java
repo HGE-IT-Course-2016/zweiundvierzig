@@ -11,8 +11,14 @@ public class Label extends GUI_Interface {
 	
 	Color foreC = Color.WHITE;
 	Color backC = Color.BLACK;
-	int textSize = 1;
+	int textSize = 32;
 	String text = "";
+	
+	public Label(String txt, int size) {
+		text = txt;
+		textSize = size;
+		redraw();
+	}
 	
 	public void redraw() {
 		GreenfootImage tI = new GreenfootImage(text,textSize,foreC,backC);

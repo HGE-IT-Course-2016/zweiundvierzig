@@ -8,6 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Menue_Button extends Button
 {
+    public Menue_Button(ButtonEvent h) {
+        super(h);
+    }
+    
     /**
      * Act - do whatever the Menue_Button wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
