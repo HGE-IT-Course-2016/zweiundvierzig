@@ -81,10 +81,10 @@ public class Province extends Actor
     
     // Fragt ab, ob die angegebene Provinz in der Nähe von dieser liegt.
     public boolean isProvinceNear(int i) {
-        if(i >= nextProvinces.length {
+        if(i >= nextProvinces.length) {
             return false;
         }
-        return nearProvinces[i];
+        return nextProvinces[i];
     }
     
     // Liefert den Anzeigenamen als String
