@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import Java.awt.Color;
+import java.awt.Color;
 
 /**
  * Zeigt einen Text an.
@@ -14,7 +14,7 @@ public class Label extends GUI_Interface {
 	int textSize = 1;
 	String text = "";
 	
-	private void redraw() {
+	public void redraw() {
 		GreenfootImage tI = new GreenfootImage(text,textSize,foreC,backC);
 		setImage(tI);
 	}

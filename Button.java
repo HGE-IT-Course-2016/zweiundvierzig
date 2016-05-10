@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import Java.awt.Color;
+import java.awt.Color;
 
 /**
  * Diese Klasse stellt einen Button dar.
@@ -67,7 +67,7 @@ public class Button extends GUI_Interface {
 		}
 	}
 	
-	private void redraw() {
+	public void redraw() {
 		GreenfootImage tI = new GreenfootImage(text,textSize,foreC,backC);
 		GreenfootImage corner = new GreenfootImage("images/Button_Corner.png");
 		int csx = corner.getWidth();
