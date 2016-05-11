@@ -12,10 +12,10 @@ Hier ein möglicher Architekturplan von *Felix Stupp*.
 Dieser Plan wird regelmäßig angepasst, oben am Datum zu erkennen.
 
 Hier werden alle Klassen und deren öffentliche Methoden und Eigenschaften zusammengefasst.
-Auch zu sehen ist der Author / sind die Authoren der Klasse, um bei Fragen diese kontaktieren zu können.
+Auch zu sehen ist der Autor / sind die Autoren der Klasse, um bei Fragen diese kontaktieren zu können.
 
-**Alle Anfragen aufgrund von Architekturänderungen erst an mich weitergeben, damit ich dies mit den jeweiligen Authoren besprechen kann!**
-Die Authoren sollen nur Fragen zu bisher vorhandenen Methoden erhalten.
+**Alle Anfragen aufgrund von Architekturänderungen erst an mich weitergeben, damit ich dies mit den jeweiligen Autoren besprechen kann!**
+Die Autoren sollen nur Fragen zu bisher vorhandenen Methoden erhalten.
 
 ### Erklärung
 
@@ -78,7 +78,7 @@ Der Spieler kann mithilfe der Welt dann herausfinden, welche Provinzen ihm gehö
 
 ## MainMenu
 
-Stellt eine *World* als Hauptmenü dar, bekommmt die Aufgabe, die einzelnen Menüpunkte anzuzeigen. Aktiviert gegebenenfalls andere *Worlds*.
+Stellt eine *World* als Hauptmenü dar, bekommt die Aufgabe, die einzelnen Menüpunkte anzuzeigen. Aktiviert gegebenenfalls andere *Worlds*.
 
 ---
 
