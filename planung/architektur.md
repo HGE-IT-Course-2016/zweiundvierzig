@@ -1,8 +1,8 @@
 # Architekturplan Zweiundvierzig
 
-**Version: 2**
+**Version: 3**
 
-**Stand: 10.04.2016** (TT.MM.JJJJ / DD.MM.YYYY)
+**Stand: 12.05.2016** (TT.MM.JJJJ / DD.MM.YYYY)
 
 [Hier die neuste offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
 
@@ -61,14 +61,11 @@ Der Spieler kann mithilfe der Welt dann herausfinden, welche Provinzen ihm gehö
 - *Player*
 - *Dice* (Würfel)
 
-### Sonstige Actors (Control Elemente)
+### Sonstige Actors (GUI Objekte)
 
 - *GUI_Interface*
 - *Label*
 - *Button*
-	- *Menue_Button*
-	- *Roll_Button*
-- *CurrentPlayerArrow*
 
 ### Sonstige
 
@@ -365,8 +362,12 @@ Die Hauptklasse für Buttons, wird durch Erbung spezifiziert.
 
 ## Utils
 
-Eine finale Klasse mit vielen kleinen Methoden, die den restlichen Code verkleinern und besser lesbar gestalten soll. Ergänzungen in Form von eigenen Funktionen dürfen selbst eingebracht werden.
+Eine finale Klasse mit vielen kleinen Methoden, die den restlichen Code verkleinern und besser lesbar gestalten soll. Ergänzungen in Form von eigenen Funktionen dürfen **selbst** eingebracht werden.
 
 ### copyArray()
 
 Kopiert ein Array des Types **boolean**, **int** oder **String** mit identischer Größe.
+
+### drawInsideRectangle()
+
+Zeichnet innerhalb eines **GreenfootImage** ein Rechteck gefüllt mit der angegebenen Farbe. Es besitzt zu allen Seiten den gegebenen Abstand zum Rand des Image.
