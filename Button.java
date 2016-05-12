@@ -144,40 +144,21 @@ public class Button extends GUI_Interface {
 	*/
 	public void redraw() {
 		GreenfootImage tI = new GreenfootImage(text,textSize,textC,backC);
-		GreenfootImage corner = new GreenfootImage("images/Button_Corner.png");
-		int csx = corner.getWidth();
-		int csy = corner.getHeight();
-		GreenfootImage side = new GreenfootImage("images/Button_Side.png");
 		if(autoSize) {
-			sx = tI.getWidth() + (csx * 2) + 4;
-			sy = tI.getHeight() + (csy * 2) + 4;
+			sx = tI.getWidth() + (6 * 2) + 4;
+			sy = tI.getHeight() + (6 * 2) + 4;
 		}
 		GreenfootImage all = new GreenfootImage(sx,sy);
-		all.setColor(backC);
-		all.fill();
-		all.drawImage(corner,0,0); // top left
-		corner.rotate(90);
-		all.drawImage(corner,sx-csx,0); // top right
-		corner.rotate(90);
-		all.drawImage(corner,sx-csx,sy-csy); // bottom right
-		corner.rotate(90);
-		all.drawImage(corner,0,sy-csy); // bottom left
-		for(int i = csx; i > (sx-csx); i++) {
-			all.drawImage(side,i,0); // top
-		}
-		side.rotate(90);
-		for(int i = csy; i > (sy-csy); i++) {
-			all.drawImage(side,sx-csx,i); // right
-		}
-		side.rotate(90);
-		for(int i = csx; i > (sx-csx); i++) { // bottom
-			all.drawImage(side,i,sy-csy);
-		}
-		side.rotate(90);
-		for(int i = csy; i > (sy-csy); i++) { // left
-			all.drawImage(side,0,i);
-		}
-		all.drawImage(tI,(sx-tI.getWidth())/2,(sy-tI.getHeight())/2);
+		Color gray = new Color(127,127,127,255);
+		Utils.drawInsideRectangle(all,gray,0);
+		Utils.drawInsideRectangle(all,backC,2);
+		Utils.drawInsideRectangle(all,gray,6);
+		Utils.drawInsideRectangle(all,backC,7);
+		all.setColor(new Color(0,0,0,0));
+		all.fillRect(0,0,1,1);
+		all.fillRect(sx-1,0,1,1);
+		all.fillRect(0,sy-1,1,1);
+		all.fillRect(sx-1,sy-1,1,1);
 		setImage(all);
 	}
 }

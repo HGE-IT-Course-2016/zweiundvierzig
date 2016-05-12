@@ -1,4 +1,5 @@
 import greenfoot.*;
+import System.awt.Color;
 
 /**
  * Diese Klasse enthält nur statische Funktionen, welche für euch als Unterstützung gedacht sind. Damit könnt ihr dann hoffentlich viele Code-Zeilen sparen. :)
@@ -29,6 +30,13 @@ public final class Utils {
 			b[i] = a[i];
 		}
 		return b;
+	}
+	
+	public static void drawInsideRectangle(GreenfootImage i, Color c, int b) {
+		int sx = i.getWidth();
+		int sy = i.getHeight();
+		i.setColor(c);
+		i.fillRect(b,b,sx-(2*b),sy-(2*b));
 	}
 	
 }
