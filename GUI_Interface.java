@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.awt.Color;
 
 /**
 	Oberklasse für sämtliche GUI Objekte, wie Labels und Buttons
@@ -11,7 +12,7 @@ public abstract class GUI_Interface extends Actor
 	protected int sx = 1;
 	protected int sy = 1;
 	protected Color backC = Color.BLACK;
-	protected Color textC = Color.WHITE;
+	protected Color foreC = Color.WHITE;
 	
 	/**
 		Gibt die Breite des Objektes zurück.

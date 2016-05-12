@@ -143,22 +143,24 @@ public class Button extends GUI_Interface {
 		Zeichnet das GreenfootImage des Buttons erneut und zeigt es an.
 	*/
 	public void redraw() {
-		GreenfootImage tI = new GreenfootImage(text,textSize,textC,backC);
+		GreenfootImage tI = new GreenfootImage(text,textSize,foreC,backC);
 		if(autoSize) {
 			sx = tI.getWidth() + (6 * 2) + 4;
 			sy = tI.getHeight() + (6 * 2) + 4;
 		}
 		GreenfootImage all = new GreenfootImage(sx,sy);
-		Color gray = new Color(127,127,127,255);
+		Color gray = new Color(133,133,133,255);
+		Color black = new Color(0,0,0,255);
 		Utils.drawInsideRectangle(all,gray,0);
-		Utils.drawInsideRectangle(all,backC,2);
+		Utils.drawInsideRectangle(all,black,2);
 		Utils.drawInsideRectangle(all,gray,6);
-		Utils.drawInsideRectangle(all,backC,7);
+		Utils.drawInsideRectangle(all,black,7);
 		all.setColor(new Color(0,0,0,0));
 		all.fillRect(0,0,1,1);
 		all.fillRect(sx-1,0,1,1);
 		all.fillRect(0,sy-1,1,1);
 		all.fillRect(sx-1,sy-1,1,1);
+		all.drawImage(tI,(sx-tI.getWidth())/2,(sy-tI.getHeight())/2);
 		setImage(all);
 	}
 }
