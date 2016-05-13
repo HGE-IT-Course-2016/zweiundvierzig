@@ -5,13 +5,25 @@ import java.awt.Color;
 	Oberklasse für sämtliche GUI Objekte, wie Labels und Buttons
 	
 	@author Felix Stupp 
-	@version 11.05.2016
+	@version 13.05.2016
 */
 public abstract class GUI_Interface extends Actor
 {
+	/**
+		Die Breite des Objektes
+	*/
 	protected int sx = 1;
+	/**
+		Die Höhe des Objektes
+	*/
 	protected int sy = 1;
+	/**
+		Die Hintergrundfarbe des Objektes
+	*/
 	protected Color backC = Color.BLACK;
+	/**
+		Die Vordergrundfarbe (meist die Textfarbe) des Objektes
+	*/
 	protected Color foreC = Color.WHITE;
 	
 	/**

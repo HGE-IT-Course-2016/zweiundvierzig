@@ -5,7 +5,7 @@ import java.awt.Color;
 	Zeigt einen Text an.
 	
 	@author Felix Stupp
-	@version 11.05.2016
+	@version 13.05.2016
 */
 public class Label extends GUI_Interface {
 	
@@ -97,7 +97,7 @@ public class Label extends GUI_Interface {
 		GreenfootImage all = new GreenfootImage(sx,sy);
 		all.setColor(backC);
 		all.fill();
-		
+		all.drawImage(tI,(sx-tI.getWidth())/2,(sy-tI.getHeight())/2);
 		setImage(all);
 	}
 }

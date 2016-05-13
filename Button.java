@@ -6,7 +6,7 @@ import java.awt.Color;
 	Als Vorbild dafür hält der Button aus dem .NET-Framework für UWP-Apps dar.
 
 	@author Felix Stupp
-	@version 11.05.2016
+	@version 13.05.2016
 */
 public class Button extends GUI_Interface {
 	
