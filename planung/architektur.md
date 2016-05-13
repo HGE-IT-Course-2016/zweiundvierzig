@@ -2,11 +2,11 @@
 
 **Version: 3**
 
-**Stand: 12.05.2016** (TT.MM.JJJJ / DD.MM.YYYY)
+**Stand: 13.05.2016** (TT.MM.JJJJ / DD.MM.YYYY)
 
-[Hier die neuste offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
+[Hier die offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
 
-[Hier zur übersichtlicheren Funktionsliste](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/funktionsliste.md)
+[Hier zur übersichtlicheren Funktionsliste auf dem aktuellen Branch](funktionsliste.md)
 
 Hier ein möglicher Architekturplan von *Felix Stupp*.
 Dieser Plan wird regelmäßig angepasst, oben am Datum zu erkennen.

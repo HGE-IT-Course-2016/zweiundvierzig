@@ -2,11 +2,11 @@
 
 **Version: 3**
 
-**Stand: 12.05.2016** (TT.MM.JJJJ / DD.MM.YYYY)
+**Stand: 13.05.2016** (TT.MM.JJJJ / DD.MM.YYYY)
 
-[Hier die neuste offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/funktionsliste.md)
+[Hier die offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/funktionsliste.md)
 
-[Hier zum gesamten Architekturplan](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
+[Hier zum gesamten Architekturplan auf dem aktuellen Branch](architektur.md)
 
 Hier einfach eine grobe Übersicht über alle Funktionen, die jede Klasse als Public / Protected besitzen soll beziehungsweise bereits besitzt.
 Weitere Informationen zu den Funktionen findet ihr in der Architektur oder, falls die Funktion bereits vorhanden ist, in der Dokumentation, die von Greenfoot automatisch erstellt wird (durch die InCode Dokumentation).
