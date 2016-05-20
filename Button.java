@@ -3,10 +3,10 @@ import java.awt.Color;
 
 /**
 	Diese Klasse stellt einen Button dar.
-	Als Vorbild dafür hält der Button aus dem .NET-Framework für UWP-Apps dar.
+	Als funktionelles Vorbild dafür hält der Button aus dem .NET-Framework für UWP-Apps dar.
 
 	@author Felix Stupp
-	@version 13.05.2016
+	@version 20.05.2016
 */
 public class Button extends GUI_Interface {
 	
@@ -151,15 +151,15 @@ public class Button extends GUI_Interface {
 		GreenfootImage all = new GreenfootImage(sx,sy);
 		Color gray = new Color(133,133,133,255);
 		Color black = new Color(0,0,0,255);
+		Color trans = new Color(0,0,0,0);
 		Utils.drawInsideRectangle(all,gray,0);
 		Utils.drawInsideRectangle(all,black,2);
 		Utils.drawInsideRectangle(all,gray,6);
 		Utils.drawInsideRectangle(all,black,7);
-		all.setColor(new Color(0,0,0,0));
-		all.fillRect(0,0,1,1);
-		all.fillRect(sx-1,0,1,1);
-		all.fillRect(0,sy-1,1,1);
-		all.fillRect(sx-1,sy-1,1,1);
+		all.setColorAt(0,0,trans);
+		all.setColorAt(sx-1,0,trans);
+		all.setColorAt(0,sy-1,trans);
+		all.setColorAt(sx-1,sy-1,trans);
 		all.drawImage(tI,(sx-tI.getWidth())/2,(sy-tI.getHeight())/2);
 		setImage(all);
 	}
