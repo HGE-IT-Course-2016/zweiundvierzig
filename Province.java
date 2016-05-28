@@ -66,6 +66,18 @@ public class Province extends Actor
         displayName = s1;
         nextProvinces = Utils.copyArray(ba1);
     }
+
+    // Liefert die X-Position als Integer
+    public int getXPos()
+    {
+        return xPos;
+    }
+    
+    // Liefert die Y-Position als Integer
+    public int getYPos()
+    {
+        return yPos;
+    }
     
     // Liefert die Provinz-ID als Integer
     public int getID()
@@ -145,5 +157,5 @@ public class Province extends Actor
     public void redrawProvince() {
         //Platzhalter
     }
-    
+
 }
