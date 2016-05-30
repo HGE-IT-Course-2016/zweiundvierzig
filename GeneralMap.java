@@ -28,9 +28,9 @@ public class GeneralMap extends World
          * @param p Kantenlänge der Felder in Pixeln
          */
         super(1600, 900, 1);
-        addObject(new Menue_Button(),100,38);
-        addObject(new Roll_Button(),84,835);
-        addObject(new Roll_Button(),1513,835);
+        //addObject(new Menue_Button(),100,38);
+        //addObject(new Roll_Button(),84,835);
+        //addObject(new Roll_Button(),1513,835);
     }
 
     static GeneralMap generateMap(int mapID)

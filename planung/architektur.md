@@ -1,21 +1,21 @@
 # Architekturplan Zweiundvierzig
 
-**Version: 2**
+**Version: 3**
 
-**Stand: 10.04.2016** (TT.MM.JJJJ / DD.MM.YYYY)
+**Stand: 13.05.2016** (TT.MM.JJJJ / DD.MM.YYYY)
 
-[Hier die neuste offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
+[Hier die offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
 
-[Hier zur übersichtlicheren Funktionsliste](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/funktionsliste.md)
+[Hier zur übersichtlicheren Funktionsliste auf dem aktuellen Branch](funktionsliste.md)
 
 Hier ein möglicher Architekturplan von *Felix Stupp*.
 Dieser Plan wird regelmäßig angepasst, oben am Datum zu erkennen.
 
 Hier werden alle Klassen und deren öffentliche Methoden und Eigenschaften zusammengefasst.
-Auch zu sehen ist der Author / sind die Authoren der Klasse, um bei Fragen diese kontaktieren zu können.
+Auch zu sehen ist der Autor / sind die Autoren der Klasse, um bei Fragen diese kontaktieren zu können.
 
-**Alle Anfragen aufgrund von Architekturänderungen erst an mich weitergeben, damit ich dies mit den jeweiligen Authoren besprechen kann!**
-Die Authoren sollen nur Fragen zu bisher vorhandenen Methoden erhalten.
+**Alle Anfragen aufgrund von Architekturänderungen erst an mich weitergeben, damit ich dies mit den jeweiligen Autoren besprechen kann!**
+Die Autoren sollen nur Fragen zu bisher vorhandenen Methoden erhalten.
 
 ### Erklärung
 
@@ -61,14 +61,11 @@ Der Spieler kann mithilfe der Welt dann herausfinden, welche Provinzen ihm gehö
 - *Player*
 - *Dice* (Würfel)
 
-### Sonstige Actors (Control Elemente)
+### Sonstige Actors (GUI Objekte)
 
 - *GUI_Interface*
 - *Label*
 - *Button*
-	- *Menue_Button*
-	- *Roll_Button*
-- *CurrentPlayerArrow*
 
 ### Sonstige
 
@@ -78,7 +75,7 @@ Der Spieler kann mithilfe der Welt dann herausfinden, welche Provinzen ihm gehö
 
 ## MainMenu
 
-Stellt eine *World* als Hauptmenü dar, bekommmt die Aufgabe, die einzelnen Menüpunkte anzuzeigen. Aktiviert gegebenenfalls andere *Worlds*.
+Stellt eine *World* als Hauptmenü dar, bekommt die Aufgabe, die einzelnen Menüpunkte anzuzeigen. Aktiviert gegebenenfalls andere *Worlds*.
 
 ---
 
@@ -365,8 +362,12 @@ Die Hauptklasse für Buttons, wird durch Erbung spezifiziert.
 
 ## Utils
 
-Eine finale Klasse mit vielen kleinen Methoden, die den restlichen Code verkleinern und besser lesbar gestalten soll. Ergänzungen in Form von eigenen Funktionen dürfen selbst eingebracht werden.
+Eine finale Klasse mit vielen kleinen Methoden, die den restlichen Code verkleinern und besser lesbar gestalten soll. Ergänzungen in Form von eigenen Funktionen dürfen **selbst** eingebracht werden.
 
 ### copyArray()
 
 Kopiert ein Array des Types **boolean**, **int** oder **String** mit identischer Größe.
+
+### drawInsideRectangle()
+
+Zeichnet innerhalb eines **GreenfootImage** ein Rechteck gefüllt mit der angegebenen Farbe. Es besitzt zu allen Seiten den gegebenen Abstand zum Rand des Image.
