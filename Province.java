@@ -3,11 +3,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Province here.
  * 
- * @author GruenerWal
+ * @author GruenerWal, Felix Stupp
  * @version 0.0.2
  */
 public class Province extends Actor
 {
+    @Override public GeneralMap getWorld() {
+        return (GeneralMap) super.getWorld();
+    }
+    
     private int stars = 1;
     private int provinceID;
     private String displayName;
@@ -18,13 +22,16 @@ public class Province extends Actor
     private int yPos;
     private int eCount;
     
+    private boolean clicked = false;
+    
     /**
-     * leere Act-Methode
-     * (Für später; falls die Provinz bestimmte Aktionen ausführen sollte.)
+     * Überprüft, ob die Provinz angeklickt wurde.
      */
     public void act() 
     {
-        // GruenerWal war hier :3
+        if(Greenfoot.mouseClicked(this)) {
+            clicked = true;
+        }
     }
     
     // Haupt-Konstruktor
@@ -224,4 +231,10 @@ public class Province extends Actor
         setImage(province);
     }
 
+    public boolean hasClicked() {
+        boolean b = clicked;
+        clicked = false;
+        return b;
+    }
+    
 }
