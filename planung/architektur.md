@@ -1,8 +1,8 @@
 # Architekturplan Zweiundvierzig
 
-**Version: 3**
+**Version: 4**
 
-**Stand: 13.05.2016** (TT.MM.JJJJ / DD.MM.YYYY)
+**Stand: 31.05.2016** (TT.MM.JJJJ / DD.MM.YYYY)
 
 [Hier die offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
 
@@ -21,6 +21,8 @@ Die Autoren sollen nur Fragen zu bisher vorhandenen Methoden erhalten.
 
 Die englischen Begriffe *World* und *Actor* stehen für die gegebenen Oberklassen von Greenfoot.
 
+Alle Methoden sind als "public" zu sehen und werden hauptsächlich von anderen Klassen aufgerufen.
+
 ### Generell
 
 - Allgemein wird vom Konstruktor erwartet, dass er alle feste Eigenschaften einer Klasse in der Reihenfolge, wie hier in den Listen vorzufinden, und als die angegebenen Typen annimmt und korrekt speichert. Es kann aber auch spezifische Konstruktoren geben.
@@ -30,7 +32,7 @@ Die englischen Begriffe *World* und *Actor* stehen für die gegebenen Oberklasse
 - Alle Klassen, die als Actor agieren, müssen teilweise mit ihrer Welt interagieren. Um diese richtig gleich richtig entgegen nehmen zu können und auf die Features zugreifen zu können, kann euch folgender Code Snippet helfen. Einfach einfügen und **getWorld()** wird euch besser helfen können.
 
 
-	@Overrides private GeneralMap getWorld() {
+	@Override public GeneralMap getWorld() {
 		return (GeneralMap) super.getWorld();
 	}
 
@@ -52,7 +54,6 @@ Der Spieler kann mithilfe der Welt dann herausfinden, welche Provinzen ihm gehö
 - *GeneralMap*
 - Alle spezifischen Maps
 	- *Map_World* (gesamte Weltkarte)
-- *MainMenu*
 - *GameOptions*
 
 ### Actors
@@ -70,12 +71,6 @@ Der Spieler kann mithilfe der Welt dann herausfinden, welche Provinzen ihm gehö
 ### Sonstige
 
 - *Utils*
-
----
-
-## MainMenu
-
-Stellt eine *World* als Hauptmenü dar, bekommt die Aufgabe, die einzelnen Menüpunkte anzuzeigen. Aktiviert gegebenenfalls andere *Worlds*.
 
 ---
 
@@ -114,12 +109,9 @@ Für diese Klasse wird der Konstruktor nicht direkt von den Eigenschaften festge
 - **String getPlayerName(int)**
 - **int getPlayerStars()**
 
-- **int getProvinceOwner(int)**
-- **int[] getProvinceOwners()**
-- **int getProvinceEntityCount(int)**
-- **int getProvincesEntityCounts(int[])**
-- **int getProvincesEntityCounts(boolean[])**
-- **int getProvincesEntityCounts(int)**
+- *int* **getProvinceOwner** ( *int* )
+- *int[]* **getProvinceOwners** ()
+- *int* **getProvinceEntityCount** ( *int* playerID )
 
 #### generateMap()
 
@@ -151,13 +143,7 @@ Gibt die Anzahl der Einheiten aus einer bestimmten Provinz zurück. Bei falschen
 
 #### getProvincesEntityCounts()
 
-Zählt die Einheiten aus mehreren Provinzen zusammen und gibt die Summe davon aus.
-
-Die **int[]** Variante bekommt dabei in einem Array als Werte die IDs der Provinzen, von denen sie es zählen soll, unabhängig vom Besitzer.
-
-Die **boolean[]** Variante bekommt ein Array, bei dem die Indexen die Provinzen angeben und der **boolean**-Wert, ob diese Provinz mitgezählt werden soll.
-
-Die **int** Variante bekommt nur die ID des Spielers und zählt dabei alle Einheiten, die er besitzt.
+Zählt die Einheiten aus mehreren Provinzen zusammen und gibt die Summe davon aus. Diese Methode 
 
 ---
 
