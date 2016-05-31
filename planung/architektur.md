@@ -2,26 +2,32 @@
 
 **Version: 4**
 
-**Stand: 31.05.2016** (TT.MM.JJJJ / DD.MM.YYYY)
+**Letztes Update: 31.05.2016** (TT.MM.JJJJ / DD.MM.YYYY)
 
 [Hier die offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
 
 [Hier zur übersichtlicheren Funktionsliste auf dem aktuellen Branch](funktionsliste.md)
 
-Hier ein möglicher Architekturplan von *Felix Stupp*.
-Dieser Plan wird regelmäßig angepasst, oben am Datum zu erkennen.
+Dieser Plan wird verfasst und regelmäßig gepflegt durch *Felix Stupp*. Das Alter der vorliegenden Version ist am Datum am Dateianfang zu erkennen.
 
-Hier werden alle Klassen und deren öffentliche Methoden und Eigenschaften zusammengefasst.
-Auch zu sehen ist der Autor / sind die Autoren der Klasse, um bei Fragen diese kontaktieren zu können.
+Hier werden alle Klassen mit deren öffentliche Methoden (**public** und **protected**) und den vorgesehenen Eigenschaften (meist nur **private**) festgehalten.
 
 **Alle Anfragen aufgrund von Architekturänderungen erst an mich weitergeben, damit ich dies mit den jeweiligen Autoren besprechen kann!**
 Die Autoren sollen nur Fragen zu bisher vorhandenen Methoden erhalten.
 
-### Erklärung
+### Wichtige Infos
+
+- **Die Provinz-ID und somit auch die Indexe der Arrays beginnen dafür erst bei 1!**
+
+### Erklärungen
 
 Die englischen Begriffe *World* und *Actor* stehen für die gegebenen Oberklassen von Greenfoot.
 
 Alle Methoden sind als "public" zu sehen und werden hauptsächlich von anderen Klassen aufgerufen.
+
+#### Abkürzungen
+
+- **GUI** ([Graphical User Interface](https://de.wikipedia.org/wiki/Grafische_Benutzeroberfl%C3%A4che)): Beschreibt die Möglichkeit, durch welche ein Benutzer gewöhnlicherweise mit Programmen interagieren kann.
 
 ### Generell
 
@@ -29,25 +35,16 @@ Alle Methoden sind als "public" zu sehen und werden hauptsächlich von anderen K
 
 ### Tipps
 
-- Alle Klassen, die als Actor agieren, müssen teilweise mit ihrer Welt interagieren. Um diese richtig gleich richtig entgegen nehmen zu können und auf die Features zugreifen zu können, kann euch folgender Code Snippet helfen. Einfach einfügen und **getWorld()** wird euch besser helfen können.
+- Alle Klassen, die als Actor agieren und **nur** in der auf der *GeneralMap* beziehungsweise der Unterklassen dieser Klasse eingesetzt werden, müssen teilweise mit dieser Welt interagieren. Um die aktuelle Welt sofort im richtigen Typ zu bekommen, damit auf unsere Funktionen zugegriffen werden können, kann euch folgender Code Snippet helfen. Einfach in die Klassen einfügen einfügen und **getWorld** () wird euch besser helfen können.
 
 
 	@Override public GeneralMap getWorld() {
 		return (GeneralMap) super.getWorld();
 	}
 
-- Schaut bitte in die *Utils*-Klasse hinein, diese kann euch den Code übersichtlicher gestalten, da häufige Methoden in dieser gebündelt werden sollen.
+- Schaut bitte in die *Utils*-Klasse hinein, diese kann euch den Code übersichtlicher gestalten, da häufige und allgemein umsetzbare Aufgaben über diese einheitlich abgearbeitet werden sollen.
 
-### Explizite Eigenschaften
-
-Explizite Eigenschaften sind speziell Eigenschaften, die von der Klasse selbst gehalten werden und bevorzugt auch nur von ihr festgehalten werden.
-
-Beispiel:
-
-Ein Spieler besitzt zwar Provinzen, nur ist dies eine Eigenschaft der Provinz und nicht vom Spieler.
-Der Spieler kann mithilfe der Welt dann herausfinden, welche Provinzen ihm gehören.
-
-## Inhalt
+## Klassenverzeichnis
 
 ### Worlds
 
@@ -58,11 +55,11 @@ Der Spieler kann mithilfe der Welt dann herausfinden, welche Provinzen ihm gehö
 
 ### Actors
 
-- *Province* (von Achim)
+- *Province*
 - *Player*
-- *Dice* (Würfel)
+- *Dice*
 
-### Sonstige Actors (GUI Objekte)
+### GUI Objekte
 
 - *GUI_Interface*
 - *Label*
@@ -76,7 +73,9 @@ Der Spieler kann mithilfe der Welt dann herausfinden, welche Provinzen ihm gehö
 
 ## GameOptions
 
-Eine *World*, welche das Optionsmenü vor dem Start eines Spiels anzeigt. Diese erstellt dann eine Weltkarte über **generateMap()** und übergibt diese Greenfoot als neue *World*.
+Eine *World*, welche das Optionsmenü vor dem Start eines Spiels anzeigt. Diese erstellt dann eine Weltkarte über *void* **generateMap** () und übergibt diese Greenfoot als neue *World*.
+
+Da diese Klasse keine Aufrufe von anderen Klassen erfahren sollte, ist hier gar nichts, bis auf den späteren Nutzen, den sie erfüllen soll, (und den Namen) definiert.
 
 ---
 
@@ -86,28 +85,29 @@ Alle spezifischen Maps erben von dieser Oberklasse.
 Diese Klasse ist für Greenfoot die aktive *World* im laufenden Spiel und auch für die Anzeigen links/rechts/unten verantwortlich.
 Die erbenden Unterklassen legen dann das Hintergrundbild, die Provinzen, und weitere spezifische Eigenschaften der Karten dar.
 Diese Oberklasse kümmert sich dabei um die Anzeigen, die Spielmechanik und die Speicherung der Spieler und Provinzen.
+Auch, wenn diese Klasse einen Konstruktor besitzt, ist dieser nur für die Unterklassen, also für die spezifischen Maps, gedacht.
 
-### Spezifischer Konstruktor
+### Konstruktor
 
 Für diese Klasse wird der Konstruktor nicht direkt von den Eigenschaften festgelegt, sondern muss folgende Argumente annehmen:
 
-1. Spielerliste mit den Namen **String[]**
+1. Spielerliste mit den Namen *String[]*
 2. ...
 
-### Explizite Eigenschaften
+### Vorgesehene Eigenschaften
 
-- Spielerliste (**Player[]**, der Index ist die Spieler ID, *anfangend bei 0*)
-- Provinzliste (**Province[]**, der Index ist die Provinz ID, *anfangend bei 0*)
-- aktueller Spieler (**int**)
+- Spielerliste (*Player[]*, der Index entspricht der Spieler ID, *anfangend bei 0*)
+- Provinzliste (*Province[]*, der Index entspricht der Provinz ID, *anfangend bei 1*)
+- aktueller Spieler (*int*)
 
-### Zusätzliche Methoden
+### Public Methoden
 
-- **static GeneralMap generateMap(int mapID, ...)**
+- static *GeneralMap* **generateMap** ( *int* mapID, ...)
 
-- **int getPlayerCount()**
-- **String getPlayerName()**
-- **String getPlayerName(int)**
-- **int getPlayerStars()**
+- *int* **getPlayerCount** ()
+- *String* **getPlayerName** ()
+- *String* **getPlayerName** ( *int* playerID )
+- *int* **getPlayerStars** ()
 
 - *int* **getProvinceOwner** ( *int* )
 - *int[]* **getProvinceOwners** ()
@@ -139,11 +139,7 @@ Gibt ein Array mit allen Provinzen (deren ID als Indexen) und den Spieler IDs al
 
 #### getProvinceEntityCount()
 
-Gibt die Anzahl der Einheiten aus einer bestimmten Provinz zurück. Bei falschen Indexen muss eine 0 zurückgegeben werden.
-
-#### getProvincesEntityCounts()
-
-Zählt die Einheiten aus mehreren Provinzen zusammen und gibt die Summe davon aus. Diese Methode 
+Gibt die Anzahl der Einheiten von einer bestimmten Provinz zurück. Bei falschen Indexen muss eine 0 zurückgegeben werden.
 
 ---
 
@@ -158,25 +154,24 @@ Die Konstruktoren der Unterklassen rufen erst mit den gegebenen Argumenten den *
 ---
 
 ## Province
+*extends Actor*
 
-Wird verwaltet von Achim.
 Speichert Informationen zu den einzelnen Provinzen ab und stellt diese später auch als *Actor* dar.
 
-### Explizite Eigenschaften
+### Konstrukturparameter
 
-- Provinznummer (über Konstruktor festgelegt, **int**)
-- Kontinentnummer (über Konstruktor festgelegt, **int**)
-- X/Y-Position auf der Karte (über Konstruktor festgelegt; **int**,**int**)
-- Anzeigename (über Konstruktor festgelegt, **String**)
-- Sterne (über Konstruktor festgelegt, **int**)
-- Angrenzende Provinzen (über Konstruktor als **int[]** festgelegt, als **boolean[]** gespeichert)
-- Besitzer
-- Einheitenanzahl
+- Provinznummer *int*
+- Kontinentnummer *int*
+- X-Position auf der Karte *int*
+- Y-Position auf der Karte *int*
+- Anzeigename  *String*
+- Sterne *int*
+- Angrenzende Provinzen *int[]* (als *boolean[]* gespeichert)
 
 #### Provinz-ID und Kontinent-ID
 
-- Stellt die ID der Provinz dar und ist mit **int getID()** abrufbar.
-- Stellt die ID des Kontinentes dar und ist mit **int getContinentID()** abrufbar.
+- Stellt die ID der Provinz dar und ist mit *int* **getID** () abrufbar.
+- Stellt die ID des Kontinentes dar und ist mit *int* **getContinentID** () abrufbar.
 
 #### Position
 
@@ -187,23 +182,28 @@ Sind nach dem Erstellen der Provinz nicht mehr abrufbar.
 
 Dies ist der Name, der auf der Karte und bei Events im Zusammenhang mit dieser Provinz angezeigt wird.
 
-Kann über **String getDisplayName()** abgerufen werden, falls benötigt.
+Kann über *String* **getDisplayName** () abgerufen werden, falls benötigt.
 
 #### Sterne
 
 Dieser Wert wird für die zufällige Verteilung von Einheiten benötigt (laut Achim).
 
-Über **int getStars()** soll dieser Wert abrufbar sein.
+Über *int* **getStars** () soll dieser Wert abrufbar sein.
 
 #### Angrenzende Provinzen
 
-Dies ist ein Array von allen Provinzen, die es gibt (Provinznummer als Index), diese jeweils mit einem **Boolean**-Wert, der festlegt, ob ein Kampf oder ein Weitergeben von Einheiten möglich ist.
+Dies ist ein Array von allen Provinzen, die es gibt (Provinznummer als Index), diese jeweils mit einem *boolean*-Wert, der festlegt, ob ein Kampf oder ein Weitergeben von Einheiten möglich ist.
 
 	boolean[] nearProvinces;
 
-Dem Konstruktor kann stattdessen auch ein **int[]** mit allen angrenzenden Provinzen als Werte übergeben werden, dieses wird dann automatisch konvertiert.
+Dem Konstruktor kann stattdessen auch ein *int[]* mit allen angrenzenden Provinzen als Werte übergeben werden, dieses wird dann automatisch konvertiert.
 
-Über die Methode **boolean isProvinceNear(int)** kann man sich die Einträge einzeln als Booleans ausgeben lassen.
+Über die Methode *boolean* **isProvinceNear** ( *int* ) kann man sich die Einträge einzeln als Booleans ausgeben lassen.
+
+### Zusätzliche Eigenschaften
+
+- Besitzer
+- Einheitenanzahl
 
 #### Besitzer
 
@@ -215,10 +215,10 @@ Die Methode **boolean setOwner(int)** speichert einen neuen Besitzer ab. Sie gib
 
 Diese Eigenschaft speichert, wie viele Einheiten auf diesem Feld stehen (natürlich welche, die dem Besitzer gehören).
 
-Die Methoden **int getEntityCount()**, **int addToEntities(int)**, **int removeFromEntities(int)** und **int setEntityCount(int)** sollten genügend Möglichkeiten für Änderungen bieten.
+Die Methoden *int* **getEntityCount** (), *int* **addToEntities** ( *int* ), *int* **removeFromEntities** ( *int* ) und *int* **setEntityCount** ( *int* ) sollten genügend Möglichkeiten für Änderungen bieten.
 Alle Methoden geben nach ihrem Aufruf den nun aktuellen Wert zurück.
 
-### Zusätzliche Methoden
+### Public Methoden
 
 - **redrawProvince()**
 
@@ -229,13 +229,14 @@ Wird von der Karte oder von internen Methoden aufgerurfen, um alle sichtbaren Ei
 ---
 
 ## Player
+*extends Actor*
 
-Stellt die Spieler da, speichert Informationen zu diesen ab. Wird von der Weltkarte als *Actor* behandelt.
+Stellt die Spieler da, speichert Informationen zu diesen ab.
 
 ### Explizite Eigenschaften
 
-- Spielernummer (über Konstruktor festgelegt, **int**)
-- Anzeigename (über Konstruktor festgelegt, **String**)
+- Spielernummer (über Konstruktor festgelegt, *int*)
+- Anzeigename (über Konstruktor festgelegt, *String*)
 - Sternanzahl
 - Statistiken
 	1. Eroberte Provinzen
@@ -261,27 +262,27 @@ Ist der lesbare Name des Spielers, damit nicht nur "Spieler 1", ... usw. zu sehe
 
 Die Anzahl der Sterne, die ein Spieler besitzt und gegebenenfalls dann in Einheiten umtauschen kann.
 
-**int getStars()**, **int addToStars(int)**, **int removeFromStars(int)**, **int setStars(int)** sind zum Bearbeiten des Werts da. Auch sie geben danach den nun aktuellen Wert zurück.
+*int* **getStars** (), *int* **addToStars** ( *int* ), *int* **removeFromStars** ( *int* ), *int* **setStars** ( *int* ) sind zum Bearbeiten des Werts da. Auch sie geben danach den nun aktuellen Wert zurück.
 
-**boolean canStarsRemoved(int)** gibt zurück, ob der Spieler diese Anzahl an Sternen verwenden kann (Vereinfachung).
+*boolean* **canStarsRemoved** ( *int* ) gibt zurück, ob der Spieler diese Anzahl an Sternen verwenden kann (als Vereinfachung).
 
 #### Statistik
 
-Die Statistik soll Events festhalten, um nach einem Spiel verschiedene Werte einsehen zu können. Diese werden von der Welt mit speziellen Funktionen erhöht. Zurückgegeben sollen diese als **int[]**-Array in der Reihenfolge, wie sie oben in der Liste auftretten. Es wird auch vorgeschlagen, sie so zu speichern.
+Die Statistik soll Events festhalten, um nach einem Spiel verschiedene Werte einsehen zu können. Diese werden von der Welt mit speziellen Funktionen erhöht. Zurückgegeben sollen diese als *int[]*-Array in der Reihenfolge, wie sie oben in der Liste auftretten. Es wird auch vorgeschlagen, sie so zu speichern.
 
-**int[] getStatistics()** gibt diese Liste zurück, damit sie von der Welt angezeigt werden kann.
+*int[]* **getStatistics()** gibt diese Liste zurück, damit sie von der Welt angezeigt werden kann.
 
-**gotProvince()**, **lostProvince()**, **gotEntities(int)**, **lostEntity()**
+**gotProvince** (), **lostProvince** (), **gotEntities** ( *int* ), **lostEntity** ()
 
 ### Zusätzliche Methoden
 
-- **boolean[] getMyProvinces()**
-- **int getProvinceCount()**
-- **redrawPlayer()**
+- *boolean[]* **getMyProvinces** ()
+- *int* **getProvinceCount** ()
+- *void* **redrawPlayer** ()
 
 #### getMyProvinces()
 
-Diese Methode hat die Aufgabe, eine Liste aller Provinzen zurückzugeben, wobei jede Provinz mit einem **boolean**-Wert gesagt bekommt, ob sie dem Spieler gehört oder nicht.
+Diese Methode hat die Aufgabe, eine Liste aller Provinzen zurückzugeben, wobei jede Provinz mit einem *boolean*-Wert gesagt bekommt, ob sie dem Spieler gehört oder nicht.
 
 Diese Methode muss zwingend mit der Welt interagieren, um diese Informationen zu bekommen.
 
@@ -296,8 +297,9 @@ Erzwingt das erneute Zeichnen des Player Objekts, um alle sichtbaren Eigenschaft
 ---
 
 ## Dice
+*extends Actor*
 
-Stellt einen Würfel als *Actor* dar (vergleichbar mit dem Würfel aus dem Spiel 10000).
+Stellt einen Würfel als *Actor* dar (vergleichbar mit dem Würfel aus unserem Projekt Zehntausend).
 
 ### Eigenschaften
 
@@ -309,7 +311,7 @@ Diese Zahl zeigt der Würfel gerade an und kann mit **int getNumber()** abgerufe
 
 ### Zusätzliche Methoden
 
-- **int roll()**
+- *int* **roll** ()
 
 #### roll()
 
@@ -318,20 +320,24 @@ Berechnet eine Zufallszahl von 1 bis 6, speichert diese ab und gibt sie auch so 
 ---
 
 ## GUI_Interface
+*extends Actor*
 
-Die Oberklasse für alle Interfaces.
+Die Oberklasse für alle Interface-Objekte wie Buttons und Labels. Diese Klasse ist *abstract*.
 
-Besitzt noch keine relevanten Eigenschaften
+### 
+
+### Public Methoden
 
 ---
 
 ## Label
+*extends GUI_Interface*
 
 Zeigt einen Text auf dem Bildschirm an. Zuvor wurde dieses Objekt "Text" genannt, "Label" ist der fachlichere Ausdruck dafür.
 
 ### Eigenschaften
 
-- Anzeigetext (**String**; kann vom Konstruktor entgegen genommen werden, sonst ist der Standardtext "" zu sehen)
+- Anzeigetext (*String*; kann vom Konstruktor entgegen genommen werden, sonst ist der Standardtext "" zu sehen)
 
 #### Anzeigetext
 
@@ -341,6 +347,7 @@ Mit **String getText()** und **String setText(String)** bekommt Zugriff darauf.
 ---
 
 ## Button
+*extends GUI_Interface*
 
 Die Hauptklasse für Buttons, wird durch Erbung spezifiziert.
 
@@ -352,7 +359,7 @@ Eine finale Klasse mit vielen kleinen Methoden, die den restlichen Code verklein
 
 ### copyArray()
 
-Kopiert ein Array des Types **boolean**, **int** oder **String** mit identischer Größe.
+Kopiert ein Array des Types *boolean*, *int* oder *String* mit identischer Größe.
 
 ### drawInsideRectangle()
 
