@@ -1,8 +1,8 @@
 # Architekturplan Zweiundvierzig
 
-**Version: 4**
+**Version: 5**
 
-**Letztes Update: 31.05.2016** (TT.MM.JJJJ / DD.MM.YYYY)
+**Letztes Update: 01.06.2016** (TT.MM.JJJJ / DD.MM.YYYY)
 
 [Hier die offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
 
@@ -17,23 +17,22 @@ Die Autoren sollen nur Fragen zu bisher vorhandenen Methoden erhalten.
 
 ### Wichtige Infos
 
+- **Bitte kommentiert all eure Methoden nach dem Java-Standard, damit diese in der automatisch generierten Dokumentation auch mit einer kurzen Erklärung auftauchen.**
 - **Die Provinz-ID und somit auch die Indexe der Arrays beginnen dafür erst bei 1!**
 
 ### Erklärungen
 
 Die englischen Begriffe *World* und *Actor* stehen für die gegebenen Oberklassen von Greenfoot.
 
-Alle Methoden sind als "public" zu sehen und werden hauptsächlich von anderen Klassen aufgerufen.
+Alle Methoden sind meist als **public** zu sehen und werden hauptsächlich von anderen Klassen aufgerufen.
 
 #### Abkürzungen
 
 - **GUI** ([Graphical User Interface](https://de.wikipedia.org/wiki/Grafische_Benutzeroberfl%C3%A4che)): Beschreibt die Möglichkeit, durch welche ein Benutzer gewöhnlicherweise mit Programmen interagieren kann.
 
-### Generell
-
-- Allgemein wird vom Konstruktor erwartet, dass er alle feste Eigenschaften einer Klasse in der Reihenfolge, wie hier in den Listen vorzufinden, und als die angegebenen Typen annimmt und korrekt speichert. Es kann aber auch spezifische Konstruktoren geben.
-
 ### Tipps
+
+- Falls euere Aufgabe die Umsetzung einer Methode ist, die hier bereits beschrieben wird, müsst ihr nicht diesselben Parameterbezeichner verwenden, wie sie hier verwendet wurden. Falls aus diesem Bezeichner jedoch die Bedeutung des
 
 - Alle Klassen, die als Actor agieren und **nur** in der auf der *GeneralMap* beziehungsweise der Unterklassen dieser Klasse eingesetzt werden, müssen teilweise mit dieser Welt interagieren. Um die aktuelle Welt sofort im richtigen Typ zu bekommen, damit auf unsere Funktionen zugegriffen werden können, kann euch folgender Code Snippet helfen. Einfach in die Klassen einfügen einfügen und **getWorld** () wird euch besser helfen können.
 
@@ -41,8 +40,9 @@ Alle Methoden sind als "public" zu sehen und werden hauptsächlich von anderen K
 	@Override public GeneralMap getWorld() {
 		return (GeneralMap) super.getWorld();
 	}
+- Arbeitet bitte, wenn möglich, mit der *Utils*-Klasse, diese kann helfen den Code übersichtlicher und kürzer zu gestalten, da häufige und allgemein umsetzbare Aufgaben über diese einheitlich abgearbeitet werden sollen. Das Debuggen wird somit auch einfacher, sowohl für mich als auch für euch selbst.
 
-- Schaut bitte in die *Utils*-Klasse hinein, diese kann euch den Code übersichtlicher gestalten, da häufige und allgemein umsetzbare Aufgaben über diese einheitlich abgearbeitet werden sollen.
+- Ihr könnt auch ab und zu in die Dokumentationen der offiziellen Java-Bibliotheken schauen, falls ihr denkt, dass es bereits eine Methode geben sollte für den Vorgang, den ihr sonst selbst programmieren müsstet.
 
 ## Klassenverzeichnis
 
@@ -85,24 +85,39 @@ Alle spezifischen Maps erben von dieser Oberklasse.
 Diese Klasse ist für Greenfoot die aktive *World* im laufenden Spiel und auch für die Anzeigen links/rechts/unten verantwortlich.
 Die erbenden Unterklassen legen dann das Hintergrundbild, die Provinzen, und weitere spezifische Eigenschaften der Karten dar.
 Diese Oberklasse kümmert sich dabei um die Anzeigen, die Spielmechanik und die Speicherung der Spieler und Provinzen.
-Auch, wenn diese Klasse einen Konstruktor besitzt, ist dieser nur für die Unterklassen, also für die spezifischen Maps, gedacht.
+Auch, wenn diese Klasse einen Konstruktor besitzt, ist dieser nur für die Unterklassen, also für die spezifischen Maps, als Vereinfachung gedacht.
 
-### Konstruktor
+### Konstruktorparameter
 
-Für diese Klasse wird der Konstruktor nicht direkt von den Eigenschaften festgelegt, sondern muss folgende Argumente annehmen:
+1. Der Dateiname des Hintergrundbildes der Karte als *String*
+2. Spielerliste mit den Namen als *String[]*
 
-1. Spielerliste mit den Namen *String[]*
-2. ...
+#### Hintergrundbild
+
+Dies soll von den Konstruktoren der spezifischen Maps weitergegeben werden. Der Dateiname ist dort jeweils angepasst und direkt im Code als Konstante angegebenen. Diese Oberklasse übernimmt dann alle Aktionen, um es im Hintergrund der GUI Grafik anzuzeigen.
 
 ### Vorgesehene Eigenschaften
 
 - Spielerliste (*Player[]*, der Index entspricht der Spieler ID, *anfangend bei 0*)
-- Provinzliste (*Province[]*, der Index entspricht der Provinz ID, *anfangend bei 1*)
-- aktueller Spieler (*int*)
+- Provinzliste (*Province[]*, als **protected** definiert, der Index entspricht der Provinz ID, *anfangend bei 1*)
+
+#### Spielerliste
+
+Diese Liste soll alle *Player*-Objekte für die Spieler enthalten, welche dann auch als Actor links von der Karte zu sehen sein sollten.
+
+#### Provinzliste
+
+Die Provinzliste enthält alle Provinzobjekte, die auf der Karte zu sehen sind. Diese wird erst vom Konstruktor der spezifischen Maps gefüllt.
+
+### Protected Methoden
+
+- *void* **addProvinceToMap** ( *Province* province )
+
+#### addProvinceToMap()
+
+Diese Methode soll das Hinzufügen der Provinzen, sowohl in das Array, als auch an die richtige Position auf der *World* übernehmen. Sollte eine Provinz-ID zweimal verwendet werden sollen, wird diese Methode einen Fehler auslösen!
 
 ### Public Methoden
-
-- static *GeneralMap* **generateMap** ( *int* mapID, ...)
 
 - *int* **getPlayerCount** ()
 - *String* **getPlayerName** ()
@@ -112,10 +127,6 @@ Für diese Klasse wird der Konstruktor nicht direkt von den Eigenschaften festge
 - *int* **getProvinceOwner** ( *int* )
 - *int[]* **getProvinceOwners** ()
 - *int* **getProvinceEntityCount** ( *int* playerID )
-
-#### generateMap()
-
-Diese statische Funktion generiert eine Map mit der gegebenen ID. Die **...**-Argumente sind dabei alle Argumente, die an dessen Konstruktor weitergegeben werden müssen.
 
 #### getPlayerCount()
 
@@ -149,7 +160,7 @@ Alle Maps erben von *GeneralMap*
 
 ### Spezifischer Konstruktor
 
-Die Konstruktoren der Unterklassen rufen erst mit den gegebenen Argumenten den *super*-Konstruktor auf, um danach die spezifischen Dinge festlegen zu können (Provinzen bspw.)
+Die Konstruktoren der Unterklassen rufen erst mit den gegebenen Argumenten den *GeneralMap*-Konstruktor auf, um danach die spezifischen Dinge festlegen zu können (Provinzen beispielsweise).
 
 ---
 
