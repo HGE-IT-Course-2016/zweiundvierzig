@@ -1,8 +1,6 @@
 # Architekturplan Zweiundvierzig
 
-**Version: 5**
-
-**Letztes Update: 01.06.2016** (TT.MM.JJJJ / DD.MM.YYYY)
+**Letztes Update: 02.06.2016** (TT.MM.JJJJ / DD.MM.YYYY)
 
 [Hier die offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
 
@@ -48,10 +46,10 @@ Alle Methoden sind meist als **public** zu sehen und werden hauptsächlich von a
 
 ### Worlds
 
+- World für den Spielstart
 - *GeneralMap*
 - Alle spezifischen Maps
 	- *Map_World* (gesamte Weltkarte)
-- *GameOptions*
 
 ### Actors
 
@@ -71,11 +69,13 @@ Alle Methoden sind meist als **public** zu sehen und werden hauptsächlich von a
 
 ---
 
-## GameOptions
+## Spielstart
 
-Eine *World*, welche das Optionsmenü vor dem Start eines Spiels anzeigt. Diese erstellt dann eine Weltkarte über *void* **generateMap** () und übergibt diese Greenfoot als neue *World*.
+Diese *World* hat die Aufgabe, zum einen den Titelbildschirm (mit einem schönen Hintergrundbild, welches später noch optional gezeichnet wird) des Spiels anzeigt, daraufhin ein Menü mit den Möglichkeiten, ein Spiel zu starten oder zu laden (der Button für das Laden eines Speicherstand's bleibt vorerst ohne Funktion, auch optional geplant). Beim Erstellen eines neuen Spiels soll man sowohl die Möglichkeit bekommen, die Eigenschaften der Spieler und die der Map auszuwählen.
 
-Da diese Klasse keine Aufrufe von anderen Klassen erfahren sollte, ist hier gar nichts, bis auf den späteren Nutzen, den sie erfüllen soll, (und den Namen) definiert.
+Dies kann entweder in verschiedenen *World*'s gelöst werden, als auch in einer einzelnen. Dies bleibt euch zusammen mit dem Design diesem Menü überlassen.
+
+Ich schlage euch vor, die bereits von mir erstellen Steuerelemente *Label* und *Button* zu verwenden. Diese sollten die Arbeit für euch wesentlich erleichtern, genauso wie das Schreiben von neuen Steuerelementen, falls ihr bemerken sollte, dass ihr diese öfters braucht als einmal. Diese sollten dann auch selbst von der Oberklasse *GUI_Interface* erben.
 
 ---
 
