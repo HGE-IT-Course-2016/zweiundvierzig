@@ -1,4 +1,5 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
+import java.awt.Color;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class Province here.
@@ -156,70 +157,92 @@ public class Province extends Actor
     
     public void redrawProvince()
     {
-        GreenfootImage province = new GreenfootImage(100,65);   
-        GreenfootImage provinceName = new GreenfootImage(displayName,16,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
+        GreenfootImage province = new GreenfootImage(100,100);   
+        GreenfootImage provinceName = new GreenfootImage(displayName,25,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
         province.drawImage(provinceName,0,0);
-        eCalculate(province);        
+        oDecide(province);        
+    }
+    
+    public void oDecide(GreenfootImage province)
+    {
+        String ownerString;
+        switch(owner)
+        {
+        case 1:
+        ownerString = "schwarz";
+        eCalculate(province,ownerString);
+        case 2:
+        ownerString = "rot";
+        eCalculate(province,ownerString);
+        case 3:
+        ownerString = "blau";
+        eCalculate(province,ownerString);
+        case 4:
+        ownerString = "gelb";
+        eCalculate(province,ownerString);
+        case 5:
+        ownerString = "grün";
+        eCalculate(province,ownerString);
+        case 6:
+        ownerString = "lila";
+        eCalculate(province,ownerString);
+        
+        
+    }
+        
+        
     }
 
-    private void eCalculate(GreenfootImage province)
+    private void eCalculate(GreenfootImage province, String ownerString)
     {
         int eCountTanks = eCount / 5;
-        GreenfootImage tryOut = new GreenfootImage("C:\\Users\\samue\\Documents\\GitHub\\zweiundvierzig\\Tank.jpg");
+        GreenfootImage tank = new GreenfootImage("images\\dickebertaskal-" + ownerString + ".png");
+        tank.scale(25,25);
         if(eCountTanks <= 3)
         {
             if(eCountTanks == 1)
             {
-                province.drawImage(tryOut,0,17);                 
+                province.drawImage(tank,0,25);                 
             }
             if(eCountTanks == 2)
             {
-                province.drawImage(tryOut,0,17);
-                province.drawImage(tryOut,17,17);  
+                province.drawImage(tank,0,25);
+                province.drawImage(tank,17,25);  
             }
             if(eCountTanks == 3)
             {
-                province.drawImage(tryOut,0,17);
-                province.drawImage(tryOut,17,17);  
-                province.drawImage(tryOut,34,17); 
+                province.drawImage(tank,0,25);
+                province.drawImage(tank,25,25);  
+                province.drawImage(tank,25,25); 
             }
         }
         else
         {
-            GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",16,Color.CYAN,new Color(1.0f,1.0f,1.0f,0.5f));
-            province.drawImage(eCountTanksImage,0,17);
-            province.drawImage(tryOut,22,18);
+            GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",25,Color.CYAN,new Color(1.0f,1.0f,1.0f,0.5f));
+            province.drawImage(eCountTanksImage,0,25);
+            province.drawImage(tank,45,25);
         }
         int eCountHorse = (eCount - (eCountTanks * 5))/3;
+        GreenfootImage horse = new GreenfootImage("images\\pferdreiterskal-" + ownerString + ".png");
+        horse.scale(25,25);
         if(eCountHorse == 1)
         {
-            province.drawImage(tryOut,0,34);           
+            province.drawImage(horse,0,50);           
         }
+        GreenfootImage Inf = new GreenfootImage("images\\infanterieskal-" + ownerString + ".png");
         int eCountInf = eCount - (eCountTanks * 5) - (eCountHorse * 3);
+        Inf.scale(25,25);
         if(eCountInf <= 4)
         {
             if(eCountInf == 1)
             {
-                province.drawImage(tryOut,0,51);
+                province.drawImage(Inf,0,75);
             }
             if(eCountInf == 2)
             {
-                province.drawImage(tryOut,0,51);
-                province.drawImage(tryOut,17,51);  
-            }
-            if(eCountInf == 3)
-            {
-                province.drawImage(tryOut,0,51);
-                province.drawImage(tryOut,17,51);  
-                province.drawImage(tryOut,34,51); 
-            }
-            if(eCountInf == 4)
-            {
-                province.drawImage(tryOut,0,51);
-                province.drawImage(tryOut,17,51);  
-                province.drawImage(tryOut,34,51);
-                province.drawImage(tryOut,51,51);
-            }
+                province.drawImage(Inf,0,75);
+                province.drawImage(Inf,25,75);  
+            }           
         }
         setImage(province);
     }
