@@ -610,14 +610,17 @@ Stellt einen Button mit einem Text dar. Dieses Objekt kann dazu ein Event auslö
 
 Hier gibt es mehrere Möglichkeiten, eine Instanz der Klasse *Button* zu erstellen:
 
-0. Anzeigetext als *String*
-0. Textgröße als *int*
+Methode 1:
+1. Anzeigetext als *String*
+2. Textgröße als *int*
 
+Methode 2:
 1. EventHandler als *ButtonEvent*
 
-2. Anzeigetext als *String*
+Methode 3:
+1. Anzeigetext als *String*
 2. Textgröße als *int*
-2. EventHandler als *ButtonEvent*
+3. EventHandler als *ButtonEvent*
 
 #### Anzeigetext
 
