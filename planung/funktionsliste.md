@@ -47,6 +47,8 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 - *int* **removeFromEntities** ( *int* entityCountToRemove )
 - *int* **setEntityCount** ( *int* newEntityCount)
 
+- *boolean* **hasClicked** ()
+
 - *void* **redrawProvince** ()
 
 ## Player

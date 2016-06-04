@@ -257,6 +257,8 @@ Diese Eigenschaft speichert, wie viele Einheiten auf diesem Feld stehen (natürl
 - *int* **removeFromEntities** ( *int* entityCountToRemove )
 - *int* **setEntityCount** ( *int* newEntityCount)
 
+- *boolean* **hasClicked** ()
+
 - *void* **redrawProvince** ()
 
 #### getID()
@@ -302,6 +304,10 @@ Subtrahiert die gegebene Anzahl der Einheiten von die gespeicherte Anzahl ab, sp
 #### setEntityCount()
 
 Setzt einen neuen festen Wert für die Einheitenanzahl fest und gibt diesen wieder zurück. Bei gegebenen Werten unter 0 wird dies nicht abspeichert, aber dennoch wird der noch aktuellen Wert zurückgeben.
+
+#### hasClicked()
+
+Gibt zurück, ob seid dem letzten Aufruf dieser Methode diese Provinz von der Maus angeklickt wurde.
 
 #### redrawProvince()
 
