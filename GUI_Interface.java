@@ -5,7 +5,7 @@ import java.awt.Color;
 	Oberklasse für sämtliche GUI Objekte, wie Labels und Buttons
 	
 	@author Felix Stupp 
-	@version 13.05.2016
+	@version 04.06.2016
 */
 public abstract class GUI_Interface extends Actor
 {
@@ -47,7 +47,7 @@ public abstract class GUI_Interface extends Actor
 		@param h Die neue Höhe
 	*/
 	public void setSize(int w, int h) {
-		if(w < 0 || h < 0) {
+		if(w < 1 || h < 1) {
 			return;
 		}
 		sx = w;
@@ -56,8 +56,8 @@ public abstract class GUI_Interface extends Actor
 	}
 	
 	/**
-	* Gibt die aktuelle Hintergrundfarbe des Objektes zurück.
-	* @return Die aktuelle Hintergrundfarbe als System.awt.Color
+		Gibt die aktuelle Hintergrundfarbe des Objektes zurück.
+		@return Die aktuelle Hintergrundfarbe als System.awt.Color
 	*/
 	public Color getBackColor() {
 		return backC;
