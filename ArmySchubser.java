@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
  * Schubst Einheiten umher.
  * 
  * @author MaxiJohl, GruenerWal
- * @version 0.1.0
+ * @version 0.1.1
  */
 public class ArmySchubser extends Map_World
 {
@@ -20,20 +20,8 @@ public class ArmySchubser extends Map_World
         // Hi.
     }
 
-    /*
-    public void act()
+    public void act() 
     {
-    MouseInfo m = Greenfoot.getMouseInfo();
-    Actor mouseActor = m.getActor();
-
-    if (mouseActor.getClass().equals(Province.class))
-    {
-    Actor firstProvince = mouseActor;    
-    }
-    }
-     */
-
-    public void act() {
         Province firstProvince = null;
         Province secondProvince = null;
 
