@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=int\ getStars()
+comment1.params=
+comment1.target=void\ addToStars()
+comment2.params=
+comment2.target=void\ add()
+comment3.params=set
+comment3.target=int\ setStars(int)
+comment4.params=sub
+comment4.target=int\ removeFromStars(int)
+numComments=5
