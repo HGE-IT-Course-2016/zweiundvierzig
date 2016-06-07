@@ -1,14 +1,17 @@
 // Place your settings in this file to overwrite default and user settings.
 {
 	"files.exclude": {
+		// IDE Einstellungen
 		"**/.git": true,
 		"**/.DS_Store": true,
+		"**/.vscode": true,
+		// Greenfoot Dateien
+		"project.greenfoot": true,
 		"*.class": true,
 		"*.ctxt": true,
-		"project.greenfoot": true,
-		"**/.vscode": true,
-		"*.ods": true,
-		"*.xls": true,
-		"*.xlsx": true
+		// Excel Tabellen
+		"**/*.ods": true,
+		"**/*.xls": true,
+		"**/*.xlsx": true
 	}
 }

@@ -3,11 +3,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Province here.
  * 
- * @author GruenerWal
+ * @author GruenerWal, Felix Stupp
  * @version 0.0.2
  */
 public class Province extends Actor
 {
+    @Override public GeneralMap getWorld() {
+        return (GeneralMap) super.getWorld();
+    }
+    
     private int stars = 1;
     private int provinceID;
     private String displayName;
@@ -18,13 +22,16 @@ public class Province extends Actor
     private int yPos;
     private int eCount;
     
+    private boolean clicked = false;
+    
     /**
-     * leere Act-Methode
-     * (Für später; falls die Provinz bestimmte Aktionen ausführen sollte.)
+     * Überprüft, ob die Provinz angeklickt wurde.
      */
     public void act() 
     {
-        // GruenerWal war hier :3
+        if(Greenfoot.mouseClicked(this)) {
+            clicked = true;
+        }
     }
     
     // Haupt-Konstruktor
@@ -65,6 +72,18 @@ public class Province extends Actor
         }
         displayName = s1;
         nextProvinces = Utils.copyArray(ba1);
+    }
+
+    // Liefert die X-Position als Integer
+    public int getXPos()
+    {
+        return xPos;
+    }
+    
+    // Liefert die Y-Position als Integer
+    public int getYPos()
+    {
+        return yPos;
     }
     
     // Liefert die Provinz-ID als Integer
@@ -142,8 +161,80 @@ public class Province extends Actor
         return eCount;
     }
     
-    public void redrawProvince() {
-        //Platzhalter
+    public void redrawProvince()
+    {
+        GreenfootImage province = new GreenfootImage(100,65);   
+        GreenfootImage provinceName = new GreenfootImage(displayName,16,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
+        province.drawImage(provinceName,0,0);
+        eCalculate(province);        
+    }
+
+    private void eCalculate(GreenfootImage province)
+    {
+        int eCountTanks = eCount / 5;
+        GreenfootImage tryOut = new GreenfootImage("C:\\Users\\samue\\Documents\\GitHub\\zweiundvierzig\\Tank.jpg");
+        if(eCountTanks <= 3)
+        {
+            if(eCountTanks == 1)
+            {
+                province.drawImage(tryOut,0,17);                 
+            }
+            if(eCountTanks == 2)
+            {
+                province.drawImage(tryOut,0,17);
+                province.drawImage(tryOut,17,17);  
+            }
+            if(eCountTanks == 3)
+            {
+                province.drawImage(tryOut,0,17);
+                province.drawImage(tryOut,17,17);  
+                province.drawImage(tryOut,34,17); 
+            }
+        }
+        else
+        {
+            GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",16,Color.CYAN,new Color(1.0f,1.0f,1.0f,0.5f));
+            province.drawImage(eCountTanksImage,0,17);
+            province.drawImage(tryOut,22,18);
+        }
+        int eCountHorse = (eCount - (eCountTanks * 5))/3;
+        if(eCountHorse == 1)
+        {
+            province.drawImage(tryOut,0,34);           
+        }
+        int eCountInf = eCount - (eCountTanks * 5) - (eCountHorse * 3);
+        if(eCountInf <= 4)
+        {
+            if(eCountInf == 1)
+            {
+                province.drawImage(tryOut,0,51);
+            }
+            if(eCountInf == 2)
+            {
+                province.drawImage(tryOut,0,51);
+                province.drawImage(tryOut,17,51);  
+            }
+            if(eCountInf == 3)
+            {
+                province.drawImage(tryOut,0,51);
+                province.drawImage(tryOut,17,51);  
+                province.drawImage(tryOut,34,51); 
+            }
+            if(eCountInf == 4)
+            {
+                province.drawImage(tryOut,0,51);
+                province.drawImage(tryOut,17,51);  
+                province.drawImage(tryOut,34,51);
+                province.drawImage(tryOut,51,51);
+            }
+        }
+        setImage(province);
+    }
+
+    public boolean hasClicked() {
+        boolean b = clicked;
+        clicked = false;
+        return b;
     }
     
 }

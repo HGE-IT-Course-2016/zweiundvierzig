@@ -8,6 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Roll_Button extends Button
 {
+    public Roll_Button(ButtonEvent h) {
+        super(h);
+    }
+    
     /**
      * Act - do whatever the Würfel_Button_Angriff wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
