@@ -10,7 +10,7 @@ import java.awt.Color;
 */
 public class Button extends GUI_Interface {
 	
-	private boolean autoSize = true;
+	private boolean autoSize = false;
 	private int textSize = 32; // as default text size
 	private String text = "";
 	
