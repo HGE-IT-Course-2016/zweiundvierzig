@@ -34,7 +34,7 @@ public class Province extends Actor
             clicked = true;
         }
     }
-    
+
     // Haupt-Konstruktor
     public Province(int pID, int cID, int x, int y, int st, String s1, int[] ia1)
     {
@@ -60,7 +60,7 @@ public class Province extends Actor
             }
         }
     }
-    
+
     // Zweiter Konstruktor, um auch das boolean-Array gegebenenfalls verwenden zu könnnen.
     public Province(int pID, int cID, int x, int y, int st, String s1, boolean[] ba1)
     {
@@ -80,25 +80,25 @@ public class Province extends Actor
     {
         return xPos;
     }
-    
+
     // Liefert die Y-Position als Integer
     public int getYPos()
     {
         return yPos;
     }
-    
+
     // Liefert die Provinz-ID als Integer
     public int getID()
     {
         return provinceID;
     }
-    
+
     // Liefert die Kontinent-ID als Integer
     public int getContinentID()
     { 
         return continentID;
     }
-    
+
     // Fragt ab, ob die angegebene Provinz in der Nähe von dieser liegt.
     public boolean isProvinceNear(int i) {
         if(i >= nextProvinces.length) {
@@ -106,25 +106,25 @@ public class Province extends Actor
         }
         return nextProvinces[i];
     }
-    
+
     // Liefert den Anzeigenamen als String
     public String getDisplayName()
     {
         return displayName;
     }
-    
+
     // Liefert die Sterne als Integer
     public int getStars()
     {
         return stars;
     }
-    
+
     // Liefert den Owner als String
     public int getOwner()
     {
         return owner;
     }
-    
+
     // Setzt den Owner, benötigt String
     public void setOwner(int o)
     {
@@ -133,101 +133,128 @@ public class Province extends Actor
         }
         owner = o;
     }
-    
+
     public int getEntityCount() {
         return eCount;
     }
-    
+
     private void checkEntityCount() {
         if(eCount < 0) {
             eCount = 0;
         }
     }
-    
+
     public int addToEntities(int a) {
         eCount = eCount + a;
         checkEntityCount();
         return eCount;
     }
-    
+
     public int removeFromEntities(int a) {
         eCount = eCount - a;
         checkEntityCount();
         return eCount;
     }
-    
+
     public int setEntityCount(int a) {
         eCount = a;
         checkEntityCount();
         return eCount;
     }
-    
+
     public void redrawProvince()
     {
-        GreenfootImage province = new GreenfootImage(100,65);   
-        GreenfootImage provinceName = new GreenfootImage(displayName,16,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
+        int textSize;
+        textSize = 20;
+        GreenfootImage province = new GreenfootImage(100,100);   
+        GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
         province.drawImage(provinceName,0,0);
-        eCalculate(province);        
+        oDecide(province,textSize);        
     }
 
-    private void eCalculate(GreenfootImage province)
+    public void oDecide(GreenfootImage province,int textSize)
+    {
+        String ownerString;
+        switch(owner)
+        {
+            case 1:
+            ownerString = "schwarz";
+            eCalculate(province,ownerString,textSize);
+            break;
+            case 2:
+            ownerString = "rot";
+            eCalculate(province,ownerString,textSize);
+            break;
+            case 3:
+            ownerString = "blau";
+            eCalculate(province,ownerString,textSize);
+            break;
+            case 4:
+            ownerString = "gelb";
+            eCalculate(province,ownerString,textSize);
+            break;
+            case 5:
+            ownerString = "gr++n";
+            eCalculate(province,ownerString,textSize);
+            break;
+            case 6:
+            ownerString = "lila";
+            eCalculate(province,ownerString,textSize);
+
+        }
+        
+    }
+
+    private void eCalculate(GreenfootImage province, String ownerString,int textSize)
     {
         int eCountTanks = eCount / 5;
-        GreenfootImage tryOut = new GreenfootImage("C:\\Users\\samue\\Documents\\GitHub\\zweiundvierzig\\Tank.jpg");
+        GreenfootImage tank = new GreenfootImage("images\\dickebertaskal-" + ownerString + ".png");
+        tank.scale(textSize,textSize);
         if(eCountTanks <= 3)
         {
             if(eCountTanks == 1)
             {
-                province.drawImage(tryOut,0,17);                 
+                province.drawImage(tank,0,textSize);                 
             }
             if(eCountTanks == 2)
             {
-                province.drawImage(tryOut,0,17);
-                province.drawImage(tryOut,17,17);  
+                province.drawImage(tank,0,textSize);
+                province.drawImage(tank,17,textSize);  
             }
             if(eCountTanks == 3)
             {
-                province.drawImage(tryOut,0,17);
-                province.drawImage(tryOut,17,17);  
-                province.drawImage(tryOut,34,17); 
+                province.drawImage(tank,0,textSize);
+                province.drawImage(tank,textSize,textSize);  
+                province.drawImage(tank,textSize,textSize); 
             }
         }
         else
         {
-            GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",16,Color.CYAN,new Color(1.0f,1.0f,1.0f,0.5f));
-            province.drawImage(eCountTanksImage,0,17);
-            province.drawImage(tryOut,22,18);
+            GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",textSize,Color.CYAN,new Color(1.0f,1.0f,1.0f,0.5f));
+            province.drawImage(eCountTanksImage,0,textSize);
+            province.drawImage(tank,45,textSize);
         }
         int eCountHorse = (eCount - (eCountTanks * 5))/3;
+        GreenfootImage horse = new GreenfootImage("images\\pferdreiterskal-" + ownerString + ".png");
+        horse.scale(textSize,textSize);
         if(eCountHorse == 1)
         {
-            province.drawImage(tryOut,0,34);           
+            province.drawImage(horse,0,2 * textSize);           
         }
+        GreenfootImage Inf = new GreenfootImage("images\\infanterieskal-" + ownerString + ".png");
         int eCountInf = eCount - (eCountTanks * 5) - (eCountHorse * 3);
+        Inf.scale(textSize,textSize);
         if(eCountInf <= 4)
         {
             if(eCountInf == 1)
             {
-                province.drawImage(tryOut,0,51);
+                province.drawImage(Inf,0,3* textSize);
             }
             if(eCountInf == 2)
             {
-                province.drawImage(tryOut,0,51);
-                province.drawImage(tryOut,17,51);  
-            }
-            if(eCountInf == 3)
-            {
-                province.drawImage(tryOut,0,51);
-                province.drawImage(tryOut,17,51);  
-                province.drawImage(tryOut,34,51); 
-            }
-            if(eCountInf == 4)
-            {
-                province.drawImage(tryOut,0,51);
-                province.drawImage(tryOut,17,51);  
-                province.drawImage(tryOut,34,51);
-                province.drawImage(tryOut,51,51);
-            }
+                province.drawImage(Inf,0,3 * textSize);
+                province.drawImage(Inf,25,3 * textSize);  
+            }           
         }
         setImage(province);
     }
@@ -239,3 +266,4 @@ public class Province extends Actor
     }
     
 }
+
