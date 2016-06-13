@@ -13,7 +13,7 @@ Falls euere Aufgabe die Umsetzung einer Methode ist, die hier bereits beschriebe
 
 Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methodenn im Code präsent habt.
 
-## GeneralMap
+## GeneralMap (erweitert World)
 
 - *GeneralMap* ( *String* backgroundImage, *String[]* playerList, *int[]* colorList )
 
@@ -28,7 +28,7 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 - *int[]* **getProvinceOwners** ()
 - *int* **getProvinceEntityCount** ( *int* playerID )
 
-## Province
+## Province (erweitert Actor)
 
 - *Province* ( *int* provinceID, *int* continentID, *int* xPos, *int* yPos, *String* displayName, *int* stars, *int[]* neighbourProvinces )
 
@@ -51,7 +51,7 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 
 - *void* **redrawProvince** ()
 
-## Player
+## Player (erweitert Actor)
 
 - *Player* ( *int* playerID, *String* displayName, *int* playerColor )
 
@@ -74,15 +74,7 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 - *int* **getProvinceCount** ()
 - *void* **redrawPlayer** ()
 
-## Dice
-
-- *Dice* ()
-
-- *int* **getNumber** ()
-
-- *int* **roll** ()
-
-## GUI_Interface
+## GUI_Interface (erweitert Actor)
 
 - protected *int* **sx**
 - protected *int* **sy**
@@ -127,5 +119,18 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 - *ButtonEvent* **getHandler** ()
 - *void* **setHandler** ( *ButtonEvent* newEventHandler )
 - *void* **removeHandler** ()
+
+- *void* **redraw** ()
+
+## Dice (erweitert GUI_Interface)
+
+- *Dice* ()
+- *Dice* ( *int* startNumber )
+
+- *int* **getNumber** ()
+
+- *void* **setSizeAsSquare** ()
+
+- *int* **roll** ()
 
 - *void* **redraw** ()

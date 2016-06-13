@@ -56,13 +56,13 @@ Hier werden alle Klassen mit deren öffentliche Methoden (**public** und **prote
 
 - *Province*
 - *Player*
-- *Dice*
 
 ### GUI Objekte
 
 - *GUI_Interface*
-- *Label*
-- *Button*
+	- *Label*
+	- *Button*
+	- *Dice*
 
 ### Sonstige
 
@@ -447,29 +447,6 @@ Erzwingt das erneute Zeichnen des Player Objekts, um alle sichtbaren Eigenschaft
 
 ---
 
-## Dice
-*extends Actor*
-
-Stellt einen Würfel als *Actor* dar (vergleichbar mit dem Würfel aus unserem Projekt Zehntausend).
-
-### Private Eigenschaften
-
-- Augenzahl
-
-#### Augenzahl
-
-Diese Zahl zeigt der Würfel gerade an und kann mit **int getNumber()** abgerufen werden.
-
-### Zusätzliche Methoden
-
-- *int* **roll** ()
-
-#### roll()
-
-Berechnet eine Zufallszahl von 1 bis 6, speichert diese ab und gibt sie auch so gleich zurück. Ändert auch die Anzeige des Würfels.
-
----
-
 ## GUI_Interface
 *extends Actor*
 
@@ -721,6 +698,59 @@ Deaktiviert den aktuellen EventHandler, damit keine Events mehr ausgelöst werde
 #### redraw()
 
 Erneuert die Darstellung des Buttons mit seinem Anzeigetext auf der Welt. Hiermit wird gegebenfalls auch die Größe des Buttons automatisch angepasst.
+
+---
+
+## Dice
+*extends GUI_Interface*
+
+### Konstruktorparameter
+
+Methode 1: **keine Parameter**
+
+Methode 2:
+1. Startwert für die gespeicherte Augenzahl als *int*
+
+#### Startwert
+
+Dieser Wert wird im Voraus beim Dice hinterlegt, damit er diese direkt anzeigen kann. Wird dieser Wert nicht angegeben, wird als Augenzahl **0** hinterlegt, stehend für: noch nicht gewürfelt.
+
+### Private Eigenschaften
+
+- Augenzahl
+
+#### Augenzahl
+
+Der Wert, der beim letzten Würfeln gewürfelt wurde. Dieser Wert wird vom Würfel auch visuell dargestellt.
+
+### Public Methoden
+
+- *int* **getNumber** ()
+
+- *void* **setSizeAsSquare** ( *int* length )
+
+- *int* **roll** ()
+
+- *void* **redraw** ()
+
+#### getNumber()
+
+Gibt die aktuell gespeicherte und somit auch visuell sichtbare Augenzahl zurück.
+
+#### setSizeAsSquare()
+
+Legt die Größe des Würfels als Quadraht fest. Nur beim Verhältnis 1:1 von Länge:Breite kann eine verzerrungsfreie Darstellung garantiert werden. Vergleichbar mit folgender Zeile:
+```java
+dice.setSize(length,length)
+```
+
+#### roll()
+
+Würfelt den Würfel, speichert die neue Augenzahl ab und erneurt die visuelle Darstellung des Dice.
+
+#### redraw()
+
+Erneuert die visuelle Darstellung des Dice.
 
 ---
 
