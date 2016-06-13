@@ -44,7 +44,7 @@ public class Dice extends GUI_Interface {
 		Würfelt den Würfel, erneuert die Darstellung und gibt die neue Augenzahl zurück.
 	*/
 	public int roll() {
-		number = (int) (Math.floor(Math.random()*6)+1)
+		number = (int) (Math.floor(Math.random()*6)+1);
 		redraw();
 		return number;
 	}
@@ -53,7 +53,7 @@ public class Dice extends GUI_Interface {
 		Zeichnet auf dem gegebenen GreenfootImage ein Oval an der gegebenen Stelle multipliziert mit der einheitlichen Größe.
 	*/
 	private void fO(GreenfootImage i, int eX, int eY, int x, int y) {
-		i.fillOval(eX*x,eY*y,eX*2,eY*2)
+		i.fillOval(eX*x,eY*y,eX*2,eY*2);
 	}
 
 	/**
