@@ -15,8 +15,9 @@ public class ArmySchubser extends Map_World
      * Constructor for objects of class ArmySchubser.
      * 
      */
-    public ArmySchubser()
+    public ArmySchubser(String[] playerList, int[] colorList)
     {
+        super(playerList,colorList);
         // Hi.
     }
 
@@ -25,7 +26,7 @@ public class ArmySchubser extends Map_World
         Province firstProvince = null;
         Province secondProvince = null;
 
-        for ( int i = 0; i <= provinceCount; i++)
+        for ( int i = 1; i <= provinceCount; i++)
         {
             if (provinces[i].hasClicked() == true)
             {
@@ -34,7 +35,7 @@ public class ArmySchubser extends Map_World
             }
         }
 
-        for ( int i = 0; i <= provinceCount; i++)
+        for ( int i = 1; i <= provinceCount; i++)
         {
             if (provinces[i].hasClicked() == true && provinces[i] != firstProvince)
             {

@@ -61,25 +61,26 @@ public class Dice extends GUI_Interface {
 	*/
 	public void redraw() {
 		// einheitliche Größe X und Y (ein Vierzehntel der gesamten Breite und Höhe)
-		int eX = (int) Math.Round(sx/8);
-		int eY = (int) Math.Round(sy/8);
+		int eX = (int) Math.round(sx/8);
+		int eY = (int) Math.round(sy/8);
 		// Vereinfachung für die Augenzahl
 		int a = number;
 		GreenfootImage i = new GreenfootImage(sx,sy);
 		i.setColor(new java.awt.Color(0,0,0,0));
 		i.clear();
 		i.setColor(backC);
-		i.fillShape(0,0,sx,sy,eX/2,eY/2);
+		i.fillShape(new java.awt.geom.RoundRectangle2D.Double(0,0,sx,sy,eX/2,eY/2));
 		i.setColor(foreC);
+		// das "else" fehlt absichtlich
 		if(a==1||a==3||a==5) { //Mittlerer Punkt
 			fO(i,eX,eY,3,3);
-		} else if(a>1) { //Punkte links-oben und rechts-unten
+		} if(a>1) { //Punkte links-oben und rechts-unten
 			fO(i,eX,eY,1,1);
 			fO(i,eX,eY,5,5);
-		} else if(a>3) { //Punkte links-unten und rechts-oben
+		} if(a>3) { //Punkte links-unten und rechts-oben
 			fO(i,eX,eY,1,5);
 			fO(i,eX,eY,5,1);
-		} else if(a>5) { //Punkte links-mitte und rechts-mitte
+		} if(a>5) { //Punkte links-mitte und rechts-mitte
 			fO(i,eX,eY,1,3);
 			fO(i,eX,eY,5,3);
 		}
