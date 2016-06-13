@@ -129,7 +129,7 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 
 - *int* **getNumber** ()
 
-- *void* **setSizeAsSquare** ()
+- *void* **setSizeAsSquare** ( *int* length )
 
 - *int* **roll** ()
 
