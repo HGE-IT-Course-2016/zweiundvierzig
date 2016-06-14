@@ -69,7 +69,7 @@ public class Dice extends GUI_Interface {
 		i.setColor(new java.awt.Color(0,0,0,0));
 		i.clear();
 		i.setColor(backC);
-		i.fillShape(new java.awt.geom.RoundRectangle2D.Double(0,0,sx,sy,eX/2,eY/2));
+		i.fillShape(new java.awt.geom.RoundRectangle2D.Double(0,0,sx,sy,eX,eY));
 		i.setColor(foreC);
 		// das "else" fehlt absichtlich
 		if(a==1||a==3||a==5) { //Mittlerer Punkt
