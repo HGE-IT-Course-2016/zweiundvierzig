@@ -57,8 +57,6 @@ Hier werden alle Klassen mit deren öffentliche Methoden (**public** und **prote
 - *Province*
 - *Player*
 
-### GUI Objekte
-
 - *GUI_Interface*
 	- *Label*
 	- *Button*
