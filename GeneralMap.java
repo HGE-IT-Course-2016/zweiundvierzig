@@ -27,7 +27,11 @@ public abstract class GeneralMap extends World
 	*/
 	public GeneralMap(String backImage, String[] playerList, int[] colorList)
 	{    
-		
+        super(1600,900,1);
+		players = new Player[playerList.length];
+		for (int i = 0; i < playerList.length; i++) {
+			players[i] = new Player(i,playerList[i],colorList[i]);
+		}
 	}
 	
 	/**
@@ -35,7 +39,7 @@ public abstract class GeneralMap extends World
 	*/
 	public int getPlayerCount()
 	{
-		return playerList.length;
+		return players.length;
 	}
 	
 	/**
@@ -86,9 +90,9 @@ public abstract class GeneralMap extends World
 	{
 		int[] prOwners = new int[provinces.length];
 		for (int i = 1; i > provinces.length; i++) {
-			prOwners[i] = provinces.getOwner();
+			prOwners[i] = provinces[i].getOwner();
 		}
-		return pwOwners;
+		return prOwners;
 	}
 	
 	/**
@@ -104,6 +108,7 @@ public abstract class GeneralMap extends World
 				c = c + provinces[i].getEntityCount();
 			}
 		}
+		return c;
 	}
 
 }

@@ -22,11 +22,13 @@ public class Player extends Actor
     boolean lostProv = false;
 
     private String n;
+    private int c;
     //definiert die ID und Namens Variable
-    public Player( int identity,String name)
+    public Player( int identity,String name, int color)
     {
         n = name;
         id = identity;
+        c = color;
     }
     //gibt die Spieler ID zurück
     public int getID()
@@ -39,12 +41,12 @@ public class Player extends Actor
         return n;
     }
     //gibt die Sternenanzahl zurück
-    private int getStars ()
+    public int getStars ()
     {
         return stars;
     }
     // erhöht die Sternenzahl um eine random ausgewählte Anzahl von 1-3
-    private void  addToStars ()
+    public void  addToStars ()
     {  
 
         int rand;
@@ -120,11 +122,11 @@ public class Player extends Actor
         return provZahl;
     }
 
-    private void gotEntities(int gotEnt)
+    public void gotEntities(int gotEnt)
     {
         stats[3]+= gotEnt;
     }
-    private void lostEntity()
+    public void lostEntity()
     {
         stats[4]+=1;
     }
@@ -135,7 +137,7 @@ public class Player extends Actor
             stats[5]=entNumber;
         }
     }
-    private boolean[] getMyProvinces()
+    public boolean[] getMyProvinces()
     {
         GeneralMap w= getWorld();
         int[] provinces = w.getProvinceOwners();
@@ -186,7 +188,7 @@ public class Player extends Actor
     {
         return lostProv; 
     }
-    private int[] getStatistics()
+    public int[] getStatistics()
     {
         return stats;
     }

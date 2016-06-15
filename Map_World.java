@@ -21,28 +21,14 @@ public class Map_World extends GeneralMap
      * konstruiert eine GeneralMap mit den Ausmassen 1600 auf 900 Pixel.
      */
 
-    public Map_World()
+    public Map_World(String[] playerList, int[] colorList)
     {
-        super(1600,900,1);
-        Province[] provinces;
-
-        /**
+        super("",playerList,colorList);
+        /*
          * Hier werden später sämtliche Provinzen der Standard-Map erstellt.
          * Dies funktioniert folgendermassen:
          * =================================================================
          * 
-         * VERALTETER KOMMENTAR VON GruenerWal:
-         * Im Folgenden wird nun jede Provinz einzeln erstellt:
-         * |---
-         * nextProvinces = new int[<Anzahl angrenzende Provinzen>];
-         * <Zuweisung der angrenzenden Provinzen>
-         * provinces[<Provinz-ID>] = new Province(<Provinz-ID>,<Kontinent-ID>,<X-Position>,<Y-Position>,<Anzahl Sterne>,"<Anzeigename>",nextProvinces);
-         * addObject(provinces[<Provinz-ID>],<x-Position>,<y-Position>);
-         * ---|
-         * 
-         * =================================================================
-         * 
-         * NEUES FORMAT VON FELIX STUPP:
          * Dieses kürzere Format ersetzt den langen Code und sorgt eventuell sogar für einen Geschwindigkeitsschub. Dabei sollte diesselbe Funktionalität erhalten bleiben.
          * 
          * provinces[<Provinz-ID>] = new Province(<Provinz-ID>,<Kontinent-ID>,<X-Position>,<Y-Position>,<Anzahl Sterne>,"<Anzeigename>", new int[] { <Liste aller Nachbarprovinzen> });
