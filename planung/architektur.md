@@ -1,6 +1,6 @@
 # Architekturplan Zweiundvierzig
 
-**Letztes Update: 04.06.2016** (TT.MM.JJJJ / DD.MM.YYYY)
+**Letztes Update: 15.06.2016** (TT.MM.JJJJ / DD.MM.YYYY)
 
 [Hier die offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/architektur.md)
 
@@ -61,6 +61,10 @@ Hier werden alle Klassen mit deren öffentliche Methoden (**public** und **prote
 	- *Label*
 	- *Button*
 	- *Dice*
+
+- *DicesList*
+	- *OffenderDices*
+	- *DefenderDices*
 
 ### Sonstige
 
@@ -445,6 +449,92 @@ Erzwingt das erneute Zeichnen des Player Objekts, um alle sichtbaren Eigenschaft
 
 ---
 
+## DicesList
+*extends Actor*
+
+Erstellt die gegebene Anzahl an Würfeln nebeneinander und bietet die gemeinsame Verwaltung dieser. Diese Klasse ist nur als *abstract* Oberklasse zu *OffenderDices* & *DefenderDices* gedacht und ist daher selbst nicht verwendbar, dennoch sich hier alle Methoden, die ihr braucht, definiert. Die Unterklassen legen nur die Farbe der Würfel und die maximale Anzahl fest.
+
+### Verwendung
+
+Nachdem ihr euch für eine Unterklasse entschieden habt, erstellt ihr eine neue Instanz von dieser und übergibt ihr die Anzahl der Würfel, die ihr darstellen wollt (diese Zahl kann größer als die erlaubte Anzahl an Würfel sein, dies wird **automatisch korrigiert**, beim Angreifer auf 3, beim Verteidiger auf 2). Bei zu kleinen Zahlen wird auf 1 korrigiert.
+```java
+DicesList offenders = new OffenderDices(5); // Wird korrigiert auf '3'
+DicesList defenders = new DefenderDices(-3); // Wird korrigiert auf '1'
+```
+Die nun erstellte Instanz solltet ihr einer Welt hinzufügen, um die Würfel sehen zu können. Achtet dabei auf die Position, die ihr der Welt übergibt.
+```java
+addObject(offenders,200,800);
+```
+Nun könnt ihr mit den Methoden **getNumbers** und **roll** alle Würfel parallel steuern.
+```java
+int[] zahlenAng = offenders.roll();
+int[] zahlenVer = defenders.getNumbers();
+if(zahlenAng[1] > zahlenVer[1]) {
+	// Angreifer gewinnt
+} else {
+	// Verteidiger gewinnt
+}
+```
+Solltet ihr die Würfel nicht mehr brauchen und ihr möchtet sie entfernen, reicht ein simpler Aufruf von **removeAll**.
+```java
+offenders.removeAll();
+offenders = null; // muss nicht sein, gehört aber zum sauberen Programmieren dazu
+```
+
+### Konstruktorparameter
+
+1. Anzahl der Würfel als *int* (Weiterleitung des Konstruktors von den Unterklassen)
+2. Maximale Anzahl als *int* (fester Wert der Unterklasse)
+3. Hintergundfarbe als *java.awt.Color* (fester Wert der Unterklasse)
+4. Vordergrundfarbe als *java.awt.Color* (fester Wert der Unterklasse)
+
+### Protected Methoden
+
+- *void* **addedToWorld** ( *World* world )
+
+#### addedToWorld()
+
+Diese Methode wird von Greenfoot selbst aufgerufen, sobald dieser Actor einer Welt hinzugefügt wurde und kümmert sich folgend darum, seine eigenen Würfel auch der Welt hinzuzufügen an derselben Position.
+
+### Public Methoden
+
+- *int[]* **getNumbers** ()
+- *int[]* **roll** ()
+
+- *void* **removeAll** ()
+
+#### getNumbers()
+
+Gibt die Augenzahlen aller Würfel in sortierter Reihenfolge (absteigend) aus.
+
+#### roll()
+
+Würfelt alle Würfel erneut und gibt die neuen Augenzahlen in sortierter Reihenfolge (absteigend) aus.
+
+#### removeAll()
+
+Entfernt alle Würfel aus ihrer Welt und löscht anschließend die Liste. Die Instanz ist danach nicht mehr zu verwenden.
+
+## OffendersDices
+*extends DicesList*
+
+Erstellt eine Liste von Würfeln mit roter Hintergrundfarbe. Es sind maximal 3 Würfel erlaubt. Zur Verwendung, siehe *DicesList*.
+
+### Konstruktorparamter
+
+1. Anzahl der Würfel als *int* (wird korrigiert; siehe *DicesList*-Konstruktor)
+
+## DefenderDices
+*extends DicesList*
+
+Erstellt eine Liste von Würfeln mit schwarzer Hintergrundfarbe. Es sind maximal 2 Würfel erlaubt. Zur Verwendung, siehe *DicesList*.
+
+### Konstruktorparamter
+
+1. Anzahl der Würfel als *int* (wird korrigiert; siehe *DicesList*-Konstruktor)
+
+---
+
 ## GUI_Interface
 *extends Actor*
 
@@ -754,12 +844,26 @@ Erneuert die visuelle Darstellung des Dice.
 
 ## Utils
 
-Eine finale Klasse mit vielen kleinen Methoden, die den restlichen Code verkleinern und besser lesbar gestalten soll. Ergänzungen in Form von eigenen Funktionen dürfen **selbst** eingebracht werden. Alle Methoden dieser Klasse sollen *public* sein.
+Eine finale Klasse mit vielen kleinen Methoden, die den restlichen Code verkleinern und besser lesbar gestalten soll. Ergänzungen in Form von eigenen Funktionen dürfen **selbst** eingebracht werden. Alle Methoden dieser Klasse sollen *public* und *static* sein.
 
-### copyArray()
+### Static Methoden
+
+- *boolean[]* **copyArray** ( *boolean[]* array )
+- *int[]* **copyArray** ( *int[]* array )
+- *String[]* **copyArray** ( *String[]* array )
+
+- *void* **drawInsideRectangle** ( *GreenfootImage* i, *Color* c, *int* b )
+
+- *void* **sortDesc** ( **int[]** array )
+
+#### copyArray()
 
 Kopiert ein Array des Types *boolean*, *int* oder *String* mit identischer Größe.
 
-### drawInsideRectangle()
+#### drawInsideRectangle()
 
-Zeichnet innerhalb eines **GreenfootImage** ein Rechteck gefüllt mit der angegebenen Farbe. Es besitzt zu allen Seiten den gegebenen Abstand zum Rand des Image.
+Zeichnet innerhalb eines *GreenfootImage* ein Rechteck gefüllt mit der angegebenen Farbe. Es besitzt zu allen Seiten den gegebenen Abstand zum Rand des Image.
+
+#### sortDesc()
+
+Sortiert ein *int[]*-Array absteigend.

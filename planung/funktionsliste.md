@@ -1,6 +1,6 @@
 # Funktionsliste Zweiundvierzig
 
-**Letztes Update: 04.06.2016** (TT.MM.JJJJ / DD.MM.YYYY)
+**Letztes Update: 15.06.2016** (TT.MM.JJJJ / DD.MM.YYYY)
 
 [Hier die offizielle Version vom Master-Branch sehen](https://github.com/HGE-IT-Course-2016/zweiundvierzig/blob/master/planung/funktionsliste.md)
 
@@ -11,9 +11,9 @@ Weitere Informationen zu den Methoden findet ihr in der Architektur oder, falls 
 
 Falls euere Aufgabe die Umsetzung einer Methode ist, die hier bereits beschrieben wird, müsst ihr nicht diesselben Parameterbezeichner verwenden, wie sie hier verwendet wurden. Falls aus diesem Bezeichner jedoch nicht mehr die Bedeutung des Parameters ausgeht, muss dies in einem Java-Documentation Kommentar erklärt werden.
 
-Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methodenn im Code präsent habt.
+Dies könnt auch als Checkliste verwenden, um zu sehen, ob ihr bereits alle Methodenn im Code präsent habt.
 
-## GeneralMap (erweitert World)
+## GeneralMap (extends World)
 
 - *GeneralMap* ( *String* backgroundImage, *String[]* playerList, *int[]* colorList )
 
@@ -28,7 +28,7 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 - *int[]* **getProvinceOwners** ()
 - *int* **getProvinceEntityCount** ( *int* playerID )
 
-## Province (erweitert Actor)
+## Province (extends Actor)
 
 - *Province* ( *int* provinceID, *int* continentID, *int* xPos, *int* yPos, *String* displayName, *int* stars, *int[]* neighbourProvinces )
 
@@ -51,7 +51,7 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 
 - *void* **redrawProvince** ()
 
-## Player (erweitert Actor)
+## Player (extends Actor)
 
 - *Player* ( *int* playerID, *String* displayName, *int* playerColor )
 
@@ -74,7 +74,24 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 - *int* **getProvinceCount** ()
 - *void* **redrawPlayer** ()
 
-## GUI_Interface (erweitert Actor)
+## DicesList (extends Actor)
+
+- *DicesList* ( *int* count, *int* maxCount, *java.awt.Color* backColor, *java.awt.Color* foreColor )
+
+- *int[]* **getNumbers** ()
+- *int[]* **roll** ()
+
+- *void* **removeAll** ()
+
+## OffenderDices (extends Actor)
+
+- *OffenderDices* ( *int* count )
+
+## DefenderDices (extends Actor)
+
+- *DefenderDices* ( *int* count )
+
+## GUI_Interface (extends Actor)
 
 - protected *int* **sx**
 - protected *int* **sy**
@@ -90,7 +107,7 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 
 - abstract *void* **redraw** ()
 
-## Label (erweitert GUI_Interface)
+## Label (extends GUI_Interface)
 
 - *Label* ( *String* text, *int* textSize )
 
@@ -103,7 +120,7 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 
 - *void* **redraw** ()
 
-## Button (erweitert GUI_Interface)
+## Button (extends GUI_Interface)
 
 - *Button* ( *String* text, *int* textSize )
 - *Button* ( *ButtonEvent* eventHandler )
@@ -122,7 +139,7 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 
 - *void* **redraw** ()
 
-## Dice (erweitert GUI_Interface)
+## Dice (extends GUI_Interface)
 
 - *Dice* ()
 - *Dice* ( *int* startNumber )
@@ -134,3 +151,13 @@ Dies könnt auch als Checkliste nehmen, um zu sehen, ob ihr bereits alle Methode
 - *int* **roll** ()
 
 - *void* **redraw** ()
+
+## Utils
+
+- static *boolean[]* **copyArray** ( *boolean[]* array )
+- static *int[]* **copyArray** ( *int[]* array )
+- static *String[]* **copyArray** ( *String[]* array )
+
+- static *void* **drawInsideRectangle** ( *GreenfootImage* i, *Color* c, *int* b )
+
+- static *void* **sortDesc** ( **int[]** array )
