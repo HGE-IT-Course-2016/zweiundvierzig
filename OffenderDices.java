@@ -5,12 +5,12 @@ import java.util.Arrays;   // (World, Actor, GreenfootImage, Greenfoot and Mouse
 	Erstellt eine gegebene Anzahl an OffenderDice's, welche dann nebeneinander eingereiht werden.
 
 	@author Felix Stupp
-	@version 14.06.2016
+	@version 15.06.2016
 */
 public class OffenderDices extends DicesList {
 
 	public OffenderDices(int count) {
-        genDices(count, 3, new Color(255,0,0), (new Color(255,255,255));
+        super(count, 3, new Color(255,0,0), (new Color(255,255,255));
 	}
 
 }

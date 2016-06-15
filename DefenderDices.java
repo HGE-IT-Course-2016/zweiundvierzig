@@ -5,12 +5,12 @@ import java.util.Arrays;   // (World, Actor, GreenfootImage, Greenfoot and Mouse
 	Erstellt eine gegebene Anzahl an DefenderDice's, welche dann nebeneinander eingereiht werden.
 
 	@author Felix Stupp
-	@version 14.06.2016
+	@version 15.06.2016
 */
 public class DefenderDices extends DicesList {
 
 	public DefenderDices(int count) {
-        genDices(count, 2, new Color(0,0,0), (new Color(255,255,255));
+        super(count, 2, new Color(0,0,0), (new Color(255,255,255));
 	}
 
 }

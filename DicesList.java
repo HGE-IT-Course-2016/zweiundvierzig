@@ -1,23 +1,18 @@
 import greenfoot.*;
-import java.awt.Color;
-import java.util.Arrays;   // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
 	Erstellt eine gegebene Anzahl an Dices's, welche dann nebeneinander eingereiht werden.
 
 	@author Felix Stupp
-	@version 14.06.2016
+	@version 15.06.2016
 */
 public abstract class DicesList extends Actor {
 	
 	private final static int SQUARESIZE = 100; // Anpassbar
 	private Dice[] dices;
 
-	public DicesList() {
+	public DicesList(int count, int max, java.awt.Color bC, java.awt.Color fC) {
 		setImage(new GreenfootImage(2,2));
-	}
-
-    protected void genDices(int count, int max, Color bC, Color fC) {
 		if(count < 1) {
 			count = 1;
 		} else if (count > max) {
@@ -30,11 +25,11 @@ public abstract class DicesList extends Actor {
 			d.setSizeAsSquare(SQUARESIZE);
 			dices[i] = d;
 		}
-    }
+	}
 
 	protected void addedToWorld(World w) {
 		for(int i = 0; i < dices.length; i++) {
-			w.addObject(dices[i],w.getX()+(SQUARESIZE*(6/5)*i),w.getY());
+			w.addObject(dices[i],getX()+(SQUARESIZE*(6/5)*i),getY());
 		}
 		//w.removeObject(this); // Zeile auskommentieren, wenn die Debug-Phase vorbei ist.
 	}
@@ -44,7 +39,7 @@ public abstract class DicesList extends Actor {
 		for(int i = 0; i < dices.length; i++) {
 			n[i] = dices[i].getNumber();
 		}
-		Arrays.sort(n);
+		Utils.sortDesc(n);
 		return n;
 	}
 
@@ -53,8 +48,16 @@ public abstract class DicesList extends Actor {
 		for(int i = 0; i < dices.length; i++) {
 			n[i] = dices[i].roll();
 		}
-		Arrays.sort(n);
+		Utils.sortDesc(n);
 		return n;
+	}
+
+	public void removeAll() {
+		for(int i = 0; i < dices.length; i++) {
+			dices[i].getWorld().removeObject(dices[i]);
+		}
+		getWorld().removeObject(this);
+		dices = new Dice[0];
 	}
 
 }
