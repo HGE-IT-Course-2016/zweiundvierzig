@@ -1,10 +1,3 @@
-/*
-    Hinweis zum Verbleib der Klasse:
-    Diese Klasse wird nach ihrer Fertigstellung in die GeneralMap integriert.
-    Dabei wird der Code der act()-Methode innerhalb einer If-Abfrage bei bestimmten States ausgeführt.
-    Sonstige Methoden werden im Original belassen, sofern keine Überschneidungen bei den Bezeichnern vorhanden sind.
-*/
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import greenfoot.MouseInfo.*;
 import javax.swing.JOptionPane;
@@ -26,9 +19,8 @@ public class ArmySchubser extends Map_World
      * NICHT BENUTZEN!
      * Sämtliche benötigten Methoden sind static!
      */
-    public ArmySchubser(String[] playerList, int[] colorList)
+    private ArmySchubser()
     {
-        super(playerList,colorList);
         // Hi.
     }
 
@@ -70,6 +62,11 @@ public class ArmySchubser extends Map_World
             if (givenProvince.isProvinceNear(savedProvince.getID()) == true)
             {
                 moveEntities(savedProvince,givenProvince);
+            }
+            
+            else
+            {
+                savedProvince = null;
             }
         }      
     }
