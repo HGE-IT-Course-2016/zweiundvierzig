@@ -66,7 +66,7 @@ public final class Utils {
 	*/
 	public static void sortDesc(int[] a) {
 		Arrays.sort(a);
-		Collections.sort(a,Collections.reverseOrder());
+		Arrays.sort(a,Collections.reverseOrder());
 	}
 
 }
