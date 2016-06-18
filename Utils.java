@@ -1,11 +1,12 @@
 import greenfoot.*;
 import java.awt.Color;
+import java.util.*;
 
 /**
- * Diese Klasse enthält nur statische Funktionen, welche für euch als Unterstützung gedacht sind. Damit könnt ihr dann hoffentlich viele Code-Zeilen sparen. :)
- * 
- * @author Zocker1999_NET
- * @version 1
+	Diese Klasse enthält nur statische Funktionen, welche für euch als Unterstützung gedacht sind. Damit könnt ihr dann hoffentlich viele Code-Zeilen sparen. :)
+
+	@author Zocker1999_NET
+	@version 15.06.2016
  */
 public final class Utils {
 	
@@ -59,4 +60,13 @@ public final class Utils {
 		i.fillRect(b,b,sx-(2*b),sy-(2*b));
 	}
 	
+	/**
+		Sortiert ein int[]-Array absteigend.
+		@param a Das zu sortierende Array
+	*/
+	public static void sortDesc(int[] a) {
+		Arrays.sort(a);
+		Collection.sort(a,Collections.reverseOrder());
+	}
+
 }

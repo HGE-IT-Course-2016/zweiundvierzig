@@ -12,11 +12,11 @@ public abstract class GUI_Interface extends Actor
 	/**
 		Die Breite des Objektes
 	*/
-	protected int sx = 1;
+	protected int sx = 20;
 	/**
 		Die Höhe des Objektes
 	*/
-	protected int sy = 1;
+	protected int sy = 20;
 	/**
 		Die Hintergrundfarbe des Objektes
 	*/
