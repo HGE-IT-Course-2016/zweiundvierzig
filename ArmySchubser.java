@@ -19,9 +19,9 @@ public class ArmySchubser extends Map_World
      * NICHT BENUTZEN!
      * Sämtliche benötigten Methoden sind static!
      */
-    private ArmySchubser()
+    public ArmySchubser(String[] playerList, int[] colorList)
     {
-        // Hi.
+        super(playerList,colorList);
     }
 
     /**
