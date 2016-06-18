@@ -6,66 +6,85 @@ import javax.swing.JOptionPane;
  * Schubst Einheiten umher.
  * 
  * @author MaxiJohl, GruenerWal
- * @version 0.2.0
+ * @version 0.3.0
  */
 
 public class ArmySchubser extends Map_World
-{
-    Province firstProvince = null;
-    Province secondProvince = null;
+{    
+    static Province savedProvince = null;
 
     /**
-     * Constructor for objects of class ArmySchubser.
+     * Konstruktor für ArmySchubser.
      * 
+     * NICHT BENUTZEN!
+     * Sämtliche benötigten Methoden sind static!
      */
-    public ArmySchubser()
+    private ArmySchubser()
     {
         // Hi.
     }
 
-    public void act() 
+    /**
+     * Nimmt zwei Provinzen entgegen, und fragt, wieviele Einheiten vom ersten zum zweiten Eintrag verschoben werden sollen.
+     * Überprüft, ob eine Verschiebung möglich ist und führt sie bei Erfolg aus.
+     */
+    public static void moveEntities(Province sourceProvince, Province destinationProvince)
     {
-        if (firstProvince == null)
+        String toMoveString = JOptionPane.showInputDialog(null, "Wieviele Einheiten willst du verschieben?");
+        Integer entitiesToMove = Integer.valueOf(toMoveString);
+
+        if ( (sourceProvince.getEntityCount() - entitiesToMove) > 0)
         {
-            for ( int i = 1; i <= provinceCount; i++)
-            {
-                if (provinces[i].hasClicked() == true)
-                {
-                    provinces[i] = firstProvince;
-                    break;
-                }
-            }
+            sourceProvince.removeFromEntities(entitiesToMove);
+            destinationProvince.addToEntities(entitiesToMove);
         }
 
-        if (firstProvince != null)
+        if ( (sourceProvince.getEntityCount() - entitiesToMove) <= 0 )
         {
-            for ( int i = 0; i <= provinceCount; i++)
-            {
-                if (provinces[i].hasClicked() == true && provinces[i] != firstProvince)
-                {
-                    provinces[i] = secondProvince;
-                    break;
-                }
-            }
+            JOptionPane.showMessageDialog(null,"Du hast nicht genügend Einheiten, um die gewünschte Anzahl von " + sourceProvince.getDisplayName() + " nach " + destinationProvince.getDisplayName() + " zu verschieben, Köhler.");
+        }
+    }
 
-            String toMoveString = JOptionPane.showInputDialog(null, "Wieviele Einheiten willst du verschieben?");
-            Integer entitiesToMove = Integer.valueOf(toMoveString);
+    /**
+     * Speichert ein gegebene Provinz als savedProvince ein, insofern dieser Platz nicht bereits belegt ist.
+     * Ist er das, so wird überprüft, ob eine neue, an savedProvince angrenzende Provinz angeklickt wurde.
+     * Ist dies der Fall, werden beide Provinzen an moveEntities übergeben.
+     */
+    public static void useProvincesToMove(Province givenProvince)
+    {
+        if (savedProvince == null)
+        {
+            savedProvince = givenProvince;
+        }
 
-            if ( (firstProvince.getEntityCount() - entitiesToMove) > 0 && firstProvince.isProvinceNear(secondProvince.getID()) == true )
+        if (savedProvince != null && givenProvince != savedProvince)
+        {
+            if (givenProvince.isProvinceNear(savedProvince.getID()) == true)
             {
-                firstProvince.removeFromEntities(entitiesToMove);
-                secondProvince.addToEntities(entitiesToMove);
+                moveEntities(savedProvince,givenProvince);
             }
+        }      
+    }
 
-            if ( (firstProvince.getEntityCount() - entitiesToMove) <= 0 )
+    /**
+     * Überprüft, ob eine Provinz angeklickt wurde.
+     * Wenn ja, wird diese als clickedProvince eingespeichert und useProvincesToMove aufgerufen.
+     * 
+     * Kommt nachher in die GeneralMap!
+     */
+    public void act() 
+    {
+        Province clickedProvince = null;
+        
+        for ( int i = 1; i <= provinceCount; i++)
+        {
+            if (provinces[i].hasClicked() == true)
             {
-                JOptionPane.showMessageDialog(null,"Du hast nicht genügend Einheiten, um die gewünschte Anzahl von " + firstProvince.getDisplayName() + " nach " + secondProvince.getDisplayName() + " zu verschieben, Köhler.");
-            }
-            
-            if ( firstProvince.isProvinceNear(secondProvince.getID()) == false )
-            {
-                JOptionPane.showMessageDialog(null,"Die Provinzen müssen nebeneinander liegen, wenn du Einheiten verschieben willst.");
+                clickedProvince = provinces[i];
+                useProvincesToMove(clickedProvince);
+                break;
             }
         }
     }
 }
+
