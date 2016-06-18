@@ -1,5 +1,6 @@
 import greenfoot.*;
 import java.util.Arrays;   // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.awt.Color;
 
 /**
 	Erstellt eine gegebene Anzahl an OffenderDice's, welche dann nebeneinander eingereiht werden.
