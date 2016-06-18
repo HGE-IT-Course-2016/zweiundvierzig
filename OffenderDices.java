@@ -10,7 +10,7 @@ import java.util.Arrays;   // (World, Actor, GreenfootImage, Greenfoot and Mouse
 public class OffenderDices extends DicesList {
 
 	public OffenderDices(int count) {
-        super(count, 3, new Color(255,0,0), (new Color(255,255,255));
+        super(count, 3, new Color(255,0,0), (new Color(255,255,255)));
 	}
 
 }
