@@ -6,10 +6,13 @@ import javax.swing.JOptionPane;
  * Schubst Einheiten umher.
  * 
  * @author MaxiJohl, GruenerWal
- * @version 0.1.1
+ * @version 0.2.0
  */
+
 public class ArmySchubser extends Map_World
 {
+    Province firstProvince = null;
+    Province secondProvince = null;
 
     /**
      * Constructor for objects of class ArmySchubser.
@@ -22,39 +25,47 @@ public class ArmySchubser extends Map_World
 
     public void act() 
     {
-        Province firstProvince = null;
-        Province secondProvince = null;
-
-        for ( int i = 0; i <= provinceCount; i++)
+        if (firstProvince == null)
         {
-            if (provinces[i].hasClicked() == true)
+            for ( int i = 1; i <= provinceCount; i++)
             {
-                provinces[i] = firstProvince;
-                break;
+                if (provinces[i].hasClicked() == true)
+                {
+                    provinces[i] = firstProvince;
+                    break;
+                }
             }
         }
 
-        for ( int i = 0; i <= provinceCount; i++)
+        if (firstProvince != null)
         {
-            if (provinces[i].hasClicked() == true && provinces[i] != firstProvince)
+            for ( int i = 0; i <= provinceCount; i++)
             {
-                provinces[i] = secondProvince;
-                break;
+                if (provinces[i].hasClicked() == true && provinces[i] != firstProvince)
+                {
+                    provinces[i] = secondProvince;
+                    break;
+                }
             }
-        }
 
-        String toMove = JOptionPane.showInputDialog(null, "Wieviele Einheiten willst du verschieben?");
-        Integer entitiesToMove = Integer.valueOf(toMove);
+            String toMoveString = JOptionPane.showInputDialog(null, "Wieviele Einheiten willst du verschieben?");
+            Integer entitiesToMove = Integer.valueOf(toMoveString);
 
-        if ( (firstProvince.getEntityCount() - entitiesToMove) > 0 && firstProvince.isProvinceNear(secondProvince.getID()) == true )
-        {
-            firstProvince.removeFromEntities(entitiesToMove);
-            secondProvince.addToEntities(entitiesToMove);
-        }
+            if ( (firstProvince.getEntityCount() - entitiesToMove) > 0 && firstProvince.isProvinceNear(secondProvince.getID()) == true )
+            {
+                firstProvince.removeFromEntities(entitiesToMove);
+                secondProvince.addToEntities(entitiesToMove);
+            }
 
-        else
-        {
-            System.out.println("Du hast nicht genügend Einheiten, um die gewünschte Anzahl von " + firstProvince.getDisplayName() + " nach " + secondProvince.getDisplayName() + " zu verschieben, Köhler.");
+            if ( (firstProvince.getEntityCount() - entitiesToMove) <= 0 )
+            {
+                JOptionPane.showMessageDialog(null,"Du hast nicht genügend Einheiten, um die gewünschte Anzahl von " + firstProvince.getDisplayName() + " nach " + secondProvince.getDisplayName() + " zu verschieben, Köhler.");
+            }
+            
+            if ( firstProvince.isProvinceNear(secondProvince.getID()) == false )
+            {
+                JOptionPane.showMessageDialog(null,"Die Provinzen müssen nebeneinander liegen, wenn du Einheiten verschieben willst.");
+            }
         }
     }
 }
