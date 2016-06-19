@@ -1,5 +1,6 @@
 import greenfoot.*;
 import java.util.Arrays;   // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.awt.Color;
 
 /**
 	Erstellt eine gegebene Anzahl an DefenderDice's, welche dann nebeneinander eingereiht werden.
@@ -10,7 +11,7 @@ import java.util.Arrays;   // (World, Actor, GreenfootImage, Greenfoot and Mouse
 public class DefenderDices extends DicesList {
 
 	public DefenderDices(int count) {
-        super(count, 2, new Color(0,0,0), (new Color(255,255,255));
+        super(count, 2, new Color(0,0,0), (new Color(255,255,255)));
 	}
 
 }

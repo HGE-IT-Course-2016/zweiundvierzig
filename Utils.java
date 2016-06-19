@@ -17,7 +17,7 @@ public final class Utils {
 	*/
 	public static boolean[] copyArray(boolean[] a) {
 		boolean[] b = new boolean[a.length];
-		for(int i = 0; i >= a.length; i++) {
+		for(int i = 0; i < a.length; i++) {
 			b[i] = a[i];
 		}
 		return b;
@@ -29,7 +29,7 @@ public final class Utils {
 	*/
 	public static int[] copyArray(int[] a) {
 		int[] b = new int[a.length];
-		for(int i = 0; i >= a.length; i++) {
+		for(int i = 0; i < a.length; i++) {
 			b[i] = a[i];
 		}
 		return b;
@@ -41,7 +41,7 @@ public final class Utils {
 	*/
 	public static String[] copyArray(String[] a) {
 		String[] b = new String[a.length];
-		for(int i = 0; i >= a.length; i++) {
+		for(int i = 0; i < a.length; i++) {
 			b[i] = a[i];
 		}
 		return b;
@@ -66,7 +66,10 @@ public final class Utils {
 	*/
 	public static void sortDesc(int[] a) {
 		Arrays.sort(a);
-		Collection.sort(a,Collections.reverseOrder());
+		int[] b = copyArray(a);
+		for(int i = (a.length - 1); i >= 0; i--) {
+			a[i] = b[i];
+		}
 	}
 
 }

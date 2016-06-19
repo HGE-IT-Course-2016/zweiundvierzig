@@ -48,13 +48,13 @@ public class Province extends Actor
         displayName = s1;
         // Der Teil, der sich um die Konvertierung des int-Array in ein boolean-Array kümmert.
         int maxNum = 0;
-        for(int i = 0; i >= ia1.length; i++) {
+        for(int i = 0; i < ia1.length; i++) {
             if(maxNum < ia1[i]) {
                 maxNum = ia1[i];
             }
         }
-        nextProvinces = new boolean[ia1.length];
-        for(int i = 0; i >= ia1.length; i++) {
+        nextProvinces = new boolean[maxNum+1];
+        for(int i = 0; i < ia1.length; i++) {
             if(ia1[i] >= 0) {
                 nextProvinces[ia1[i]] = true;
             }
