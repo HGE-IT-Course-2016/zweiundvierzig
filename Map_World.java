@@ -1,45 +1,45 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Klasse der Standard-Welt
- * (Also die normale Weltkarte mit allen Kontinenten)
- * 
- * @author GruenerWal, MaxiJohl
- * @version 0.3.0
+	Klasse der Standard-Welt
+	(Also die normale Weltkarte mit allen Kontinenten)
+
+	@author GruenerWal, MaxiJohl
+	@version 0.3.0
  */
 
 public class Map_World extends GeneralMap
 {
     /**
-     * Anzahl der Provinzen.
+		Anzahl der Provinzen.
      */
 
     int provinceCount = 42;
 
     /** 
-     * Konstruktor der Weltkarte;
-     * konstruiert eine GeneralMap mit den Ausmassen 1600 auf 900 Pixel.
+		Konstruktor der Weltkarte;
+		konstruiert eine GeneralMap mit den Ausmassen 1600 auf 900 Pixel.
      */
 
     public Map_World(String[] playerList, int[] colorList)
     {
         super("",playerList,colorList);
         /*
-         * Hier werden später sämtliche Provinzen der Standard-Map erstellt.
-         * Dies funktioniert folgendermassen:
-         * =================================================================
-         * 
-         * Dieses kürzere Format ersetzt den langen Code und sorgt eventuell sogar für einen Geschwindigkeitsschub. Dabei sollte diesselbe Funktionalität erhalten bleiben.
-         * 
-         * provinces[<Provinz-ID>] = new Province(<Provinz-ID>,<Kontinent-ID>,<X-Position>,<Y-Position>,<Anzahl Sterne>,"<Anzeigename>", new int[] { <Liste aller Nachbarprovinzen> });
-         * 
-         * =================================================================
-         * Der Speicherplatz für provinces[0] bleibt leer, da es keine Provinz mit der ID 0 gibt!
-         * 
-         * Und ja, ich weiss, dass das scheisse viel Schreibarbeit ist.
-         * Aber da muss man durch, wir habens auch hinbekommen :P
-         * 
-         * ~GruenerWal
+			Hier werden später sämtliche Provinzen der Standard-Map erstellt.
+			Dies funktioniert folgendermassen:
+			=================================================================
+		
+			Dieses kürzere Format ersetzt den langen Code und sorgt eventuell sogar für einen Geschwindigkeitsschub. Dabei sollte diesselbe Funktionalität erhalten bleiben.
+			
+			provinces[<Provinz-ID>] = new Province(<Provinz-ID>,<Kontinent-ID>,<X-Position>,<Y-Position>,<Anzahl Sterne>,"<Anzeigename>", new int[] { <Liste aller Nachbarprovinzen> });
+		
+			=================================================================
+			Der Speicherplatz für provinces[0] bleibt leer, da es keine Provinz mit der ID 0 gibt!
+		
+			Und ja, ich weiss, dass das scheisse viel Schreibarbeit ist.
+			Aber da muss man durch, wir habens auch hinbekommen :P
+		
+			~GruenerWal
          */
 
         // Festlegung der Provinz-Anzahl
