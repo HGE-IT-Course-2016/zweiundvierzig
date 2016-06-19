@@ -244,6 +244,8 @@ Diese Eigenschaft speichert, wie viele Einheiten auf diesem Feld stehen (natürl
 
 ### Public Methoden
 
+- *int* **getXPos** ()
+- *int* **getYPos** ()
 - *int* **getID** ()
 - *int* **getContinentID** ()
 - *String* **getDisplayName** ()
@@ -262,6 +264,14 @@ Diese Eigenschaft speichert, wie viele Einheiten auf diesem Feld stehen (natürl
 - *boolean* **hasClicked** ()
 
 - *void* **redrawProvince** ()
+
+#### getXPos()
+
+Gibt die in der Provinz hinterlegte X-Position zurück.
+
+#### getYPos()
+
+Gibt die in der Provinz hinterlegte Y-Position zurück.
 
 #### getID()
 

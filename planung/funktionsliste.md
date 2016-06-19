@@ -32,6 +32,8 @@ Dies könnt auch als Checkliste verwenden, um zu sehen, ob ihr bereits alle Meth
 
 - *Province* ( *int* provinceID, *int* continentID, *int* xPos, *int* yPos, *String* displayName, *int* stars, *int[]* neighbourProvinces )
 
+- *int* **getXPos** ()
+- *int* **getYPos** ()
 - *int* **getID** ()
 - *int* **getContinentID** ()
 - *String* **getDisplayName** ()
