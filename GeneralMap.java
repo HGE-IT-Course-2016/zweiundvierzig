@@ -1,11 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Oberklasse für verschiedene Maps;
- * neue Maps werden als Unterklasse dieser Klasse eingefügt.
- * 
- * @author GruenerWal, MaxiJohl
- * @version 0.2.0
+	Oberklasse für verschiedene Maps;
+	neue Maps werden als Unterklasse dieser Klasse eingefügt.
+
+	@author GruenerWal, MaxiJohl, Felix Stupp
+	@version 0.3.0
  */
 public abstract class GeneralMap extends World
 {
