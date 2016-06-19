@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.lang.Math;
 
 /**
 	Oberklasse für verschiedene Maps;
@@ -20,11 +21,9 @@ public abstract class GeneralMap extends World
 	/*
 		Die einzelnen Positionen der Provinzen wird mit SCALE_VALUE/10000 multipliziert.
 		Dies ist nützlich, wenn die Karte beispielsweise nur noch 80% der Originalgröße bei ihrer Darstellung groß ist.
-		Bei diesem Beispiel wäre hier, neben dem Offset oben, der Wert 8000 einzutragen.
-
-		Die vorherige Erhöhung des Skalars ist mit der höheren Genauigkeit bei der Arbeit mit dem int-Basistyp zu erklären.
+		Bei diesem Beispiel wäre hier, neben dem Offset oben, der Wert 0.8 einzutragen.
 	*/
-	private final int SCALE_VALUE = 10000; // SCALE_VALUE/10000 wird verwendet
+	private final double SCALE_VALUE = 0.8;
 
 	protected Province[] provinces;
 	protected Player[] players;
@@ -52,11 +51,10 @@ public abstract class GeneralMap extends World
 	protected void initProvinces() {
 		for(int i = 1; i < provinces.length; i++) {
 			Province p = provinces[i];
-			int s = SCALE_VALUE/10000;
-			int x = p.getX();
-			int y = p.getY();
-			x = (x * s) + X_OFFSET;
-			y = (y * s) + y_OFFSET;
+			int x = p.getXPos();
+			int y = p.getYPos();
+			x = ((int) Math.floor(x * SCALE_VALUE)) + X_OFFSET;
+			y = ((int) Math.floor(y * SCALE_VALUE)) + Y_OFFSET;
 			addObject(p,x,y);
 		}
 	}
