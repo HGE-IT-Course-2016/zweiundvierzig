@@ -23,7 +23,7 @@ public abstract class GeneralMap extends World
 		Dies ist nützlich, wenn die Karte beispielsweise nur noch 80% der Originalgröße bei ihrer Darstellung groß ist.
 		Bei diesem Beispiel wäre hier, neben dem Offset oben, der Wert 0.8 einzutragen.
 	*/
-	private final double SCALE_VALUE = 0.8;
+	private final double SCALE_VALUE = 1;
 
 	protected Province[] provinces;
 	protected Player[] players;
@@ -50,12 +50,7 @@ public abstract class GeneralMap extends World
 	*/
 	protected void initProvinces() {
 		for(int i = 1; i < provinces.length; i++) {
-			Province p = provinces[i];
-			int x = p.getXPos();
-			int y = p.getYPos();
-			x = ((int) Math.floor(x * SCALE_VALUE)) + X_OFFSET;
-			y = ((int) Math.floor(y * SCALE_VALUE)) + Y_OFFSET;
-			addObject(p,x,y);
+			addObject(provinces[i],((int) Math.floor(provinces[i].getXPos() * SCALE_VALUE)) + X_OFFSET,((int) Math.floor(provinces[i].getYPos() * SCALE_VALUE)) + Y_OFFSET);
 		}
 	}
 
