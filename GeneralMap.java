@@ -1,18 +1,29 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.lang.Math;
 
 /**
- * Oberklasse für verschiedene Maps;
- * neue Maps werden als Unterklasse dieser Klasse eingefügt.
- * 
- * @author GruenerWal, MaxiJohl
- * @version 0.2.0
- */
+	Oberklasse für verschiedene Maps;
+	neue Maps werden als Unterklasse dieser Klasse eingefügt.
+
+	@author GruenerWal, MaxiJohl, Felix Stupp
+	@version 0.3.0
+*/
 public abstract class GeneralMap extends World
 {
 	/*
 		Felder, im Moment nur Anzahl der Provinzen
 		Später evtl. weitere Werte wie Schwierigkeit denkbar
 	 */
+
+	private final int X_OFFSET = 0; // Verschiebt die Provinzen nach rechts
+	private final int Y_OFFSET = 0; // Verschiebt die Provinzen nach unten
+
+	/*
+		Die einzelnen Positionen der Provinzen wird mit SCALE_VALUE/10000 multipliziert.
+		Dies ist nützlich, wenn die Karte beispielsweise nur noch 80% der Originalgröße bei ihrer Darstellung groß ist.
+		Bei diesem Beispiel wäre hier, neben dem Offset oben, der Wert 0.8 einzutragen.
+	*/
+	private final double SCALE_VALUE = 1;
 
 	protected Province[] provinces;
 	protected Player[] players;
@@ -34,6 +45,15 @@ public abstract class GeneralMap extends World
 		}
 	}
 	
+	/**
+		Fügt alle Provinzen aus dem Array der Welt an der entsprechden Stelle zu.
+	*/
+	protected void initProvinces() {
+		for(int i = 1; i < provinces.length; i++) {
+			addObject(provinces[i],((int) Math.floor(provinces[i].getXPos() * SCALE_VALUE)) + X_OFFSET,((int) Math.floor(provinces[i].getYPos() * SCALE_VALUE)) + Y_OFFSET);
+		}
+	}
+
 	/**
 		Gibt die Anzahl der vorhandenen Spieler aus.
 	*/

@@ -120,11 +120,11 @@ Die Provinzliste enthält alle Provinzobjekte, die auf der Karte zu sehen sind. 
 
 ### Protected Methoden
 
-- *void* **addProvinceToMap** ( *Province* province )
+- *void* **initProvinces** ()
 
-#### addProvinceToMap()
+#### initProvinces()
 
-Diese Methode soll das Hinzufügen der Provinzen, sowohl in das Array, als auch an die richtige Position auf der *World* übernehmen. Sollte eine Provinz-ID zweimal verwendet werden sollen, wird diese Methode einen Fehler auslösen!
+Diese Methode soll das Hinzufügen der Provinzen an die richtige Position auf der *World* übernehmen (nicht ins Array). Diese Methode sucht sich alle Provinzen aus dem Array *Province[]* **provinces**.
 
 ### Public Methoden
 
@@ -244,6 +244,8 @@ Diese Eigenschaft speichert, wie viele Einheiten auf diesem Feld stehen (natürl
 
 ### Public Methoden
 
+- *int* **getXPos** ()
+- *int* **getYPos** ()
 - *int* **getID** ()
 - *int* **getContinentID** ()
 - *String* **getDisplayName** ()
@@ -262,6 +264,14 @@ Diese Eigenschaft speichert, wie viele Einheiten auf diesem Feld stehen (natürl
 - *boolean* **hasClicked** ()
 
 - *void* **redrawProvince** ()
+
+#### getXPos()
+
+Gibt die in der Provinz hinterlegte X-Position zurück.
+
+#### getYPos()
+
+Gibt die in der Provinz hinterlegte Y-Position zurück.
 
 #### getID()
 
