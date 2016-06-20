@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
  * Schubst Einheiten umher.
  * 
  * @author MaxiJohl, GruenerWal
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 public class ArmySchubser extends Map_World
@@ -85,7 +85,7 @@ public class ArmySchubser extends Map_World
     {
         Province clickedProvince = null;
         
-        for ( int i = 1; i <= provinceCount; i++)
+        for ( int i = 1; i <= (provinces.length - 1); i++)
         {
             if (provinces[i].hasClicked() == true)
             {
