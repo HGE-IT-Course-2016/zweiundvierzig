@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
  * Schubst Einheiten umher.
  * 
  * @author MaxiJohl, GruenerWal
- * @version 0.3.0
+ * @version 1.0.0
  */
 
 public class ArmySchubser extends Map_World
@@ -33,15 +33,19 @@ public class ArmySchubser extends Map_World
         String toMoveString = JOptionPane.showInputDialog(null, "Wieviele Einheiten willst du verschieben?");
         Integer entitiesToMove = Integer.valueOf(toMoveString);
 
-        if ( (sourceProvince.getEntityCount() - entitiesToMove) > 0)
+        if ( (sourceProvince.getEntityCount() - entitiesToMove) > 0 && entitiesToMove != null)
         {
             sourceProvince.removeFromEntities(entitiesToMove);
             destinationProvince.addToEntities(entitiesToMove);
+            sourceProvince = null;
+            destinationProvince = null;
         }
 
-        if ( (sourceProvince.getEntityCount() - entitiesToMove) <= 0 )
+        if ( (sourceProvince.getEntityCount() - entitiesToMove) <= 0 && entitiesToMove != null)
         {
             JOptionPane.showMessageDialog(null,"Du hast nicht genügend Einheiten, um die gewünschte Anzahl von " + sourceProvince.getDisplayName() + " nach " + destinationProvince.getDisplayName() + " zu verschieben, Köhler.");
+            sourceProvince = null;
+            destinationProvince = null;
         }
     }
 
@@ -92,4 +96,3 @@ public class ArmySchubser extends Map_World
         }
     }
 }
-
