@@ -15,7 +15,7 @@ public class Fight extends Map_World
      * 
      */
     Province offenderProvince;
-    Province defenderProvince;    
+    Province defenderProvince;
 
     public Fight(String[] playerList, int[] colorList)
     {
@@ -24,74 +24,89 @@ public class Fight extends Map_World
 
     public void act()
     {
-        for ( int i = 0; i <= provinceCount; i++)
+        if(offenderProvince == null)
+        {
+            OffenderProvince();
+        }
+        else
+        {
+            defenderProvince();
+        }
+    }
+
+    private void OffenderProvince()
+    {
+        for ( int i = 1; i <= provinceCount; i++)
         {
             if (provinces[i].hasClicked() == true)
-            {
-                provinces[i] = offenderProvince;
-                chooser(provinces[i], i);
-                break;
-            }
-        }  
-    }
-
-    private void chooser(Province offenderProvince, int k)
-    {
-        int EntitiesOffender = provinces[k].getEntityCount(); 
-        int i = 0;
-        for (i = 0; i <= provinceCount; i++)
-        {
-            if (provinces[i].hasClicked() == true && provinces[i] != offenderProvince)
-            {
-                provinces[i] = defenderProvince;
-                int EntitiesDefender = provinces[i].getEntityCount();
-                chooser(offenderProvince,defenderProvince,EntitiesOffender,EntitiesDefender, k , i);                
-                break;
+            {   
+                offenderProvince = provinces[i];
+                System.out.println("1");                
             }
         }
     }
 
-    private void chooser(Province offenderProvince, Province defenderProvince, int EntitiesOffender, int EntitiesDefender, int k , int i)
+    private void defenderProvince()
+    {
+        {
+            for (int i = 1; i <= provinceCount; i++)
+            {
+                if (provinces[i].hasClicked() == true)//&& defenderProvince != offenderProvince)
+                {
+                    defenderProvince = provinces[i];
+                    System.out.println("2");
+                    chooser();                
+                    break;
+                } 
+            }
+        }
+    }
+
+    private void chooser()
     {
         Dice_Offender diceOffender = new Dice_Offender();        
-        int[] maxDiceOffender = diceOffender.max_offender(EntitiesOffender);
+        int[] maxDiceOffender = diceOffender.max_offender(offenderProvince.getEntityCount());
         Dice_Defender diceDefender = new Dice_Defender();
-        int[] maxDiceDefender = diceDefender.max_defender(EntitiesDefender);
+        int[] maxDiceDefender = diceDefender.max_defender(defenderProvince.getEntityCount());
         Arrays.sort(maxDiceOffender);
         Arrays.sort(maxDiceDefender); 
+        decider(maxDiceOffender, maxDiceDefender);
     }
 
-    private void decider(Province offenderProvince, Province defenderProvince,int[] maxDiceOffender, int [] maxDiceDefender, int k, int i)
+    private void decider(int[] maxDiceOffender, int [] maxDiceDefender)
     {
-        int maxDefender = maxDiceDefender[2];
-        int maxOffender = maxDiceOffender[3];
-        if (maxOffender>maxDefender && provinces[i].getEntityCount()>1)
+        
+        int maxDefender = maxDiceDefender[1];
+        int maxOffender = maxDiceOffender[2];
+        if (maxOffender>maxDefender && defenderProvince.getEntityCount()>1)
         {
-            int EntitiesOffender = provinces[k].getEntityCount();
-            int EntitiesDefender = provinces[i].getEntityCount();
-            provinces[i].setEntityCount(EntitiesDefender - 1);   
+            int EntitiesOffender = offenderProvince.getEntityCount();
+            int EntitiesDefender = defenderProvince.getEntityCount();
+            defenderProvince.setEntityCount(EntitiesDefender - 1);   
         }
 
-        if (maxOffender<maxDefender && provinces[k].getEntityCount()>1)
+        if (maxOffender<maxDefender && offenderProvince.getEntityCount()>1)
         {
-            int EntitiesOffender = provinces[k].getEntityCount();
-            int EntitiesDefender = provinces[i].getEntityCount();
-            provinces[k].setEntityCount(EntitiesOffender - 1);   
+            int EntitiesOffender = offenderProvince.getEntityCount();
+            int EntitiesDefender = defenderProvince.getEntityCount();
+            offenderProvince.setEntityCount(EntitiesOffender - 1);   
         }
 
-        if (maxOffender>maxDefender && provinces[i].getEntityCount()==1)
+        if (maxOffender>maxDefender && defenderProvince.getEntityCount()==1)
         {
-            provinces[i].setOwner(provinces[k].getOwner());
-            provinces[i].setEntityCount(0);
+            defenderProvince.setOwner(offenderProvince.getOwner());
+            defenderProvince.setEntityCount(0);
         }
 
-        if (maxOffender>maxDefender && provinces[k].getEntityCount()==1)
+        if (maxOffender>maxDefender && offenderProvince.getEntityCount()==1)
         {
-            provinces[k].setOwner(provinces[i].getOwner());
-            provinces[k].setEntityCount(0);
+            offenderProvince.setOwner(defenderProvince.getOwner());
+            offenderProvince.setEntityCount(0);
         }
+        System.out.println("3");
+        offenderProvince = null;
+        defenderProvince = null;
     }
-
 }
 
 //Ein <3 für Felix (von Aaron)(geschrieben von Samuel)(aber Aaron wollte das ich des schreib)
