@@ -147,18 +147,21 @@ public class Province extends Actor
     public int addToEntities(int a) {
         eCount = eCount + a;
         checkEntityCount();
+        redrawProvince();
         return eCount;
     }
 
     public int removeFromEntities(int a) {
         eCount = eCount - a;
         checkEntityCount();
+        redrawProvince();
         return eCount;
     }
 
     public int setEntityCount(int a) {
         eCount = a;
         checkEntityCount();
+        redrawProvince();
         return eCount;
     }
 
