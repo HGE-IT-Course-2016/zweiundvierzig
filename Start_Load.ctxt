@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=Start_Load
-comment0.text=\r\n\ Beginnt\ neues\ Spiel/\ l\u00E4dt\ altes\ Spiel.\r\n\ \r\n\ @author\ 4ngelica\ \r\n\ @version\ 1.0\r\n
-comment1.params=
-comment1.target=Start_Load()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Start_Load.\r\n\ \r\n
-comment2.params=text\ size
-comment2.target=void\ Button(java.lang.String,\ int)
-numComments=3
