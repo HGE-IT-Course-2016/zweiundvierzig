@@ -1,104 +1,134 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.lang.Math;
 
 /**
- * Oberklasse für verschiedene Maps;
- * neue Maps werden als Unterklasse dieser Klasse eingefügt.
- * 
- * @author GruenerWal, MaxiJohl
- * @version 0.2.0
- */
-public class GeneralMap extends World
+	Oberklasse für verschiedene Maps;
+	neue Maps werden als Unterklasse dieser Klasse eingefügt.
+
+	@author GruenerWal, MaxiJohl, Felix Stupp
+	@version 0.3.0
+*/
+public abstract class GeneralMap extends World
 {
-    /**
-     *  Felder, im Moment nur Anzahl der Provinzen
-     *  Später evtl. weitere Werte wie Schwierigkeit denkbar
-     */
+	/*
+		Felder, im Moment nur Anzahl der Provinzen
+		Später evtl. weitere Werte wie Schwierigkeit denkbar
+	 */
 
-    protected int provinzen;    
+	private final int X_OFFSET = 0; // Verschiebt die Provinzen nach rechts
+	private final int Y_OFFSET = 0; // Verschiebt die Provinzen nach unten
 
-    /** Konstruktor für nicht weiter definierte Map, sollte im Moment nicht benutzt werden.
-     * Später als Konstruktor für Default-Map denkbar.
-     */
-    public GeneralMap(int x, int y, int p)
-    {    
-        /**
-         * Erstellt eine leere Karte mit den übergebenen Eigenschaften
-         * @param x X-Ausdehnung der Welt
-         * @param y Y-Ausdehnung
-         * @param p Kantenlänge der Felder in Pixeln
-         */
-        super(1600, 900, 1);
-        addObject(new Menue_Button(),100,38);
-        addObject(new Roll_Button(),84,835);
-        addObject(new Roll_Button(),1513,835);
-    }
+	/*
+		Die einzelnen Positionen der Provinzen wird mit SCALE_VALUE/10000 multipliziert.
+		Dies ist nützlich, wenn die Karte beispielsweise nur noch 80% der Originalgröße bei ihrer Darstellung groß ist.
+		Bei diesem Beispiel wäre hier, neben dem Offset oben, der Wert 0.8 einzutragen.
+	*/
+	private final double SCALE_VALUE = 1;
 
-    static GeneralMap generateMap(int mapID)
-    {
-        //Platzhalter
-        return null;
-    }
+	protected Province[] provinces;
+	protected Player[] players;
+	
+	protected int currentPlayer = 0;
+	
+	/**
+		Erstellt eine GeneralMap mit allen Eigenschaften und initialisiert die Arrays für Provinzen und Spieler.
+		@param backImage Das Hintergrundbild, welches von dieser Klasse geladen und dargestellt wird.
+		@param playerList Die Liste mit den Namen der Spieler
+		@param colorList Die Liste mit den Farben der Spieler
+	*/
+	public GeneralMap(String backImage, String[] playerList, int[] colorList)
+	{    
+        super(1600,900,1);
+		players = new Player[playerList.length];
+		for (int i = 0; i < playerList.length; i++) {
+			players[i] = new Player(i,playerList[i],colorList[i]);
+		}
+	}
+	
+	/**
+		Fügt alle Provinzen aus dem Array der Welt an der entsprechden Stelle zu.
+	*/
+	protected void initProvinces() {
+		for(int i = 1; i < provinces.length; i++) {
+			addObject(provinces[i],((int) Math.floor(provinces[i].getXPos() * SCALE_VALUE)) + X_OFFSET,((int) Math.floor(provinces[i].getYPos() * SCALE_VALUE)) + Y_OFFSET);
+		}
+	}
 
-    int getPlayerCount()
-    {
-        //Platzhalter
-        return 4;
-    }
-
-    String getPlayerName()
-    {
-        //Platzhalter
-        return null;
-    }
-
-    String getPlayerName(int plID)
-    {
-        //Platzhalter
-        return null;
-    }
-
-    int getPlayerStars()
-    {
-        //Platzhalter
-        return 0;
-    }
-
-    int getProvinceOwner(int prID)
-    {
-        //Platzhalter
-        return 0;
-    }
-
-    int[] getProvinceOwners()
-    {
-        //Platzhalter; viel Arbeit :3
-        int[] provinceOwners = new int[1];
-        provinceOwners[0] = 0;
-        return provinceOwners;
-    }
-
-    int getProvinceEntityCount(int prID)
-    {
-        //Platzhalter
-        return 0;
-    }
-
-    int getProvincesEntityCounts(int[] prArr)
-    {
-        //Platzhalter
-        return 0;
-    }
-
-    int getProvincesEntityCounts(boolean[] prArr)
-    {
-        //Platzhalter
-        return 0;
-    }
-
-    int getProvincesEntityCounts(int plID)
-    {
-        //Platzhalter
-        return 0;
-    }
+	/**
+		Gibt die Anzahl der vorhandenen Spieler aus.
+	*/
+	public int getPlayerCount()
+	{
+		return players.length;
+	}
+	
+	/**
+		Gibt den Namen des aktuellen Spielers aus.
+		@return Der Name des aktuellen Spielers
+	*/
+	public String getPlayerName()
+	{
+		return players[currentPlayer].getDisplayName();
+	}
+	
+	/**
+		Gibt den Namen des Spielers aus, dem dessen ID gehört.
+		@param plID Die ID des zu findenden Spielers
+		@return Der Name des Spielers
+	*/
+	public String getPlayerName(int plID)
+	{
+		return players[plID].getDisplayName();
+	}
+	
+	/**
+		Gibt die Anzahl der Sterne des aktuellen Spielers zurück.
+		@return Die Anzahl der Sterne des aktuellen Spielers
+	*/
+	public int getPlayerStars()
+	{
+		return players[currentPlayer].getStars();
+	}
+	
+	/**
+		Gibt die ID des Spielers zurück, dem die gefragte Provinz gehört.
+		@param prID Die gefragte Provinz
+	*/
+	public int getProvinceOwner(int prID)
+	{
+		if(prID < 1 || prID > provinces.length) {
+			return -1;
+		}
+		return provinces[prID].getOwner();
+	}
+	
+	/**
+		Gibt eine Liste mit allen Provinzen und deren Besitzern zurück.
+		@return Array mit der Provinz-ID als Index und dem Besitzer als Wert
+	*/
+	public int[] getProvinceOwners()
+	{
+		int[] prOwners = new int[provinces.length];
+		for (int i = 1; i > provinces.length; i++) {
+			prOwners[i] = provinces[i].getOwner();
+		}
+		return prOwners;
+	}
+	
+	/**
+		Zählt die Anzahl der Einheiten von allen Provinzen zusammen, die einem bestimmten Spieler gehört.
+		@param playerID Die ID des Spielers, für den die Einheiten gezählt werden sollen.
+		@return Die Anzahl der Einheiten, die dem Spieler gehören.
+	*/
+	public int getProvinceEntityCount(int playerID)
+	{
+		int c = 0;
+		for (int i = 1; i > provinces.length; i++) {
+			if(provinces[i].getOwner() == playerID) {
+				c = c + provinces[i].getEntityCount();
+			}
+		}
+		return c;
+	}
 
 }
