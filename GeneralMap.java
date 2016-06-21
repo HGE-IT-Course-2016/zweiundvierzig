@@ -15,7 +15,7 @@ public abstract class GeneralMap extends World
 		Später evtl. weitere Werte wie Schwierigkeit denkbar
 	 */
 
-	private final int X_OFFSET = 0; // Verschiebt die Provinzen nach rechts
+	private final int X_OFFSET = 160; // Verschiebt die Provinzen nach rechts
 	private final int Y_OFFSET = 0; // Verschiebt die Provinzen nach unten
 
 	/*
@@ -43,7 +43,40 @@ public abstract class GeneralMap extends World
 		for (int i = 0; i < playerList.length; i++) {
 			players[i] = new Player(i,playerList[i],colorList[i]);
 		}
+
+		createPlayerObjects(playerList.length);
 	}
+	
+	private void createPlayerObjects(int playerCount)
+	{
+	    addObject(players[0],82,110);
+	    
+	    if (playerCount > 1)
+	    {
+	        addObject(players[1],82,230);
+	        
+	        if (playerCount > 2)
+	        {
+	            addObject(players[2],82,350);
+	            
+	            if (playerCount > 3)
+	            {
+	                addObject(players[3],1512,110);
+	                
+	                if (playerCount > 4)
+	                {
+	                    addObject(players[4],1512,230);
+	                    
+	                    if (playerCount > 5)
+	                    
+	                    {
+	                        addObject(players[5],1512,350);
+	                       }
+	                   }	                   	                  
+	               }
+	           }
+	       }
+	   }
 	
 	/**
 		Fügt alle Provinzen aus dem Array der Welt an der entsprechden Stelle zu.
