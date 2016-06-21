@@ -16,6 +16,7 @@ public class Colors extends World implements ButtonEvent
 	Button gelb = new Button ("Gelb", 16, this);
 	Button weiter = new Button ("Weiter", 16, this);
 	int [] color = new int [6];
+	String [] pn = new String [6];
 	int x;
 	boolean possw = true;
 	boolean posbl = true;
@@ -58,42 +59,48 @@ public class Colors extends World implements ButtonEvent
 		if ( b == schwarz && possw == true)
 		{
 			color [x] = sw;
+			pn[x]="Schwarz";
 			x+=1;
 			possw = false;
 		}
 		if (b == blau && posbl == true)
 		{
 			color[x] = bl;
+			pn[x] = "Blau";
 			x+=1;
 			posbl = false; 
 		}
 		if (b == grün && posgr == true )
 		{
 			color[x] = gr;
+			pn[x]="Grün";
 			x+=1;
 			posgr = false;
 		}
 		if ( b == rot && posrt == true)
 		{
 			color[x] = rt;
+			pn[x]="Rot";
 			x+=1;
 			posrt = false;
 		}
 		if ( b == gelb && posgb == true)
 		{
 			color [x] = gb;
+			pn[x]="Gelb";
 			x+=1;
 			posgb = false;
 		}
 		if ( b == lila && posli == true)
 		{
 			color [x] = li;
+			pn[x]="Lila";
 			x+=1;
 			posli = false;
 		}
 		if ( b == weiter && x >1)
 		{
-			Map m = new Map(color, x);
+			Map m = new Map(color, x,pn);
 			addObject(m);
 			setWorld(Map,m);
 		}
