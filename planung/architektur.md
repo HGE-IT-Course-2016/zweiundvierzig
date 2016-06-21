@@ -41,6 +41,17 @@ Hier werden alle Klassen mit deren öffentliche Methoden (**public** und **prote
 - Arbeitet bitte, wenn möglich, mit der *Utils*-Klasse, diese kann helfen den Code übersichtlicher und kürzer zu gestalten, da häufige und allgemein umsetzbare Aufgaben über diese einheitlich abgearbeitet werden sollen. Das Debuggen wird somit auch einfacher, sowohl für mich als auch für euch selbst.
 - Ihr könnt auch ab und zu in die Dokumentationen der offiziellen Java-Bibliotheken schauen, falls ihr denkt, dass es bereits eine Methode geben sollte für den Vorgang, den ihr sonst selbst programmieren müsstet.
 
+### Color-Zuweisung
+
+An verschiedenen Stellen (wie beispielsweise beim Erstellen eines *Player*-Objektes) benötigt man eine Zahl als Farbwert, die einem Spieler eine Farbe zuweisen können. Auf folgende Zuordnung haben wir uns geeinigt:
+
+0. schwarz
+0. blau
+0. grün
+0. rot
+0. gelb
+0. lila
+
 ---
 
 ## Klassenverzeichnis
