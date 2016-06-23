@@ -39,7 +39,7 @@ public class Dice_Offender extends Dice
         if(troupNumberOffender == 2)
         {
             diceEyesOffender[0] = (int) (Math.random()*6+1);
-            System.out.println(diceEyesOffender[0]);
+            // System.out.println(diceEyesOffender[0]);
             return diceEyesOffender;
 
         }
@@ -47,8 +47,8 @@ public class Dice_Offender extends Dice
         {
             diceEyesOffender[0] = (int) (Math.random() * 6 +1);
             diceEyesOffender[1] = (int) (Math.random()* 6 +1);
-            System.out.println(diceEyesOffender[0]);
-            System.out.println(diceEyesOffender[1]);
+            // System.out.println(diceEyesOffender[0]);
+            // System.out.println(diceEyesOffender[1]);
             return diceEyesOffender;
         }
         if(troupNumberOffender > 3)
@@ -56,9 +56,9 @@ public class Dice_Offender extends Dice
             diceEyesOffender[0] = (int) (Math.random() * 6 +1);
             diceEyesOffender[1] = (int) (Math.random()* 6 +1);
             diceEyesOffender[2] = (int) (Math.random()* 6 + 1);
-            System.out.println(diceEyesOffender[0]);
-            System.out.println(diceEyesOffender[1]);
-            System.out.println(diceEyesOffender[2]);
+            // System.out.println(diceEyesOffender[0]);
+            // System.out.println(diceEyesOffender[1]);
+            // System.out.println(diceEyesOffender[2]);
             return diceEyesOffender;
         }
         Arrays.sort(diceEyesOffender);
@@ -67,44 +67,4 @@ public class Dice_Offender extends Dice
         
         
     }
-    
-    public int[] max_offender(int troupNumberOffender)
-    {
-        if(troupNumberOffender == 1)
-        {
-            System.out.println("Mit einer verbleibenden Truppe auff dem Feld kann man nicht angreifen!");
-        }
-        if(troupNumberOffender == 2)
-        {
-            diceEyesOffender[0] = (int) (Math.random()*2+5);
-            System.out.println(diceEyesOffender[0]);
-            return diceEyesOffender;
-
-        }
-        if(troupNumberOffender == 3)
-        {
-            diceEyesOffender[0] = (int) (Math.random() * 2 +5);
-            diceEyesOffender[1] = (int) (Math.random()* 2 +5);
-            System.out.println(diceEyesOffender[0]);
-            System.out.println(diceEyesOffender[1]);
-            return diceEyesOffender;
-        }
-        if(troupNumberOffender > 3)
-        {
-            diceEyesOffender[0] = (int) (Math.random() * 2 +5);
-            diceEyesOffender[1] = (int) (Math.random()* 2 +5);
-            diceEyesOffender[2] = (int) (Math.random()* 2 + 5);
-            System.out.println(diceEyesOffender[0]);
-            System.out.println(diceEyesOffender[1]);
-            System.out.println(diceEyesOffender[2]);
-            return diceEyesOffender;
-        }
-        
-        Arrays.sort(diceEyesOffender);
-        return diceEyesOffender;
-
-        
-        
-    }
-    
 }
