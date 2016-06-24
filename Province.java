@@ -12,19 +12,19 @@ public class Province extends Actor
     @Override public GeneralMap getWorld() {
         return (GeneralMap) super.getWorld();
     }
-    
+
     private int stars = 1;
     private int provinceID;
     private String displayName;
-    private int owner;
+    private int owner = 0;
     private boolean[] nextProvinces;
     private int continentID;
     private int xPos;
     private int yPos;
     private int eCount;
-    
+
     private boolean clicked = false;
-    
+
     /**
      * Überprüft, ob die Provinz angeklickt wurde.
      */
@@ -178,34 +178,43 @@ public class Province extends Actor
     public void oDecide(GreenfootImage province,int textSize)
     {
         String ownerString;
-        switch(owner)
+        if(owner == 0)
         {
-            case 1:
             ownerString = "schwarz";
             eCalculate(province,ownerString,textSize);
-            break;
-            case 2:
-            ownerString = "rot";
-            eCalculate(province,ownerString,textSize);
-            break;
-            case 3:
-            ownerString = "blau";
-            eCalculate(province,ownerString,textSize);
-            break;
-            case 4:
-            ownerString = "gelb";
-            eCalculate(province,ownerString,textSize);
-            break;
-            case 5:
-            ownerString = "gr++n";
-            eCalculate(province,ownerString,textSize);
-            break;
-            case 6:
-            ownerString = "lila";
-            eCalculate(province,ownerString,textSize);
-
         }
-        
+        else
+        {
+            switch(owner)
+            {
+                case 1:
+                ownerString = "schwarz";
+                eCalculate(province,ownerString,textSize);
+                break;
+                case 2:
+                ownerString = "rot";
+                eCalculate(province,ownerString,textSize);
+                break;
+                case 3:
+                ownerString = "blau";
+                eCalculate(province,ownerString,textSize);
+                break;
+                case 4:
+                ownerString = "gelb";
+                eCalculate(province,ownerString,textSize);
+                break;
+                case 5:
+                ownerString = "gr++n";
+                eCalculate(province,ownerString,textSize);
+                break;
+                case 6:
+                ownerString = "lila";
+                eCalculate(province,ownerString,textSize);
+                break;
+
+            }
+        }
+
     }
 
     private void eCalculate(GreenfootImage province, String ownerString,int textSize)
@@ -215,6 +224,10 @@ public class Province extends Actor
         tank.scale(textSize,textSize);
         if(eCountTanks <= 3)
         {
+            if(eCountTanks == 0)
+            {
+                
+            }
             if(eCountTanks == 1)
             {
                 province.drawImage(tank,0,textSize);                 
@@ -267,6 +280,6 @@ public class Province extends Actor
         clicked = false;
         return b;
     }
-    
+
 }
 

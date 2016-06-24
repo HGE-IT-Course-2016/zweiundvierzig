@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.awt.Color;
 
 /**
  * Write a description of class Player here.
@@ -20,6 +21,10 @@ public class Player extends Actor
     boolean [] pBesitzer = new boolean [42];
     boolean gotProv = false;
     boolean lostProv = false;
+    int identity;
+    String name;
+    int color;
+    int textsize;
 
     private String n;
     private int c;
@@ -126,10 +131,12 @@ public class Player extends Actor
     {
         stats[3]+= gotEnt;
     }
+
     public void lostEntity()
     {
         stats[4]+=1;
     }
+
     private void maxEntities(int entNumber)
     {
         if (stats[5]< entNumber)
@@ -137,6 +144,7 @@ public class Player extends Actor
             stats[5]=entNumber;
         }
     }
+
     public boolean[] getMyProvinces()
     {
         GeneralMap w= getWorld();
@@ -188,13 +196,78 @@ public class Player extends Actor
     {
         return lostProv; 
     }
+
     public int[] getStatistics()
     {
         return stats;
     }
-    private void redrawPlayer()
+    public int setColor(int c)
     {
-        //Platzhalter
-     int x=0;   
+       color = c;
+       return color;
+    }
+   
+    public void redrawPlayer()
+    {
+        int textSize = 20;
+        GreenfootImage statistics = new GreenfootImage(137,120);   
+        GreenfootImage Name = new GreenfootImage(n,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));        
+        statistics.drawImage(Name,0,0);
+        
+        setImage(statistics);
+        oDecide(statistics,textSize);        
+    }
+
+    private void oDecide(GreenfootImage statistics,int textSize)
+    {
+        GreenfootImage flag = new GreenfootImage("images\\BlaueArmee.jpg");
+        redraw(statistics,flag,textSize);
+        switch(color)
+        {
+            case 2:
+            flag = new GreenfootImage("images\\BlaueArmee.jpg");
+            
+            redraw(statistics,flag,textSize);
+            break;
+            case 5:
+            flag = new GreenfootImage("images\\GelbeArmee.jpg");
+            
+            redraw(statistics,flag,textSize);
+            break;
+            case 6:
+            flag = new GreenfootImage("images\\LilaArmee.jpg");
+            
+            redraw(statistics,flag,textSize);
+            break;
+            case 4:
+            flag = new GreenfootImage("images\\RoteArmee.jpg");
+            
+            redraw(statistics,flag,textSize);
+            break;
+            case 1:
+            flag = new GreenfootImage("images\\SchwarzeArmee.jpg");
+            
+            redraw(statistics,flag,textSize);
+            break;
+            case 3:
+            flag = new GreenfootImage("images\\Gr++neArmee.jpg");
+            
+            redraw(statistics,flag,textSize);
+            break;
+        }
+
+    }
+
+    private void redraw(GreenfootImage statistics,GreenfootImage flag, int textSize)
+    {
+        
+        flag.scale(137,100);
+        statistics.drawImage(flag,0,textSize);
+        GreenfootImage playerStatistics = new GreenfootImage(stats[0] + "||" + stats[1] + "||" + stats[2],textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
+        GreenfootImage playerStatistics2 = new GreenfootImage(stats[3] + "||" + stats[4] + "||" + stats[5],textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
+        statistics.drawImage(playerStatistics, 0, 123);
+        statistics.drawImage(playerStatistics2, 0, 123 + textSize);
+        
+        setImage(statistics);
     }
 }

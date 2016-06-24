@@ -41,8 +41,8 @@ public class Dice_Defender extends Dice
         {
             diceEyesDefender[0] = (int) (Math.random() * 6 +1);
             diceEyesDefender[1] = (int) (Math.random()* 6 +1);
-            System.out.println(diceEyesDefender[0]);
-            System.out.println(diceEyesDefender[1]);
+            // System.out.println(diceEyesDefender[0]);
+            // System.out.println(diceEyesDefender[1]);
             return diceEyesDefender;
         }
         Arrays.sort(diceEyesDefender);
@@ -51,28 +51,4 @@ public class Dice_Defender extends Dice
         
         
     }
-    
-    public int[] max_defender(int troupNumberDefender)
-    {
-       if(troupNumberDefender == 1)
-        {
-            diceEyesDefender[0] = (int) (Math.random() * 2 +4);
-            return diceEyesDefender;
-        }
-        if(troupNumberDefender >=2 )
-        {
-            diceEyesDefender[0] = (int) (Math.random() * 2 +4);
-            diceEyesDefender[1] = (int) (Math.random()* 2 +4);
-            System.out.println(diceEyesDefender[0]);
-            System.out.println(diceEyesDefender[1]);
-            return diceEyesDefender;
-        }
-        Arrays.sort(diceEyesDefender);
-        return diceEyesDefender;
-        
-       
-        
-        
-    }
-    
 }
