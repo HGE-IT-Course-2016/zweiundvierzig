@@ -24,7 +24,7 @@ public class Map_World extends GeneralMap
 	public Map_World(String[] playerList, int[] colorList)
 	{
 		super("",playerList,colorList);
-		setBackground("Map_World.png");
+		setBackground("Risiko Karte.png");
 		/*
 			Hier werden später sämtliche Provinzen der Standard-Map erstellt.
 			Dies funktioniert folgendermassen:
