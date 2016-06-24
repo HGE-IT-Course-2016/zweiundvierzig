@@ -63,34 +63,23 @@ public abstract class GeneralMap extends World implements ButtonEvent
 	
 	private void createPlayerObjects(int playerCount)
 	{
-		addObject(players[0],82,110);
-		
-		if (playerCount > 1)
-		{
-			addObject(players[1],82,230);
-			
-			if (playerCount > 2)
-			{
-				addObject(players[2],82,350);
-				
-				if (playerCount > 3)
-				{
-					addObject(players[3],1512,110);
-					
-					if (playerCount > 4)
-					{
-						addObject(players[4],1512,230);
-						
-						if (playerCount > 5)
-						
-						{
-							addObject(players[5],1512,350);
-						}
-					}	                   	                  
-				}
-			}
+		if(playerCount > 6) {
+			playerCount = 6; // Um denselben Effekt wie beim Code zuvor zu erzeugen
 		}
-	}
+		switch (playerCount) {
+			case 6:
+							addObject(players[5],1512,350);
+			case 5:
+			addObject(players[4],1512,230);
+			case 4:
+			addObject(players[3],1512,110);
+			case 3:
+			addObject(players[2],82,350);
+			case 2:
+			addObject(players[1],82,230);
+						}
+		addObject(players[0],82,110);
+					}	                   	                  
 
 	/**
 	Fügt alle Provinzen aus dem Array der Welt an der entsprechden Stelle zu.
