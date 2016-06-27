@@ -92,7 +92,17 @@ public abstract class GeneralMap extends World implements ButtonEvent
 		for(int i = 1; i < provinces.length; i++) {
 			addObject(provinces[i],((int) Math.floor(provinces[i].getXPos() * SCALE_VALUE)) + X_OFFSET,((int) Math.floor(provinces[i].getYPos() * SCALE_VALUE)) + Y_OFFSET);
 		}
-		if(players.length == 3) {
+		/*
+			Legt die Startprovincen der Spieler fest.
+		*/
+		int[] ownerL;
+		int[] entitiesL;
+		if(players.length==3) {
+			/*
+				Spieler 1 darf beginnen; Hauptstadt: 40
+				Spieler 2 ist als zweites dran; Hauptstadt: 20
+				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt: 9
+			*/
 			provinces[1].setOwner(1);
 			provinces[1].setEntityCount(1);
 			provinces[1].redrawProvince();
@@ -219,16 +229,13 @@ public abstract class GeneralMap extends World implements ButtonEvent
 			provinces[42].setOwner(1);
 			provinces[42].setEntityCount(2);
 			provinces[42].redrawProvince();
-		}
-		if(players.length==4)
-		{
+		} else if(players.length==4) {
 			/*
 				Spieler 1 darf beginnen; Hauptstadt:22
 				Spieler 2 ist als zweites dran; Hauptstadt:20
 				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt:2
 				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:39
 			*/
-
 			provinces[1].setOwner(1);
 			provinces[1].setEntityCount(1);
 			provinces[1].redrawProvince();
@@ -355,16 +362,16 @@ public abstract class GeneralMap extends World implements ButtonEvent
 			provinces[42].setOwner(4);
 			provinces[42].setEntityCount(4);
 			provinces[42].redrawProvince();
-		}
-		if(players.length==5)
-		{
-			/*Spieler 1 darf beginnen      Hauptstadt:13
-			 * Spieler 2 ist als zweites dran     Hauptstadt:7
-			 * Spieler 3 ist als drittes dran und bekommt eine Karte     Hauptstadt:22
-			 * Spieler 4 ist als viertes dran und bekommt eine Karte     Hauptstadt:20
-			 * Spieler 5 ist als fünftes dran und bekommt zwei Karte     Hauptstadt:41
-			 */
-
+		} else if(players.length==5) {
+			/*
+				Spieler 1 darf beginnen; Hauptstadt:13
+				Spieler 2 ist als zweites dran; Hauptstadt:7
+				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt:22
+				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:20
+				Spieler 5 ist als fünftes dran und bekommt zwei Karte; Hauptstadt:41
+			*/
+			ownerL = {3,1,4,2,2,2,2,4,2,4,4,3,1,1,3,1,2,4,4,4,2,3,3,1,3,3,2,5,5,5,1,1,4,5,5,5,3,4,5,1,5,5};
+			entitiesL = {};
 			provinces[1].setOwner(3);
 			provinces[1].setEntityCount(1);
 			provinces[1].redrawProvince();
@@ -491,6 +498,11 @@ public abstract class GeneralMap extends World implements ButtonEvent
 			provinces[42].setOwner(5);
 			provinces[42].setEntityCount(2);
 			provinces[42].redrawProvince();
+		}
+		for(int i = 1; i < provinces.length; i++) {
+			provinces[i].setOwner(ownerL[i-1]);
+			provinces[i].setEntityCount(entitiesL[i-1]);
+			provinces[i].redrawProvince();
 		}
 	}
 
