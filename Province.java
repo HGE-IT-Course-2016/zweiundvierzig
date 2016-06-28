@@ -169,7 +169,7 @@ public class Province extends Actor
     {
         int textSize;
         textSize = 20;
-        GreenfootImage province = new GreenfootImage(100,100);   
+        GreenfootImage province = new GreenfootImage(120,100);   
         GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
         province.drawImage(provinceName,0,0);
         oDecide(province,textSize);        
@@ -235,18 +235,18 @@ public class Province extends Actor
             if(eCountTanks == 2)
             {
                 province.drawImage(tank,0,textSize);
-                province.drawImage(tank,17,textSize);  
+                province.drawImage(tank,textSize,textSize);  
             }
             if(eCountTanks == 3)
             {
                 province.drawImage(tank,0,textSize);
                 province.drawImage(tank,textSize,textSize);  
-                province.drawImage(tank,textSize,textSize); 
+                province.drawImage(tank,textSize*2,textSize); 
             }
         }
         else
         {
-            GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",textSize,Color.CYAN,new Color(1.0f,1.0f,1.0f,0.5f));
+            GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",textSize,Color.BLACK,new Color(1.0f,1.0f,1.0f,0.5f));
             province.drawImage(eCountTanksImage,0,textSize);
             province.drawImage(tank,45,textSize);
         }
@@ -255,7 +255,7 @@ public class Province extends Actor
         horse.scale(textSize,textSize);
         if(eCountHorse == 1)
         {
-            province.drawImage(horse,0,2 * textSize);           
+            province.drawImage(horse,4*textSize,textSize);           
         }
         GreenfootImage Inf = new GreenfootImage("images\\infanterieskal-" + ownerString + ".png");
         int eCountInf = eCount - (eCountTanks * 5) - (eCountHorse * 3);
@@ -264,12 +264,12 @@ public class Province extends Actor
         {
             if(eCountInf == 1)
             {
-                province.drawImage(Inf,0,3* textSize);
+                province.drawImage(Inf,5*textSize,textSize);
             }
             if(eCountInf == 2)
             {
-                province.drawImage(Inf,0,3 * textSize);
-                province.drawImage(Inf,25,3 * textSize);  
+                province.drawImage(Inf,5*textSize,textSize);
+                province.drawImage(Inf,5*textSize,textSize);  
             }           
         }
         setImage(province);
