@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Map implements ButtonEvent
+public class Map extends World implements ButtonEvent
 {
     private Button map1 = new Button ("map1",16,this);
     private Button map2 = new Button ("map2",16,this);
@@ -17,21 +17,27 @@ public class Map implements ButtonEvent
     //private int x;
     //private int y;
     private int m=0;
-    private GeneralMap GM ;
-    
+    private Map_World MW ;
+    // int [] newcolour = new int [pnu];
+    // String [] newpn = new String [pnu];
     public Map( int [] bunt, int zahl , String [] name)
     {
-        super(1600, 900, 1);
-        
-        for (int i=0; i<6; i++)
+
+        super (1600,900,1);
+        for (int i=0; i<pnu; i++)
         {
             colour[i] = bunt[i];
             pn[i] = name[i];
         }
-        pnu = zahl;
+        pnu=zahl;
         addObject(map1, (1600-map1.getWidth())/2, (900-map1.getHeight())/2);
         addObject(map2, ((1600-map2.getWidth())/2)-25, ((900-map1.getHeight())/2)+75);
         addObject(fertigst, (1600-fertigst.getWidth()), 900-fertigst.getWidth());
+        // for ( int i=0; i<=pnu; i++)
+        // {
+            // newpn[i] = pn[i];
+            // newcolour[i] = colour[i];
+        // }
     } 
     // Die Map Buttons geben der Variable m einen Wert
     public void buttonClicked(Button b)
@@ -41,17 +47,21 @@ public class Map implements ButtonEvent
             //x= ;
             //y= ;
             m =1;
-            
+
         }
         if (b== map2)
         {
             m =2;
-            
+
         }
         if (b == fertigst)
         {
-            //new GeneralMap(colour, pnu, pn, m);
-            Greenfoot.setWorld(GM);
+            if (m==1)
+            {
+                GeneralMap m = new Map_World (pn, colour);
+                Greenfoot.setWorld(m);
+            }
+
         }
     }
 

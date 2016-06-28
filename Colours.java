@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Colours here.
+ * Write a description of class Colors here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -15,9 +15,9 @@ public class Colours extends World implements ButtonEvent
 	Button lila = new Button ("Lila", 16, this);
 	Button gelb = new Button ("Gelb", 16, this);
 	Button weiter = new Button ("Weiter", 16, this);
-	int [] colour = new int [6];
+	int [] color = new int [6];
 	String [] pn = new String [6];
-	int x;
+	int x = 0;
 	boolean possw = true;
 	boolean posbl = true;
 	boolean posgr = true;
@@ -32,18 +32,20 @@ public class Colours extends World implements ButtonEvent
 	int li = 6;
    
 	/**
-	 * Constructor for objects of class Colours.
+	 * Constructor for objects of class Colors.
 	 * 
 	 */
-	public Colours()
+	public Colours(int x, int y, int z)
 	{    
-		super(1600, 900, 1); 
+	    
+		super(x, y, z); 
 		addObject(schwarz, 10, 10);
-		addObject ( blau, 25, 10);
-		addObject ( grün, 40, 10);
-		addObject ( rot, 55, 10);
-		addObject(gelb, 70, 10);
-		addObject(lila, 85, 10);
+		addObject ( blau, 35, 10);
+		addObject ( grün, 55, 10);
+		addObject ( rot, 75, 10);
+		addObject(gelb, 100, 10);
+		addObject(lila, 125, 10);
+		addObject (weiter, 200,10);
 		
 	}
 	// Überprüft, ob ein Farbbutton geklickt wurde
@@ -58,50 +60,57 @@ public class Colours extends World implements ButtonEvent
 	{
 		if ( b == schwarz && possw == true)
 		{
-			colour [x] = sw;
+			color [x] = sw;
 			pn[x]="Schwarz";
 			x+=1;
 			possw = false;
 		}
 		if (b == blau && posbl == true)
 		{
-			colour[x] = bl;
+			color[x] = bl;
 			pn[x] = "Blau";
 			x+=1;
 			posbl = false; 
 		}
 		if (b == grün && posgr == true )
 		{
-			colour[x] = gr;
+			color[x] = gr;
 			pn[x]="Grün";
 			x+=1;
 			posgr = false;
 		}
 		if ( b == rot && posrt == true)
 		{
-			colour[x] = rt;
+			color[x] = rt;
 			pn[x]="Rot";
 			x+=1;
 			posrt = false;
 		}
 		if ( b == gelb && posgb == true)
 		{
-			colour [x] = gb;
+			color [x] = gb;
 			pn[x]="Gelb";
 			x+=1;
 			posgb = false;
 		}
 		if ( b == lila && posli == true)
 		{
-			colour [x] = li;
+			color [x] = li;
 			pn[x]="Lila";
 			x+=1;
 			posli = false;
 		}
-		if ( b == weiter && x >1)
+		if ( b == weiter && x >=2 )
 		{
-			Map m = new Map(colour, x, pn);
-			//setWorld(m);
+		    String[] newpn = new String[x];
+		    int[] newcolor = new int[x];
+		    for (int i = 0; i< x; i++)
+		    {
+		        newpn[i] = pn[i];
+		        newcolor[i] = color[i];
+		      }
+			World m = new Map(newcolor, x,newpn);
+			Greenfoot.setWorld(m);
 		}
 	}
    
