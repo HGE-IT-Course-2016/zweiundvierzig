@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=Map_World
-comment0.text=\r\n\tKlasse\ der\ Standard-Welt\r\n\t(Also\ die\ normale\ Weltkarte\ mit\ allen\ Kontinenten)\r\n\r\n\t@author\ GruenerWal,\ MaxiJohl\r\n\t@version\ 0.3.0\r\n
-comment1.params=playerList\ colorList
-comment1.target=Map_World(java.lang.String[],\ int[])
-comment1.text=\ \r\n\t\tKonstruktor\ der\ Weltkarte;\r\n\t\tkonstruiert\ eine\ GeneralMap\ mit\ den\ Ausmassen\ 1600\ auf\ 900\ Pixel.\r\n
-numComments=2
