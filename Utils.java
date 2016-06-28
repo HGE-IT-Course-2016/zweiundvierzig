@@ -1,6 +1,7 @@
 import greenfoot.*;
 import java.awt.Color;
 import java.util.*;
+import java.lang.Object;
 
 /**
 Diese Klasse enthält nur statische Funktionen, welche für euch als Unterstützung gedacht sind. Damit könnt ihr dann hoffentlich viele Code-Zeilen sparen. :)
@@ -81,5 +82,25 @@ public final class Utils {
 			i = in;
 		} catch (java.lang.NumberFormatException e) {}
 		return i;
+	}
+	
+	public static Province[] cutArray(Province[] obA) {
+		boolean[] l = new boolean[obA.length];
+		int c = 0;
+		for(int i = 0; i < obA.length; i++) {
+			if(obA[i] != null) {
+				l[i] = true;
+				c++;
+			}
+		}
+		int p = 0;
+		Province[] ret = new Province[c];
+		for(int i = 0; i < l.length; i++) {
+			if(l[i]) {
+				ret[p] = obA[i];
+				p++;
+			}
+		}
+		return ret;
 	}
 }
