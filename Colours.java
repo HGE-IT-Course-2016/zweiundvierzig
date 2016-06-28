@@ -39,13 +39,13 @@ public class Colours extends World implements ButtonEvent
 	{    
 	    
 		super(x, y, z); 
-		addObject(schwarz, 10, 10);
-		addObject ( blau, 35, 10);
-		addObject ( grün, 55, 10);
-		addObject ( rot, 75, 10);
-		addObject(gelb, 100, 10);
-		addObject(lila, 125, 10);
-		addObject (weiter, 200,10);
+		addObject(schwarz, 50, 30);
+		addObject ( blau, 170, 30);
+		addObject ( grün, 280, 30);
+		addObject ( rot, 390, 30);
+		addObject(gelb, 500, 30);
+		addObject(lila, 610, 30);
+		addObject (weiter, 335,90);
 		schwarz.setSize(100, 50);
 	    gelb.setSize(100, 50);
 	    blau.setSize(100, 50);
