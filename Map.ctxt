@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=Map
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Map\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=bunt\ zahl\ name
-comment1.target=Map(int[],\ int,\ java.lang.String[])
-comment2.params=b
-comment2.target=void\ buttonClicked(Button)
-numComments=3
