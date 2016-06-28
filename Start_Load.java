@@ -18,6 +18,7 @@ public class Start_Load extends World implements ButtonEvent
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1600, 900, 1); 
+        chulien.setSize(100,50);
         addObject (chulien, (1600-chulien.getWidth())/2, (900-chulien.getHeight())/2);
 	}
 	public void buttonClicked ( Button b)

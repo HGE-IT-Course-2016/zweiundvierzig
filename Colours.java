@@ -46,6 +46,13 @@ public class Colours extends World implements ButtonEvent
 		addObject(gelb, 100, 10);
 		addObject(lila, 125, 10);
 		addObject (weiter, 200,10);
+		schwarz.setSize(100, 50);
+	    gelb.setSize(100, 50);
+	    blau.setSize(100, 50);
+	    grün.setSize(100, 50);
+	    rot.setSize(100, 50);
+	    lila.setSize(100, 50);
+	    weiter.setSize(100, 50);
 		
 	}
 	// Überprüft, ob ein Farbbutton geklickt wurde
@@ -58,6 +65,7 @@ public class Colours extends World implements ButtonEvent
 	//der per Konstruktor die Daten der Colorklasse übertragen werden, dannach wird die Map die aktive Welt
 	public void buttonClicked (Button b)
 	{
+	
 		if ( b == schwarz && possw == true)
 		{
 			color [x] = sw;
