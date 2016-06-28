@@ -24,7 +24,6 @@ public class Province extends Actor
     private int eCount;
 
     private boolean clicked = false;
-
     /**
      * Überprüft, ob die Provinz angeklickt wurde.
      */
@@ -172,10 +171,12 @@ public class Province extends Actor
         GreenfootImage province = new GreenfootImage(120,100);   
         GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
         province.drawImage(provinceName,0,0);
-        oDecide(province,textSize);        
-    }
+        setImage(province);
+        oDecide(province,textSize,owner,eCount);
 
-    public void oDecide(GreenfootImage province,int textSize)
+    }
+    
+    public void oDecide(GreenfootImage province,int textSize, int owner, int eCount)
     {
         String ownerString;
         if(owner == 0)
@@ -214,20 +215,60 @@ public class Province extends Actor
 
             }
         }
-
     }
 
     private void eCalculate(GreenfootImage province, String ownerString,int textSize)
     {
         int eCountTanks = eCount / 5;
+        int eCountHorse = (eCount - (eCountTanks * 5))/3;
+        int eCountInf = eCount - (eCountTanks * 5) - (eCountHorse * 3);
+
+        if(eCountTanks >= 1 && eCountInf == 0 && eCountHorse == 0)
+        {
+            OnlyTanks(province,eCountTanks,ownerString,textSize);
+        }
+        if(eCountTanks == 0 && eCountInf == 0 && eCountHorse != 0)
+        {
+            OnlyHorses(province,eCountHorse,ownerString,textSize);
+        }
+        if(eCountTanks == 0 && eCountInf != 0 && eCountHorse == 0)
+        {
+            OnlyInf(province,eCountInf,ownerString,textSize);
+        }
+        if(eCountTanks == 0 && eCountInf != 0 && eCountHorse != 0)
+        {
+            NoTanks(province,eCountInf,eCountHorse, ownerString, textSize);   
+        }
+        if(eCountTanks != 0 && eCountInf != 0 && eCountHorse == 0)
+        {
+            NoHorse(province,eCountInf,eCountTanks, ownerString, textSize);   
+        }
+        if(eCountTanks != 0 && eCountInf == 0 && eCountHorse != 0)
+        {
+            NoInf(province,eCountInf,eCountTanks, ownerString, textSize);   
+        }
+        if(eCountTanks == 0 && eCountInf == 0 && eCountHorse == 0)
+        {
+            NoEntity(province, ownerString, textSize);   
+        }
+        if(eCountTanks != 0 && eCountInf != 0 && eCountHorse != 0)
+        {
+            AllEntity(province, ownerString,eCountTanks, eCountHorse, eCountInf, textSize);   
+        }
+
+    }
+
+    private void NoEntity(GreenfootImage province, String ownerString, int textSize)
+    {
+
+    }
+
+    private void OnlyTanks(GreenfootImage province,int eCountTanks, String ownerString, int textSize)
+    {
         GreenfootImage tank = new GreenfootImage("images\\dickebertaskal-" + ownerString + ".png");
         tank.scale(textSize,textSize);
         if(eCountTanks <= 3)
         {
-            if(eCountTanks == 0)
-            {
-                
-            }
             if(eCountTanks == 1)
             {
                 province.drawImage(tank,0,textSize);                 
@@ -248,34 +289,236 @@ public class Province extends Actor
         {
             GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",textSize,Color.BLACK,new Color(1.0f,1.0f,1.0f,0.5f));
             province.drawImage(eCountTanksImage,0,textSize);
-            province.drawImage(tank,45,textSize);
-        }
-        int eCountHorse = (eCount - (eCountTanks * 5))/3;
-        GreenfootImage horse = new GreenfootImage("images\\pferdreiterskal-" + ownerString + ".png");
-        horse.scale(textSize,textSize);
-        if(eCountHorse == 1)
-        {
-            province.drawImage(horse,4*textSize,textSize);           
-        }
-        GreenfootImage Inf = new GreenfootImage("images\\infanterieskal-" + ownerString + ".png");
-        int eCountInf = eCount - (eCountTanks * 5) - (eCountHorse * 3);
-        Inf.scale(textSize,textSize);
-        if(eCountInf <= 4)
-        {
-            if(eCountInf == 1)
-            {
-                province.drawImage(Inf,5*textSize,textSize);
-            }
-            if(eCountInf == 2)
-            {
-                province.drawImage(Inf,5*textSize,textSize);
-                province.drawImage(Inf,5*textSize,textSize);  
-            }           
+            province.drawImage(tank,eCountTanksImage.getWidth(),textSize);
         }
         setImage(province);
     }
 
-    public boolean hasClicked() {
+    private void OnlyHorses(GreenfootImage province,int eCountHorse, String ownerString, int textSize)
+    {
+        GreenfootImage horse = new GreenfootImage("images\\pferdreiterskal-" + ownerString + ".png");
+        horse.scale(textSize,textSize);
+        province.drawImage(horse,0,textSize);
+        setImage(province);
+    }
+
+    private void OnlyInf(GreenfootImage province,int eCountInf, String ownerString, int textSize)
+    {
+        GreenfootImage Inf = new GreenfootImage("images\\infanterieskal-" + ownerString + ".png");
+        Inf.scale(textSize,textSize);
+        if(eCountInf == 1)
+        {
+            province.drawImage(Inf,0,textSize);
+        }
+        if(eCountInf == 2)
+        {
+            province.drawImage(Inf,0,textSize);
+            province.drawImage(Inf,textSize,textSize);  
+        }
+        setImage(province);
+    }
+
+    private void NoTanks(GreenfootImage province,int eCountInf,int eCountHorse, String ownerString, int textSize)
+    {
+        GreenfootImage Inf = new GreenfootImage("images\\infanterieskal-" + ownerString + ".png");
+        Inf.scale(textSize,textSize);
+        GreenfootImage horse = new GreenfootImage("images\\pferdreiterskal-" + ownerString + ".png");
+        horse.scale(textSize,textSize);
+        province.drawImage(horse,0,textSize);
+        setImage(province);
+        if(eCountInf == 1)
+        {
+            province.drawImage(Inf,textSize,textSize);
+        }
+        if(eCountInf == 2)
+        {
+            province.drawImage(Inf,textSize,textSize);
+            province.drawImage(Inf,2*textSize,textSize);
+        }
+        setImage(province);
+    }
+
+    private void NoHorse(GreenfootImage province,int eCountInf,int eCountTanks, String ownerString, int textSize)
+    {
+        GreenfootImage Inf = new GreenfootImage("images\\infanterieskal-" + ownerString + ".png");
+        Inf.scale(textSize,textSize);
+        GreenfootImage tank = new GreenfootImage("images\\dickebertaskal-" + ownerString + ".png");
+        tank.scale(textSize,textSize);
+        if(eCountTanks <= 3)
+        {
+            if(eCountTanks == 1)
+            {
+                province.drawImage(tank,0,textSize);                 
+            }
+            if(eCountTanks == 2)
+            {
+                province.drawImage(tank,0,textSize);
+                province.drawImage(tank,textSize,textSize);  
+            }
+            if(eCountTanks == 3)
+            {
+                province.drawImage(tank,0,textSize);
+                province.drawImage(tank,textSize,textSize);  
+                province.drawImage(tank,textSize*2,textSize); 
+            }
+        }
+        else
+        {
+            GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",textSize,Color.BLACK,new Color(1.0f,1.0f,1.0f,0.5f));
+            province.drawImage(eCountTanksImage,0,textSize);
+            province.drawImage(tank,eCountTanksImage.getWidth(),textSize);
+        }
+        if(eCountTanks<=3)
+        {
+            if(eCountInf == 1)
+            {
+                province.drawImage(Inf,eCountTanks * textSize,textSize);
+            }
+            if(eCountInf == 2)
+            {
+                province.drawImage(Inf,eCountTanks * textSize,textSize);
+                province.drawImage(Inf,eCountTanks * 2 *textSize,textSize);
+            }
+        }
+        if(eCountTanks>3)
+        {
+            if(eCountInf == 1)
+            {
+                GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",textSize,Color.BLACK,new Color(1.0f,1.0f,1.0f,0.5f));
+                province.drawImage(Inf,eCountTanksImage.getWidth() + textSize,textSize);
+            }
+            if(eCountInf == 2)
+            {
+                GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",textSize,Color.BLACK,new Color(1.0f,1.0f,1.0f,0.5f));
+                province.drawImage(Inf,eCountTanksImage.getWidth() + textSize,textSize);
+                province.drawImage(Inf,eCountTanksImage.getWidth() + (2 *textSize),textSize); 
+            }
+        }
+        setImage(province);
+    }
+
+    private void NoInf(GreenfootImage province,int eCountHorse,int eCountTanks, String ownerString, int textSize)
+    {
+
+        GreenfootImage tank = new GreenfootImage("images\\dickebertaskal-" + ownerString + ".png");
+        tank.scale(textSize,textSize);
+        GreenfootImage horse = new GreenfootImage("images\\pferdreiterskal-" + ownerString + ".png");
+        horse.scale(textSize,textSize);
+
+        if(eCountTanks <= 3)
+        {
+            if(eCountTanks == 1)
+            {
+                province.drawImage(tank,0,textSize);                 
+            }
+            if(eCountTanks == 2)
+            {
+                province.drawImage(tank,0,textSize);
+                province.drawImage(tank,textSize,textSize);  
+            }
+            if(eCountTanks == 3)
+            {
+                province.drawImage(tank,0,textSize);
+                province.drawImage(tank,textSize,textSize);  
+                province.drawImage(tank,textSize*2,textSize); 
+            }
+        }
+        else
+        {
+            GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",textSize,Color.BLACK,new Color(1.0f,1.0f,1.0f,0.5f));
+            province.drawImage(eCountTanksImage,0,textSize);
+            province.drawImage(tank,eCountTanksImage.getWidth(),textSize);
+        }
+        if(eCountTanks<=3)
+        {
+
+            province.drawImage(horse,eCountTanks * textSize,textSize);
+            setImage(province);
+
+        }
+        if(eCountTanks>3)
+        {
+
+            GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",textSize,Color.BLACK,new Color(1.0f,1.0f,1.0f,0.5f));
+            province.drawImage(horse,eCountTanksImage.getWidth() + textSize,textSize);
+            setImage(province);
+
+        }
+        setImage(province);
+    }
+
+    private void AllEntity(GreenfootImage province, String ownerString,int eCountTanks, int eCountHorse, int eCountInf,int textSize) 
+    {
+        GreenfootImage tank = new GreenfootImage("images\\dickebertaskal-" + ownerString + ".png");
+        tank.scale(textSize,textSize);
+        GreenfootImage horse = new GreenfootImage("images\\pferdreiterskal-" + ownerString + ".png");
+        horse.scale(textSize,textSize);
+        GreenfootImage Inf = new GreenfootImage("images\\infanterieskal-" + ownerString + ".png");
+        Inf.scale(textSize,textSize);
+        if(eCountTanks <= 3)
+        {
+            if(eCountTanks == 1)
+            {
+                province.drawImage(tank,0,textSize);                 
+            }
+            if(eCountTanks == 2)
+            {
+                province.drawImage(tank,0,textSize);
+                province.drawImage(tank,textSize,textSize);  
+            }
+            if(eCountTanks == 3)
+            {
+                province.drawImage(tank,0,textSize);
+                province.drawImage(tank,textSize,textSize);  
+                province.drawImage(tank,textSize*2,textSize); 
+            }
+        }
+        else
+        {
+            GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",textSize,Color.BLACK,new Color(1.0f,1.0f,1.0f,0.5f));
+            province.drawImage(eCountTanksImage,0,textSize);
+            province.drawImage(tank,eCountTanksImage.getWidth(),textSize);
+        }
+        if(eCountHorse == 1)
+        {
+            if(eCountTanks<=3)
+            {
+
+                province.drawImage(horse,eCountTanks * textSize,textSize);
+                if(eCountInf == 1)
+                {
+                    province.drawImage(Inf,eCountTanks * textSize + textSize,textSize);
+                }
+                if(eCountInf == 2)
+                {
+                    province.drawImage(Inf,eCountTanks * textSize + textSize + textSize,textSize);
+                }
+                setImage(province);
+
+            }
+            if(eCountTanks>3)
+            {
+
+                GreenfootImage eCountTanksImage = new GreenfootImage(Integer.toString(eCountTanks) + "x",textSize,Color.BLACK,new Color(1.0f,1.0f,1.0f,0.5f));
+                province.drawImage(horse,eCountTanksImage.getWidth() + textSize,textSize);
+                if(eCountInf == 1)
+                {
+                    province.drawImage(Inf,eCountTanksImage.getWidth() + textSize + textSize,textSize);
+                }
+                if(eCountInf == 2)
+                {
+                    province.drawImage(Inf,eCountTanksImage.getWidth() + textSize + textSize + textSize + textSize,textSize);
+                }
+                setImage(province);
+
+            }
+        }
+        setImage(province);
+    }
+
+
+    public boolean hasClicked()
+    {
         boolean b = clicked;
         clicked = false;
         return b;
