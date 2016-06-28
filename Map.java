@@ -30,9 +30,9 @@ public class Map extends World implements ButtonEvent
             pn[i] = name[i];
         }
         pnu=zahl;
-        addObject(map1, (1600-map1.getWidth())/2, (900-map1.getHeight())/2);
-        addObject(map2, ((1600-map2.getWidth())/2)-25, ((900-map1.getHeight())/2)+75);
-        addObject(fertigst, (1600-fertigst.getWidth()), 900-fertigst.getWidth());
+        addObject(map1, 50, 30);
+        addObject(map2, 170, 30);
+        addObject(fertigst,110,90 );
         map1.setSize(100, 50);
         map2.setSize(100, 50);
         fertigst.setSize(100, 50);
