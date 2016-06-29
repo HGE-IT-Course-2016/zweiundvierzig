@@ -95,14 +95,21 @@ public abstract class GeneralMap extends World implements ButtonEvent
 		/*
 			Legt die Startprovincen der Spieler fest.
 		*/
-		int[] ownerL;
-		int[] entitiesL;
+		int[] dataL = new int[(provinces.length-1)*2];
+		/*
+			dataL speichert folgende Daten:
+			0. Spieler-ID des Besitzers (Provinz 1)
+			1. Einheitenanzahl (Provinz 1)
+			2. Spieler-ID des Besitzers (Provinz 2)
+			3. [...]
+		*/
 		if(players.length==3) {
 			/*
 				Spieler 1 darf beginnen; Hauptstadt: 40
 				Spieler 2 ist als zweites dran; Hauptstadt: 20
 				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt: 9
 			*/
+			dataL = new int[] {1,1,3,2,2,2,2,1,1,1,1,1,3,2,1,1,3,4,3,1,2,2,1,2,1,2,3,3,3,3,3,3,1,1,2,2,2,4,2,3,1,1,3,4,1,2,3,4,2,2,2,1,3,1,1,3,1,3,1,4,3,1,2,1,2,1,1,2,2,2,3,1,2,2,2,4,2,3,1,4,3,1,1,2};
 			provinces[1].setOwner(1);
 			provinces[1].setEntityCount(1);
 			provinces[2].setOwner(3);
@@ -194,6 +201,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt:2
 				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:39
 			*/
+			dataL = new int[] {1,1,3,3,3,3,3,2,3,2,3,3,2,2,1,2,2,2,3,2,2,3,3,2,2,3,1,3,1,3,1,3,3,2,4,2,2,4,2,4,1,1,1,2,1,5,1,3,2,2,4,3,4,1,4,2,2,2,2,2,4,1,2,1,4,5,3,2,3,2,3,2,4,1,4,1,4,4,4,1,1,2,4,4};
 			provinces[1].setOwner(1);
 			provinces[1].setEntityCount(1);
 			provinces[2].setOwner(3);
@@ -286,6 +294,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:20
 				Spieler 5 ist als fünftes dran und bekommt zwei Karte; Hauptstadt:41
 			*/
+			dataL = new int[] {3,1,1,2,4,2,2,2,2,2,2,2,2,4,4,1,2,2,4,1,4,3,3,1,1,4,1,2,3,3,1,2,2,3,4,2,4,5,4,3,2,2,3,5,3,3,1,2,3,3,3,2,2,3,5,2,5,3,5,3,1,3,1,3,4,1,5,1,5,1,5,2,3,2,4,2,5,2,1,2,5,4,5,2};
 			provinces[1].setOwner(3);
 			provinces[1].setEntityCount(1);
 			provinces[2].setOwner(1);
@@ -371,6 +380,31 @@ public abstract class GeneralMap extends World implements ButtonEvent
 			provinces[42].setOwner(5);
 			provinces[42].setEntityCount(2);
 		}
+		int errors = 0;
+		for(int i = 1; i < provinces.length; i++) {
+			Province p = provinces[i];
+			int oI = (i-1)*2; // ownerID inside dataL
+			int eI = oI+1; // entitiesCountID inside dataL
+			// Dieser Code überprüft die Datenliste mit den Daten, die die alte Methode (mit den vielen Zeilen) bereits hinterlegt haben sollte. Nur für Debugging!
+			if(p.getOwner() != dataL[oI]) {
+				errors++;
+				showDialog("dataL-Index " + oI + ", got " + dataL[oI] + ", expected " + p.getOwner());
+			} else if(p.getEntityCount() != dataL[eI]) {
+				errors++;
+				showDialog("dataL-Index " + eI + ", got " + dataL[eI] + ", expected " + p.getEntityCount());
+			}
+		}
+		if(errors == 0) {
+			showDialog("No errors found!");
+		}
+	}
+
+	/**
+		Zeigt die angegebene Nachricht in einem JOptionPane Dialogfeld an.
+		@param msg Die anzuzeigende Nachricht
+	*/
+	private void showDialog(String msg) {
+		JOptionPane.showMessageDialog(null,msg);
 	}
 
 	public void act() {
