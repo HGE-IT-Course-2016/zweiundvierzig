@@ -261,7 +261,7 @@ public class Player extends Actor
 	private void redraw(GreenfootImage statistics,GreenfootImage flag, int textSize)
 	{
 		
-		flag.scale(137,100);
+		flag.scale(137,83);
 		statistics.drawImage(flag,0,textSize);
 		GreenfootImage playerStatistics = new GreenfootImage(stats[0] + "||" + stats[1] + "||" + stats[2],textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
 		GreenfootImage playerStatistics2 = new GreenfootImage(stats[3] + "||" + stats[4] + "||" + stats[5],textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
