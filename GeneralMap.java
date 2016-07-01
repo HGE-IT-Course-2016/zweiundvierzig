@@ -60,7 +60,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         @param playerList Die Liste mit den Namen der Spieler
         @param colorList Die Liste mit den Farben der Spieler
     */
-    public GeneralMap(String backImage, String[] playerList, int[] colorList)
+    public GeneralMap(String[] playerList, int[] colorList)
     {    
         super(1600,900,1);
         players = new Player[playerList.length];
