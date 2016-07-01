@@ -146,36 +146,58 @@ public class Province extends Actor
     public int addToEntities(int a) {
         eCount = eCount + a;
         checkEntityCount();
-        redrawProvince();
+        redrawProvince(1);
         return eCount;
     }
 
     public int removeFromEntities(int a) {
         eCount = eCount - a;
         checkEntityCount();
-        redrawProvince();
+        redrawProvince(1);
         return eCount;
     }
 
     public int setEntityCount(int a) {
         eCount = a;
         checkEntityCount();
-        redrawProvince();
+        redrawProvince(1);
         return eCount;
     }
 
     public void redrawProvince()
     {
+        redrawProvince(1);
+    }
+
+    public void redrawProvince(int ColorInt)
+    {
         int textSize;
         textSize = 20;
         GreenfootImage province = new GreenfootImage(120,100);   
-        GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
-        province.drawImage(provinceName,0,0);
-        setImage(province);
-        oDecide(province,textSize,owner,eCount);
+
+        if(ColorInt ==1)
+        {
+            GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
+            province.drawImage(provinceName,0,0);
+            setImage(province);
+            oDecide(province,textSize,owner,eCount);
+        }
+        if(ColorInt ==2)
+        {
+            GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),Color.GREEN);
+            province.drawImage(provinceName,0,0);
+            setImage(province);
+            oDecide(province,textSize,owner,eCount);
+        }
+        if(ColorInt == 3)
+        {
+            GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),Color.RED);
+            province.drawImage(provinceName,0,0);
+            setImage(province);
+            oDecide(province,textSize,owner,eCount);
+        }
 
     }
-    
     public void oDecide(GreenfootImage province,int textSize, int owner, int eCount)
     {
         String ownerString;
@@ -515,7 +537,6 @@ public class Province extends Actor
         }
         setImage(province);
     }
-
 
     public boolean hasClicked()
     {
