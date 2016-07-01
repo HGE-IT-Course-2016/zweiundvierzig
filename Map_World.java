@@ -39,8 +39,8 @@ public class Map_World extends GeneralMap
 
 		// Festlegung der Provinz-Anzahl
 
-		provinces = new Province[provinceCount + 1];
 		provinceCount = 42;
+		provinces = new Province[provinceCount + 1];
 
 		// Implementierung sämtlicher Provinzen
 		// ACHTUNG! Gaaaaanz viel Code!
