@@ -23,7 +23,8 @@ public class Map_World extends GeneralMap
 
 	public Map_World(String[] playerList, int[] colourList)
 	{
-		super("",playerList,colourList);
+		super("",playerList,colorList);
+		setBackground("Risiko Karte.png");
 		/*
 			Hier werden später sämtliche Provinzen der Standard-Map erstellt.
 			Dies funktioniert folgendermassen:
@@ -52,7 +53,7 @@ public class Map_World extends GeneralMap
 		// cID 1 - Nordamerika
 		provinces[1] =  new Province( 1 , 1 ,  64 , 106 , 1 , "Alaska" , new int[] {2 , 3 , 36});
 		provinces[2] =  new Province( 2 , 1 , 162 , 106 , 1 , "NW-Territorien" , new int[] {1 , 3 , 4 , 9});
-		provinces[3] =  new Province( 3 , 1 ,  53 , 170 , 1 , "Alberta" , new int[] {1 , 2 , 4 , 5});
+		provinces[3] =  new Province( 3 , 1 , 153 , 170 , 1 , "Alberta" , new int[] {1 , 2 , 4 , 5});
 		provinces[4] =  new Province( 4 , 1 , 223 , 177 , 2 , "Ontario" , new int[] {2 , 3 , 5 , 6 , 7 , 9});
 		provinces[5] =  new Province( 5 , 1 , 160 , 236 , 2 , "Weststaaten" , new int[] {3 , 4 , 6 , 8});
 		provinces[6] =  new Province( 6 , 1 , 232 , 273 , 2 , "Oststaaten" , new int[] {4 , 5 , 7 , 8});
