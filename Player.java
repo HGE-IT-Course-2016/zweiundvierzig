@@ -262,7 +262,7 @@ public class Player extends Actor
             redraw(statistics,flag,textSize);
             break;
             case 3:
-            flag = new GreenfootImage("images\\GrüneArmee.jpg");
+            flag = new GreenfootImage("images\\GrueneArmee.jpg");
             
             redraw(statistics,flag,textSize);
             break;
