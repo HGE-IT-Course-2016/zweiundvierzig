@@ -66,6 +66,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 		addObject( modus, 1500, 808);
 		for (int i = 0; i < playerList.length; i++) {
 			players[i] = new Player(i,playerList[i],colorList[i]);
+			players[i].redrawPlayer();
 		}
 
 		createPlayerObjects(playerList.length);
@@ -524,27 +525,24 @@ public abstract class GeneralMap extends World implements ButtonEvent
 		{
 		    status=GameStates.KAMPF;
 		    modus.setText("Kampf beenden");
-		    
-		    
-		  }
+		}
 		if ( modus == b && status== GameStates.KAMPF)
 		{
 		    status=GameStates.VERSCHIEBEN;
 		    modus.setText("Nächster Spieler");
-		  }
+		}
 		if ( modus == b && status==GameStates.VERSCHIEBEN)
 		{
 		    if( currentPlayer== players.length-1)
 		    {
 		        currentPlayer=0;
-		        
-		      }
+			}
 		    else
 		    {
-		        currentPlayer+=1;
-		        
-		      }
-		    
+		        currentPlayer+=1;   
+		    }
+			status=GameStates.SETZEN;
+		    modus.setText("Kampf beginnen");
 		}
 	}
 	
