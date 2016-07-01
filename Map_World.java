@@ -10,17 +10,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Map_World extends GeneralMap
 {
-	/**
-		Anzahl der Provinzen.
-	 */
-
-	int provinceCount = 42;
-
+	
 	/** 
 		Konstruktor der Weltkarte;
 		konstruiert eine GeneralMap mit den Ausmassen 1600 auf 900 Pixel.
 	 */
-
 	public Map_World(String[] playerList, int[] colorList)
 	{
 		super(playerList,colorList);
@@ -46,6 +40,7 @@ public class Map_World extends GeneralMap
 		// Festlegung der Provinz-Anzahl
 
 		provinces = new Province[provinceCount + 1];
+		provinceCount = 42;
 
 		// Implementierung sämtlicher Provinzen
 		// ACHTUNG! Gaaaaanz viel Code!
