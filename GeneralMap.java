@@ -17,7 +17,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 		Felder, im Moment nur Anzahl der Provinzen
 		Später evtl. weitere Werte wie Schwierigkeit denkbar
 	*/
-
+    Button modus = new Button("Kampf",25,this);
 	private final int X_OFFSET = 160; // Verschiebt die Provinzen nach rechts
 	private final int Y_OFFSET = 0; // Verschiebt die Provinzen nach unten
 
@@ -30,15 +30,20 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
 	protected enum GameStates {
 		KAMPF,
-		VERSCHIEBEN
+		VERSCHIEBEN,
+		SETZEN
 	}
 
 	protected Province[] provinces;
+	protected int[] continentBoni;
 	protected Player[] players;
 
 	protected int currentPlayer = 0;
 	protected GameStates status = GameStates.VERSCHIEBEN;
 
+	protected int provinceCount;
+	protected int armyMinimum;
+	
 	// Kampfsystem
 	Province offenderProvince;
 	Province defenderProvince;
@@ -58,6 +63,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 	{    
 		super(1600,900,1);
 		players = new Player[playerList.length];
+		addObject( modus, 1500, 808);
 		for (int i = 0; i < playerList.length; i++) {
 			players[i] = new Player(i,playerList[i],colorList[i]);
 		}
@@ -512,6 +518,32 @@ public abstract class GeneralMap extends World implements ButtonEvent
 			if(currentPlayer >= players.length) {
 				currentPlayer = 0;
 			}
+		}
+		if ( modus == b && status==GameStates.SETZEN)
+		{
+		    status=GameStates.KAMPF;
+		    modus.setText("Kampf beenden");
+		    
+		    
+		  }
+		if ( modus == b && status== GameStates.KAMPF)
+		{
+		    status=GameStates.VERSCHIEBEN;
+		    modus.setText("Nächster Spieler");
+		  }
+		if ( modus == b && status==GameStates.VERSCHIEBEN)
+		{
+		    if( currentPlayer== players.length-1)
+		    {
+		        currentPlayer=0;
+		        
+		      }
+		    else
+		    {
+		        currentPlayer+=1;
+		        
+		      }
+		    
 		}
 	}
 	
