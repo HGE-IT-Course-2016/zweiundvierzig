@@ -21,13 +21,10 @@ public class Player extends Actor
     boolean [] pBesitzer = new boolean [42];
     boolean gotProv = false;
     boolean lostProv = false;
-    int identity;
-    String name;
+    String n;
     int color;
     int textsize;
 
-    private String n;
-    private int c;
     //definiert die ID und Namens Variable
     public Player(int identity,String name, int c)
     {
