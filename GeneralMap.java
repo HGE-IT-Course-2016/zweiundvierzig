@@ -240,130 +240,130 @@ public abstract class GeneralMap extends World implements ButtonEvent
 				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt:2
 				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:39
 			*/
-			provinces[1].setOwner(1);
+			provinces[1].setOwner(0);
 			provinces[1].setEntityCount(1);
 			provinces[1].redrawProvince();
-			provinces[2].setOwner(3);
+			provinces[2].setOwner(2);
 			provinces[2].setEntityCount(3);
 			provinces[2].redrawProvince();
-			provinces[3].setOwner(3);
+			provinces[3].setOwner(2);
 			provinces[3].setEntityCount(3);
 			provinces[3].redrawProvince();
-			provinces[4].setOwner(3);//Fabrik
+			provinces[4].setOwner(2);//Fabrik
 			provinces[4].setEntityCount(2);
 			provinces[4].redrawProvince();
-			provinces[5].setOwner(3);//Fabrik
+			provinces[5].setOwner(2);//Fabrik
 			provinces[5].setEntityCount(2);
 			provinces[5].redrawProvince();
-			provinces[6].setOwner(3);//Fabrik
+			provinces[6].setOwner(2);//Fabrik
 			provinces[6].setEntityCount(3);
 			provinces[6].redrawProvince();
-			provinces[7].setOwner(2);
+			provinces[7].setOwner(1);
 			provinces[7].setEntityCount(2);
 			provinces[7].redrawProvince();
-			provinces[8].setOwner(1);
+			provinces[8].setOwner(0);
 			provinces[8].setEntityCount(2);
 			provinces[8].redrawProvince();
-			provinces[9].setOwner(2);
+			provinces[9].setOwner(1);
 			provinces[9].setEntityCount(2);
 			provinces[9].redrawProvince();
-			provinces[10].setOwner(3);//Fabrik
+			provinces[10].setOwner(2);//Fabrik
 			provinces[10].setEntityCount(2);
 			provinces[10].redrawProvince();
-			provinces[11].setOwner(2);//Fabrik
+			provinces[11].setOwner(1);//Fabrik
 			provinces[11].setEntityCount(3);
 			provinces[11].redrawProvince();
-			provinces[12].setOwner(3);
+			provinces[12].setOwner(2);
 			provinces[12].setEntityCount(2);
 			provinces[12].redrawProvince();
-			provinces[13].setOwner(2);//Fabrik
+			provinces[13].setOwner(1);//Fabrik
 			provinces[13].setEntityCount(3);
 			provinces[13].redrawProvince();
-			provinces[14].setOwner(1);//Fabrik
+			provinces[14].setOwner(0);//Fabrik
 			provinces[14].setEntityCount(3);
 			provinces[14].redrawProvince();
-			provinces[15].setOwner(1);//Fabrik
+			provinces[15].setOwner(0);//Fabrik
 			provinces[15].setEntityCount(3);
 			provinces[15].redrawProvince();
-			provinces[16].setOwner(1);//Fabrik
+			provinces[16].setOwner(0);//Fabrik
 			provinces[16].setEntityCount(3);
 			provinces[16].redrawProvince();
-			provinces[17].setOwner(3);
+			provinces[17].setOwner(2);
 			provinces[17].setEntityCount(2);
 			provinces[17].redrawProvince();
-			provinces[18].setOwner(4);
+			provinces[18].setOwner(3);
 			provinces[18].setEntityCount(2);
 			provinces[18].redrawProvince();
-			provinces[19].setOwner(2);//Fabrik
+			provinces[19].setOwner(1);//Fabrik
 			provinces[19].setEntityCount(4);
 			provinces[19].redrawProvince();
-			provinces[20].setOwner(2);
+			provinces[20].setOwner(1);
 			provinces[20].setEntityCount(4);
 			provinces[20].redrawProvince();
-			provinces[21].setOwner(1);
+			provinces[21].setOwner(0);
 			provinces[21].setEntityCount(1);
 			provinces[21].redrawProvince();
-			provinces[22].setOwner(1);//Fabrik
+			provinces[22].setOwner(0);//Fabrik
 			provinces[22].setEntityCount(2);
 			provinces[22].redrawProvince();
-			provinces[23].setOwner(1);
+			provinces[23].setOwner(0);
 			provinces[23].setEntityCount(5);
 			provinces[23].redrawProvince();
-			provinces[24].setOwner(1);
+			provinces[24].setOwner(0);
 			provinces[24].setEntityCount(3);
 			provinces[24].redrawProvince();
-			provinces[25].setOwner(2);
+			provinces[25].setOwner(1);
 			provinces[25].setEntityCount(2);
 			provinces[25].redrawProvince();
-			provinces[26].setOwner(4);//Fabrik
+			provinces[26].setOwner(3);//Fabrik
 			provinces[26].setEntityCount(3);
 			provinces[26].redrawProvince();
-			provinces[27].setOwner(4);
+			provinces[27].setOwner(3);
 			provinces[27].setEntityCount(1);
 			provinces[27].redrawProvince();
-			provinces[28].setOwner(4);//Fabrik
+			provinces[28].setOwner(3);//Fabrik
 			provinces[28].setEntityCount(2);
 			provinces[28].redrawProvince();
-			provinces[29].setOwner(2);//Fabrik
+			provinces[29].setOwner(1);//Fabrik
 			provinces[29].setEntityCount(2);
 			provinces[29].redrawProvince();
-			provinces[30].setOwner(2);
+			provinces[30].setOwner(1);
 			provinces[30].setEntityCount(2);
 			provinces[30].redrawProvince();
-			provinces[31].setOwner(4);
+			provinces[31].setOwner(3);
 			provinces[31].setEntityCount(1);
 			provinces[31].redrawProvince();
-			provinces[32].setOwner(2);
+			provinces[32].setOwner(1);
 			provinces[32].setEntityCount(1);
 			provinces[32].redrawProvince();
-			provinces[33].setOwner(4);
+			provinces[33].setOwner(3);
 			provinces[33].setEntityCount(5);
 			provinces[33].redrawProvince();
-			provinces[34].setOwner(3);
+			provinces[34].setOwner(2);
 			provinces[34].setEntityCount(2);
 			provinces[34].redrawProvince();
-			provinces[35].setOwner(3);
+			provinces[35].setOwner(2);
 			provinces[35].setEntityCount(2);
 			provinces[35].redrawProvince();
-			provinces[36].setOwner(3);
+			provinces[36].setOwner(2);
 			provinces[36].setEntityCount(2);
 			provinces[36].redrawProvince();
-			provinces[37].setOwner(4);
+			provinces[37].setOwner(3);
 			provinces[37].setEntityCount(1);
 			provinces[37].redrawProvince();
-			provinces[38].setOwner(4);//Fabrik
+			provinces[38].setOwner(3);//Fabrik
 			provinces[38].setEntityCount(1);
 			provinces[38].redrawProvince();
-			provinces[39].setOwner(4);
+			provinces[39].setOwner(3);
 			provinces[39].setEntityCount(4);
 			provinces[39].redrawProvince();
-			provinces[40].setOwner(4);
+			provinces[40].setOwner(3);
 			provinces[40].setEntityCount(1);
 			provinces[40].redrawProvince();
-			provinces[41].setOwner(1);//Fabrik
+			provinces[41].setOwner(0);//Fabrik
 			provinces[41].setEntityCount(2);
 			provinces[41].redrawProvince();
-			provinces[42].setOwner(4);
+			provinces[42].setOwner(3);
 			provinces[42].setEntityCount(4);
 			provinces[42].redrawProvince();
 		} else if(players.length==5) {
@@ -376,130 +376,130 @@ public abstract class GeneralMap extends World implements ButtonEvent
 			*/
 			// ownerL = {3,1,4,2,2,2,2,4,2,4,4,3,1,1,3,1,2,4,4,4,2,3,3,1,3,3,2,5,5,5,1,1,4,5,5,5,3,4,5,1,5,5};
 			// entitiesL = {};
-			provinces[1].setOwner(3);
+			provinces[1].setOwner(2);
 			provinces[1].setEntityCount(1);
 			provinces[1].redrawProvince();
-			provinces[2].setOwner(1);
+			provinces[2].setOwner(0);
 			provinces[2].setEntityCount(2);
 			provinces[2].redrawProvince();
-			provinces[3].setOwner(4);
+			provinces[3].setOwner(3);
 			provinces[3].setEntityCount(2);
 			provinces[3].redrawProvince();
-			provinces[4].setOwner(2);//Fabrik
+			provinces[4].setOwner(1);//Fabrik
 			provinces[4].setEntityCount(2);
 			provinces[4].redrawProvince();
-			provinces[5].setOwner(2);//Fabrik
+			provinces[5].setOwner(1);//Fabrik
 			provinces[5].setEntityCount(2);
 			provinces[5].redrawProvince();
-			provinces[6].setOwner(2);//Fabrik
+			provinces[6].setOwner(1);//Fabrik
 			provinces[6].setEntityCount(2);
 			provinces[6].redrawProvince();
-			provinces[7].setOwner(2);
+			provinces[7].setOwner(1);
 			provinces[7].setEntityCount(4);
 			provinces[7].redrawProvince();
-			provinces[8].setOwner(4);
+			provinces[8].setOwner(3);
 			provinces[8].setEntityCount(1);
 			provinces[8].redrawProvince();
-			provinces[9].setOwner(2);
+			provinces[9].setOwner(1);
 			provinces[9].setEntityCount(2);
 			provinces[9].redrawProvince();
-			provinces[10].setOwner(4);
+			provinces[10].setOwner(3);
 			provinces[10].setEntityCount(1);
 			provinces[10].redrawProvince();
-			provinces[11].setOwner(4);//Fabrik
+			provinces[11].setOwner(3);//Fabrik
 			provinces[11].setEntityCount(3);
 			provinces[11].redrawProvince();
-			provinces[12].setOwner(3);
+			provinces[12].setOwner(2);
 			provinces[12].setEntityCount(1);
 			provinces[12].redrawProvince();
-			provinces[13].setOwner(1);
+			provinces[13].setOwner(0);
 			provinces[13].setEntityCount(4);
 			provinces[13].redrawProvince();
-			provinces[14].setOwner(1);//Fabrik
+			provinces[14].setOwner(0);//Fabrik
 			provinces[14].setEntityCount(2);
 			provinces[14].redrawProvince();
-			provinces[15].setOwner(3);//Fabrik
+			provinces[15].setOwner(2);//Fabrik
 			provinces[15].setEntityCount(3);
 			provinces[15].redrawProvince();
-			provinces[16].setOwner(1);//Fabrik
+			provinces[16].setOwner(0);//Fabrik
 			provinces[16].setEntityCount(2);
 			provinces[16].redrawProvince();
-			provinces[17].setOwner(2);
+			provinces[17].setOwner(1);
 			provinces[17].setEntityCount(3);
 			provinces[17].redrawProvince();
-			provinces[18].setOwner(4);
+			provinces[18].setOwner(3);
 			provinces[18].setEntityCount(2);
 			provinces[18].redrawProvince();
-			provinces[19].setOwner(4);//Fabrik
+			provinces[19].setOwner(3);//Fabrik
 			provinces[19].setEntityCount(5);
 			provinces[19].redrawProvince();
-			provinces[20].setOwner(4);
+			provinces[20].setOwner(3);
 			provinces[20].setEntityCount(3);
 			provinces[20].redrawProvince();
-			provinces[21].setOwner(2);
+			provinces[21].setOwner(1);
 			provinces[21].setEntityCount(2);
 			provinces[21].redrawProvince();
-			provinces[22].setOwner(3);//Fabrik
+			provinces[22].setOwner(2);//Fabrik
 			provinces[22].setEntityCount(5);
 			provinces[22].redrawProvince();
-			provinces[23].setOwner(3);
+			provinces[23].setOwner(2);
 			provinces[23].setEntityCount(3);
 			provinces[23].redrawProvince();
-			provinces[24].setOwner(1);
+			provinces[24].setOwner(0);
 			provinces[24].setEntityCount(2);
 			provinces[24].redrawProvince();
-			provinces[25].setOwner(3);
+			provinces[25].setOwner(2);
 			provinces[25].setEntityCount(3);
 			provinces[25].redrawProvince();
-			provinces[26].setOwner(3);//Fabrik
+			provinces[26].setOwner(2);//Fabrik
 			provinces[26].setEntityCount(2);
 			provinces[26].redrawProvince();
-			provinces[27].setOwner(2);
+			provinces[27].setOwner(1);
 			provinces[27].setEntityCount(3);
 			provinces[27].redrawProvince();
-			provinces[28].setOwner(5);//Fabrik
+			provinces[28].setOwner(4);//Fabrik
 			provinces[28].setEntityCount(2);
 			provinces[28].redrawProvince();
-			provinces[29].setOwner(5);//Fabrik
+			provinces[29].setOwner(4);//Fabrik
 			provinces[29].setEntityCount(3);
 			provinces[29].redrawProvince();
-			provinces[30].setOwner(5);
+			provinces[30].setOwner(4);
 			provinces[30].setEntityCount(3);
 			provinces[30].redrawProvince();
-			provinces[31].setOwner(1);
+			provinces[31].setOwner(0);
 			provinces[31].setEntityCount(3);
 			provinces[31].redrawProvince();
-			provinces[32].setOwner(1);
+			provinces[32].setOwner(0);
 			provinces[32].setEntityCount(3);
 			provinces[32].redrawProvince();
-			provinces[33].setOwner(4);
+			provinces[33].setOwner(3);
 			provinces[33].setEntityCount(1);
 			provinces[33].redrawProvince();
-			provinces[34].setOwner(5);
+			provinces[34].setOwner(4);
 			provinces[34].setEntityCount(1);
 			provinces[34].redrawProvince();
-			provinces[35].setOwner(5);
+			provinces[35].setOwner(4);
 			provinces[35].setEntityCount(1);
 			provinces[35].redrawProvince();
-			provinces[36].setOwner(5);
+			provinces[36].setOwner(4);
 			provinces[36].setEntityCount(2);
 			provinces[36].redrawProvince();
-			provinces[37].setOwner(3);
+			provinces[37].setOwner(2);
 			provinces[37].setEntityCount(2);
 			provinces[37].redrawProvince();
-			provinces[38].setOwner(4);//Fabrik
+			provinces[38].setOwner(3);//Fabrik
 			provinces[38].setEntityCount(2);
 			provinces[38].redrawProvince();
-			provinces[39].setOwner(5);
+			provinces[39].setOwner(4);
 			provinces[39].setEntityCount(2);
 			provinces[39].redrawProvince();
-			provinces[40].setOwner(1);
+			provinces[40].setOwner(0);
 			provinces[40].setEntityCount(2);
 			provinces[40].redrawProvince();
-			provinces[41].setOwner(5);//Fabrik
+			provinces[41].setOwner(4);//Fabrik
 			provinces[41].setEntityCount(4);
 			provinces[41].redrawProvince();
-			provinces[42].setOwner(5);
+			provinces[42].setOwner(4);
 			provinces[42].setEntityCount(2);
 			provinces[42].redrawProvince();
 		}
