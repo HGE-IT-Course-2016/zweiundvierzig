@@ -18,8 +18,8 @@ public abstract class GeneralMap extends World implements ButtonEvent
 		Später evtl. weitere Werte wie Schwierigkeit denkbar
 	*/
     Button modus = new Button("Kampf",25,this);
-	private final int X_OFFSET = 160; // Verschiebt die Provinzen nach rechts
-	private final int Y_OFFSET = 0; // Verschiebt die Provinzen nach unten
+	private final int X_OFFSET = 200; // Verschiebt die Provinzen nach rechts
+	private final int Y_OFFSET = 25; // Verschiebt die Provinzen nach unten
 
 	/*
 		Die einzelnen Positionen der Provinzen wird mit SCALE_VALUE/10000 multipliziert.

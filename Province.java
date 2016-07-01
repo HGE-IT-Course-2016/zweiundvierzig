@@ -25,7 +25,7 @@ public class Province extends Actor
 
     private boolean clicked = false;
     /**
-     * Überprüft, ob die Provinz angeklickt wurde.
+     * ÃœberprÃ¼ft, ob die Provinz angeklickt wurde.
      */
     public void act() 
     {
@@ -45,7 +45,7 @@ public class Province extends Actor
             stars = st;
         }
         displayName = s1;
-        // Der Teil, der sich um die Konvertierung des int-Array in ein boolean-Array kümmert.
+        // Der Teil, der sich um die Konvertierung des int-Array in ein boolean-Array kï¿½mmert.
         int maxNum = 0;
         for(int i = 0; i < ia1.length; i++) {
             if(maxNum < ia1[i]) {
@@ -60,7 +60,7 @@ public class Province extends Actor
         }
     }
 
-    // Zweiter Konstruktor, um auch das boolean-Array gegebenenfalls verwenden zu könnnen.
+    // Zweiter Konstruktor, um auch das boolean-Array gegebenenfalls verwenden zu kï¿½nnnen.
     public Province(int pID, int cID, int x, int y, int st, String s1, boolean[] ba1)
     {
         provinceID = pID;
@@ -98,7 +98,7 @@ public class Province extends Actor
         return continentID;
     }
 
-    // Fragt ab, ob die angegebene Provinz in der Nähe von dieser liegt.
+    // Fragt ab, ob die angegebene Provinz in der Nï¿½he von dieser liegt.
     public boolean isProvinceNear(int i) {
         if(i >= nextProvinces.length) {
             return false;
@@ -124,7 +124,7 @@ public class Province extends Actor
         return owner;
     }
 
-    // Setzt den Owner, benötigt String
+    // Setzt den Owner, benï¿½tigt String
     public void setOwner(int o)
     {
         if(o < -1) {
@@ -205,7 +205,7 @@ public class Province extends Actor
                 eCalculate(province,ownerString,textSize);
                 break;
                 case 5:
-                ownerString = "gr++n";
+                ownerString = "grÃ¼n";
                 eCalculate(province,ownerString,textSize);
                 break;
                 case 6:
