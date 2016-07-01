@@ -29,11 +29,11 @@ public class Player extends Actor
     private String n;
     private int c;
     //definiert die ID und Namens Variable
-    public Player(int identity,String name, int color)
+    public Player(int identity,String name, int c)
     {
         n = name;
         id = identity;
-        c = color;
+        color = c;
         // redrawPlayer();
     }
     //gibt die Spieler ID zurück
