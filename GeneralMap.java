@@ -59,7 +59,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 		@param playerList Die Liste mit den Namen der Spieler
 		@param colorList Die Liste mit den Farben der Spieler
 	*/
-	public GeneralMap(String backImage, String[] playerList, int[] colorList)
+	public GeneralMap(String[] playerList, int[] colorList)
 	{    
 		super(1600,900,1);
 		players = new Player[playerList.length];
@@ -389,6 +389,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 		int errors = 0;
 		for(int i = 1; i < provinces.length; i++) {
 			Province p = provinces[i];
+			p.redrawProvince();
 			int oI = (i-1)*2; // ownerID inside dataL
 			int eI = oI+1; // entitiesCountID inside dataL
 			// Dieser Code überprüft die Datenliste mit den Daten, die die alte Methode (mit den vielen Zeilen) bereits hinterlegt haben sollte. Nur für Debugging!

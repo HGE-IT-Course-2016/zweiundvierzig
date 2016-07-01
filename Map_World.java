@@ -21,9 +21,9 @@ public class Map_World extends GeneralMap
 		konstruiert eine GeneralMap mit den Ausmassen 1600 auf 900 Pixel.
 	 */
 
-	public Map_World(String[] playerList, int[] colourList)
+	public Map_World(String[] playerList, int[] colorList)
 	{
-		super("",playerList,colorList);
+		super(playerList,colorList);
 		setBackground("Risiko Karte.png");
 		/*
 			Hier werden später sämtliche Provinzen der Standard-Map erstellt.
