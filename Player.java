@@ -24,6 +24,7 @@ public class Player extends Actor
     String n;
     int color;
     int textsize;
+    int c;
 
     //definiert die ID und Namens Variable
     public Player(int identity,String name, int c)
@@ -79,7 +80,7 @@ public class Player extends Actor
             System.out.println("Deine aktuelle Sternenanzahl beträgt " + stars + ".");
             redrawPlayer();
         }
-        
+
     }
     //eine Methode um addToStars zu testen
     public void add ()
@@ -93,7 +94,7 @@ public class Player extends Actor
         stars = set;
         redrawPlayer();
         return stars;
-        
+
     }
     //eine Methode, die das Abziehen von Sternen testet und, wenn das Ergebnis >= 0 ist, die Sternenanzahl um eine gewählte Anzahl verringert
     public int removeFromStars(int sub)
@@ -111,25 +112,22 @@ public class Player extends Actor
         }
         redrawPlayer();
         return stars;
-        
+
     }
 
     public int getProvinceCount ()
     { 
         GeneralMap w= getWorld();
-        int[] provinces = w.getProvinceOwners();
-        for (int x=0; x<=42; x++ )
+        // int[] provinces = w.getProvinceOwners();
+        for (int x=1; x<=42; x++ )
         {
-            if ( provinces [x] ==id)
+            c = w.provinces[x].getOwner();
+            if (c ==id+1)
             {
                 provZahl++;
-
+                stats[2] = provZahl;
+                redrawPlayer();
             }
-        }
-        if(stats[2] < provZahl)
-        {
-            stats[2]=provZahl;
-
         }
         return provZahl;
     }
@@ -137,11 +135,14 @@ public class Player extends Actor
     public void gotEntities(int gotEnt)
     {
         stats[3]+= gotEnt;
+        redrawPlayer();
     }
 
     public void lostEntity()
     {
+        
         stats[4]+=1;
+        redrawPlayer();
     }
 
     private void maxEntities(int entNumber)
@@ -149,6 +150,7 @@ public class Player extends Actor
         if (stats[5]< entNumber)
         {
             stats[5]=entNumber;
+            redrawPlayer();
         }
     }
 
@@ -168,6 +170,7 @@ public class Player extends Actor
             }
 
         }
+        redrawPlayer();
         return pBesitzer;
     }
 
@@ -191,31 +194,36 @@ public class Player extends Actor
             lostProv = true;
             stats[1]+=1;
         }
+        redrawPlayer();
         provVgl = provZahl;
     }
 
     public boolean getGotProvince ()
     {
+        redrawPlayer();
         return gotProv;  
     }
 
     public boolean getLostProvince()
     {
+        redrawPlayer();
         return lostProv; 
     }
 
     public int[] getStatistics()
     {
+        redrawPlayer();
         return stats;
     }
+
     public int setColor(int c)
     {
-       color = c;
-       redrawPlayer();
-       return color;
-       
+        color = c;
+        redrawPlayer();
+        return color;
+
     }
-   
+
     public void redrawPlayer()
     {
         int textSize = 20;
@@ -226,7 +234,7 @@ public class Player extends Actor
         GreenfootImage statistics = new GreenfootImage(137,120);   
         GreenfootImage Name = new GreenfootImage(n,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));        
         statistics.drawImage(Name,0,0);
-        
+
         setImage(statistics);
         oDecide(statistics,textSize);        
     }
@@ -239,32 +247,32 @@ public class Player extends Actor
         {
             case 2:
             flag = new GreenfootImage("images\\BlaueArmee.jpg");
-            
+
             redraw(statistics,flag,textSize);
             break;
             case 5:
             flag = new GreenfootImage("images\\GelbeArmee.jpg");
-            
+
             redraw(statistics,flag,textSize);
             break;
             case 6:
             flag = new GreenfootImage("images\\LilaArmee.jpg");
-            
+
             redraw(statistics,flag,textSize);
             break;
             case 4:
             flag = new GreenfootImage("images\\RoteArmee.jpg");
-            
+
             redraw(statistics,flag,textSize);
             break;
             case 1:
             flag = new GreenfootImage("images\\SchwarzeArmee.jpg");
-            
+
             redraw(statistics,flag,textSize);
             break;
             case 3:
             flag = new GreenfootImage("images\\GrueneArmee.jpg");
-            
+
             redraw(statistics,flag,textSize);
             break;
         }
@@ -273,14 +281,12 @@ public class Player extends Actor
 
     private void redraw(GreenfootImage statistics,GreenfootImage flag, int textSize)
     {
-        
+
         flag.scale(137,83);
         statistics.drawImage(flag,0,textSize);
-        GreenfootImage playerStatistics = new GreenfootImage(stats[0] + "||" + stats[1] + "||" + stats[2],textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
-        GreenfootImage playerStatistics2 = new GreenfootImage(stats[3] + "||" + stats[4] + "||" + stats[5],textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
-        statistics.drawImage(playerStatistics, 0, 123);
-        statistics.drawImage(playerStatistics2, 0, 123 + textSize);
-        
+        GreenfootImage playerStatistics = new GreenfootImage(stats[0] + "||" + stats[1] + "||" + stats[2] + "||" +stats[3] + "||" + stats[4] + "||" + stats[5],textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
+        statistics.drawImage(playerStatistics, 0, 103);
+
         setImage(statistics);
     }
 }
