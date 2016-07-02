@@ -117,6 +117,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 				Spieler 2 ist als zweites dran; Hauptstadt: 20
 				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt: 9
 			*/
+            dataL = new int[] {0,1,2,2,1,2,1,1,0,1,0,1,2,2,0,1,2,4,2,1,1,2,0,2,0,2,2,3,2,3,2,3,0,1,1,2,1,4,1,3,0,1,2,4,0,2,2,4,1,2,1,1,2,1,0,3,0,3,0,4,2,1,1,1,1,1,0,2,1,2,2,1,1,2,1,4,1,3,0,4,2,1,0,2};
 			provinces[01].setOwner(0);
 			provinces[01].setEntityCount(1);
 			provinces[02].setOwner(2);
@@ -208,6 +209,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt:2
 				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:39
 			*/
+            dataL = new int[] {0,1,2,3,2,3,2,2,2,2,2,3,1,2,0,2,1,2,2,2,1,3,2,2,1,3,0,3,0,3,0,3,2,2,3,2,1,4,1,4,0,1,0,2,0,5,0,3,1,2,3,3,3,1,3,2,1,2,1,2,3,1,1,1,3,5,2,2,2,2,2,2,3,1,3,1,3,4,3,1,0,2,3,4};
 			provinces[01].setOwner(0);
 			provinces[01].setEntityCount(1);
 			provinces[02].setOwner(2);
@@ -300,8 +302,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:20
 				Spieler 5 ist als fünftes dran und bekommt zwei Karte; Hauptstadt:41
 			*/
-			// ownerL = {3,1,4,2,2,2,2,4,2,4,4,3,1,1,3,1,2,4,4,4,2,3,3,1,3,3,2,5,5,5,1,1,4,5,5,5,3,4,5,1,5,5};
-			// entitiesL = {};
+            dataL = new int[] {2,1,0,2,3,2,1,2,1,2,1,2,1,4,3,1,1,2,3,1,3,3,2,1,0,4,0,2,2,3,0,2,1,3,3,2,3,5,3,3,1,2,2,5,2,3,0,2,2,3,2,2,1,3,4,2,4,3,4,3,0,3,0,3,3,1,4,1,4,1,4,2,2,2,3,2,4,2,0,2,4,4,4,2};
 			provinces[01].setOwner(2);
 			provinces[01].setEntityCount(1);
 			provinces[02].setOwner(0);
