@@ -227,7 +227,7 @@ public class Province extends Actor
                 eCalculate(province,ownerString,textSize);
                 break;
                 case 5:
-                ownerString = "grün";
+                ownerString = "gruen";
                 eCalculate(province,ownerString,textSize);
                 break;
                 case 6:

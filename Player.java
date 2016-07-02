@@ -21,19 +21,16 @@ public class Player extends Actor
     boolean [] pBesitzer = new boolean [42];
     boolean gotProv = false;
     boolean lostProv = false;
-    int identity;
-    String name;
+    String n;
     int color;
     int textsize;
 
-    private String n;
-    private int c;
     //definiert die ID und Namens Variable
-    public Player(int identity,String name, int color)
+    public Player(int identity,String name, int c)
     {
         n = name;
         id = identity;
-        c = color;
+        color = c;
         // redrawPlayer();
     }
     //gibt die Spieler ID zurück
@@ -262,7 +259,7 @@ public class Player extends Actor
             redraw(statistics,flag,textSize);
             break;
             case 3:
-            flag = new GreenfootImage("images\\GrüneArmee.jpg");
+            flag = new GreenfootImage("images\\GrueneArmee.jpg");
             
             redraw(statistics,flag,textSize);
             break;

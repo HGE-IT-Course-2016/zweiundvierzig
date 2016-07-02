@@ -18,6 +18,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         Später evtl. weitere Werte wie Schwierigkeit denkbar
     */
     Button modus = new Button("Kampf",25,this);
+    
     private final int X_OFFSET = 200; // Verschiebt die Provinzen nach rechts
     private final int Y_OFFSET = 25; // Verschiebt die Provinzen nach unten
 
@@ -59,13 +60,14 @@ public abstract class GeneralMap extends World implements ButtonEvent
         @param playerList Die Liste mit den Namen der Spieler
         @param colorList Die Liste mit den Farben der Spieler
     */
-    public GeneralMap(String backImage, String[] playerList, int[] colorList)
+    public GeneralMap(String[] playerList, int[] colorList)
     {    
         super(1600,900,1);
         players = new Player[playerList.length];
         addObject( modus, 1500, 808);
         for (int i = 0; i < playerList.length; i++) {
             players[i] = new Player(i,playerList[i],colorList[i]);
+			players[i].redrawPlayer();
         }
 
         createPlayerObjects(playerList.length);
@@ -389,6 +391,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         int errors = 0;
         for(int i = 1; i < provinces.length; i++) {
             Province p = provinces[i];
+			p.redrawProvince();
             int oI = (i-1)*2; // ownerID inside dataL
             int eI = oI+1; // entitiesCountID inside dataL
             // Dieser Code überprüft die Datenliste mit den Daten, die die alte Methode (mit den vielen Zeilen) bereits hinterlegt haben sollte. Nur für Debugging!
@@ -519,32 +522,29 @@ public abstract class GeneralMap extends World implements ButtonEvent
                 currentPlayer = 0;
             }
         }
-        if ( modus == b && status==GameStates.SETZEN)
-        {
-            status=GameStates.KAMPF;
-            modus.setText("Kampf beenden");
-            
-            
-          }
-        if ( modus == b && status== GameStates.KAMPF)
-        {
-            status=GameStates.VERSCHIEBEN;
-            modus.setText("Nächster Spieler");
-          }
-        if ( modus == b && status==GameStates.VERSCHIEBEN)
-        {
-            if( currentPlayer== players.length-1)
-            {
-                currentPlayer=0;
-                
-              }
-            else
-            {
-                currentPlayer+=1;
-                
-              }
-            
-        }
+		if ( modus == b && status==GameStates.SETZEN)
+		{
+		    status=GameStates.KAMPF;
+		    modus.setText("Kampf beenden");
+		}
+		if ( modus == b && status== GameStates.KAMPF)
+		{
+		    status=GameStates.VERSCHIEBEN;
+		    modus.setText("Nächster Spieler");
+		}
+		if ( modus == b && status==GameStates.VERSCHIEBEN)
+		{
+		    if( currentPlayer== players.length-1)
+		    {
+		        currentPlayer=0;
+			}
+		    else
+		    {
+		        currentPlayer+=1;   
+		    }
+			status=GameStates.SETZEN;
+		    modus.setText("Kampf beginnen");
+		}
     }
     
     // Kampfsystem
