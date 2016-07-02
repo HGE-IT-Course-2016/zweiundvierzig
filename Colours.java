@@ -71,7 +71,7 @@ public class Colours extends World implements ButtonEvent
             pn[x]="Schwarz";
             x+=1;
             possw = false;
-            System.out.println("HI");
+            
         }
         if (b == blau && posbl == true)
         {
@@ -79,7 +79,7 @@ public class Colours extends World implements ButtonEvent
             pn[x] = "Blau";
             x+=1;
             posbl = false;
-            System.out.println("HI");
+            
         }
         if (b == grün && posgr == true )
         {
@@ -87,7 +87,7 @@ public class Colours extends World implements ButtonEvent
             pn[x]="Grün";
             x+=1;
             posgr = false;
-            System.out.println("HI");
+            
         }
         if ( b == rot && posrt == true)
         {
@@ -95,7 +95,7 @@ public class Colours extends World implements ButtonEvent
             pn[x]="Rot";
             x+=1;
             posrt = false;
-            System.out.println("HI");
+            
         }
         if ( b == gelb && posgb == true)
         {
@@ -103,7 +103,7 @@ public class Colours extends World implements ButtonEvent
             pn[x]="Gelb";
             x+=1;
             posgb = false;
-            System.out.println("HI");
+            
         }
         if ( b == lila && posli == true)
         {
@@ -111,7 +111,7 @@ public class Colours extends World implements ButtonEvent
             pn[x]="Lila";
             x+=1;
             posli = false;
-            System.out.println("HI");
+            
         }
         if ( b == weiter && x >=2 )
         {
@@ -126,8 +126,6 @@ public class Colours extends World implements ButtonEvent
 
             World m = new Map(newcolor,x,newpn);
             Greenfoot.setWorld(m);
-            System.out.println("HIFertig");
-            System.out.println(x);
         }
 
     }
