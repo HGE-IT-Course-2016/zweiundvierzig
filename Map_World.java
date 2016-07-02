@@ -5,7 +5,7 @@ Klasse der Standard-Welt
 (Also die normale Weltkarte mit allen Kontinenten)
 
 @author GruenerWal, MaxiJohl
-@version 0.3.0
+@version 1.0.0
  */
 
 public class Map_World extends GeneralMap
@@ -21,8 +21,8 @@ public class Map_World extends GeneralMap
 
     public Map_World(String[] playerList, int[] colorList)
     {
-        super("",playerList,colorList);
-        setBackground("Map_World.png");
+        super(playerList,colorList);
+        setBackground("MapWorld.png");
         provinceCount = 42;
         armyMinimum = 3;
         

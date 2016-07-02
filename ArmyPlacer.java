@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
  */
 public class ArmyPlacer extends Map_World
 {
-
     int freeArmies = -1;
 
     /**
@@ -52,7 +51,6 @@ public class ArmyPlacer extends Map_World
 
         // 2. Einheiten durch Provinzen einbeziehen
         armiesToPlace = armiesToPlace + Math.round(players[currentPlayer].getProvinceCount() / 3);
-        System.out.println("Einheiten nach Provinz hinzugefügt");
 
         // 3. Einheiten durch Kontinente
 
@@ -84,18 +82,15 @@ public class ArmyPlacer extends Map_World
             {
                 armiesToPlace = armiesToPlace + continentBoni[i];
                 continentChecked = false;
-                System.out.println("Kontinent-Boni vergeben");
+                
             }
-
-            else
-            {
-                System.out.println("Keine Kontinent-Boni vergeben");
-            }
+            
         }
 
         // 4. Einheiten durch Sterne
         if ( players[currentPlayer].getStars() > 0)
         {
+            
             String toUseString = JOptionPane.showInputDialog(null, "Wieviele Sterne willst du verwenden?");
             int starsToUse = Utils.StringToInt(toUseString);
             int[] starBoni = new int [] {1,2,4,7,10,13,17,21,25,30};
@@ -109,7 +104,9 @@ public class ArmyPlacer extends Map_World
             {
                 JOptionPane.showMessageDialog(null,"Ungültige Zahl. Bitte eine Zahl zwischen 0 und 10 eingeben");
             }
+            
         }
+
 
         return armiesToPlace;
     }
@@ -150,20 +147,26 @@ public class ArmyPlacer extends Map_World
         for ( int i = 1; i <= (provinces.length - 1); i++) {
             if (provinces[i].hasClicked() == true && provinces[i].getOwner() == currentPlayer)
             {
-                String toUseString = JOptionPane.showInputDialog(null, "Wieviele Einheiten willst du setzen? Du hast noch" + freeArmies + "freie Einheiten.");
+                String toUseString = JOptionPane.showInputDialog(null, "Wieviele Einheiten willst du setzen? Du hast noch " + freeArmies + " freie Einheiten.");
                 int armiesToUse = Utils.StringToInt(toUseString);
 
-                if (armiesToUse <= freeArmies)
+                if ( armiesToUse <= freeArmies )
                 {
                     provinces[i].addToEntities(armiesToUse);
                     freeArmies = freeArmies- armiesToUse;
+                    JOptionPane.showMessageDialog(null,"Einheiten erfolgreich gesetzt, Kommandant " + getPlayerName() + ".");
+                }
+                
+                else if ( armiesToUse > freeArmies )
+                {
+                    JOptionPane.showMessageDialog(null,"Nicht genügend freie Einheiten.");
                 }
 
             }
         }
 
     }
-    
+
     public void act()
     {
         placeArmies();
