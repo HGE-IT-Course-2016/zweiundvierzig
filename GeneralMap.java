@@ -118,24 +118,24 @@ public abstract class GeneralMap extends World implements ButtonEvent
 				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt: 9
 			*/
             dataL = new int[] {0,1,2,2,1,2,1,1,0,1,0,1,2,2,0,1,2,4,2,1,1,2,0,2,0,2,2,3,2,3,2,3,0,1,1,2,1,4,1,3,0,1,2,4,0,2,2,4,1,2,1,1,2,1,0,3,0,3,0,4,2,1,1,1,1,1,0,2,1,2,2,1,1,2,1,4,1,3,0,4,2,1,0,2};
-			provinces[01].setOwner(0);
-			provinces[01].setEntityCount(1);
-			provinces[02].setOwner(2);
-			provinces[02].setEntityCount(2);
-			provinces[03].setOwner(1); 
-			provinces[03].setEntityCount(2);
-			provinces[04].setOwner(1); //Fabrik
-			provinces[04].setEntityCount(1);
-			provinces[05].setOwner(0);//Fabrik
-			provinces[05].setEntityCount(1);
-			provinces[06].setOwner(0);//Fabrik
-			provinces[06].setEntityCount(1);
-			provinces[07].setOwner(2);
-			provinces[07].setEntityCount(2);
-			provinces[08].setOwner(0);
-			provinces[08].setEntityCount(1);
-			provinces[09].setOwner(2);
-			provinces[09].setEntityCount(4);
+			provinces[1].setOwner(0);
+			provinces[1].setEntityCount(1);
+			provinces[2].setOwner(2);
+			provinces[2].setEntityCount(2);
+			provinces[3].setOwner(1); 
+			provinces[3].setEntityCount(2);
+			provinces[4].setOwner(1); //Fabrik
+			provinces[4].setEntityCount(1);
+			provinces[5].setOwner(0);//Fabrik
+			provinces[5].setEntityCount(1);
+			provinces[6].setOwner(0);//Fabrik
+			provinces[6].setEntityCount(1);
+			provinces[7].setOwner(2);
+			provinces[7].setEntityCount(2);
+			provinces[8].setOwner(0);
+			provinces[8].setEntityCount(1);
+			provinces[9].setOwner(2);
+			provinces[9].setEntityCount(4);
 			provinces[10].setOwner(2);
 			provinces[10].setEntityCount(1);
 			provinces[11].setOwner(1);//Fabrik
@@ -210,24 +210,24 @@ public abstract class GeneralMap extends World implements ButtonEvent
 				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:39
 			*/
             dataL = new int[] {0,1,2,3,2,3,2,2,2,2,2,3,1,2,0,2,1,2,2,2,1,3,2,2,1,3,0,3,0,3,0,3,2,2,3,2,1,4,1,4,0,1,0,2,0,5,0,3,1,2,3,3,3,1,3,2,1,2,1,2,3,1,1,1,3,5,2,2,2,2,2,2,3,1,3,1,3,4,3,1,0,2,3,4};
-			provinces[01].setOwner(0);
-			provinces[01].setEntityCount(1);
-			provinces[02].setOwner(2);
-			provinces[02].setEntityCount(3);
-			provinces[03].setOwner(2);
-			provinces[03].setEntityCount(3);
-			provinces[04].setOwner(2);//Fabrik
-			provinces[04].setEntityCount(2);
-			provinces[05].setOwner(2);//Fabrik
-			provinces[05].setEntityCount(2);
-			provinces[06].setOwner(2);//Fabrik
-			provinces[06].setEntityCount(3);
-			provinces[07].setOwner(1);
-			provinces[07].setEntityCount(2);
-			provinces[08].setOwner(0);
-			provinces[08].setEntityCount(2);
-			provinces[09].setOwner(1);
-			provinces[09].setEntityCount(2);
+			provinces[1].setOwner(0);
+			provinces[1].setEntityCount(1);
+			provinces[2].setOwner(2);
+			provinces[2].setEntityCount(3);
+			provinces[3].setOwner(2);
+			provinces[3].setEntityCount(3);
+			provinces[4].setOwner(2);//Fabrik
+			provinces[4].setEntityCount(2);
+			provinces[5].setOwner(2);//Fabrik
+			provinces[5].setEntityCount(2);
+			provinces[6].setOwner(2);//Fabrik
+			provinces[6].setEntityCount(3);
+			provinces[7].setOwner(1);
+			provinces[7].setEntityCount(2);
+			provinces[8].setOwner(0);
+			provinces[8].setEntityCount(2);
+			provinces[9].setOwner(1);
+			provinces[9].setEntityCount(2);
 			provinces[10].setOwner(2);//Fabrik
 			provinces[10].setEntityCount(2);
 			provinces[11].setOwner(1);//Fabrik
@@ -303,24 +303,24 @@ public abstract class GeneralMap extends World implements ButtonEvent
 				Spieler 5 ist als fünftes dran und bekommt zwei Karte; Hauptstadt:41
 			*/
             dataL = new int[] {2,1,0,2,3,2,1,2,1,2,1,2,1,4,3,1,1,2,3,1,3,3,2,1,0,4,0,2,2,3,0,2,1,3,3,2,3,5,3,3,1,2,2,5,2,3,0,2,2,3,2,2,1,3,4,2,4,3,4,3,0,3,0,3,3,1,4,1,4,1,4,2,2,2,3,2,4,2,0,2,4,4,4,2};
-			provinces[01].setOwner(2);
-			provinces[01].setEntityCount(1);
-			provinces[02].setOwner(0);
-			provinces[02].setEntityCount(2);
-			provinces[03].setOwner(3);
-			provinces[03].setEntityCount(2);
-			provinces[04].setOwner(1);//Fabrik
-			provinces[04].setEntityCount(2);
-			provinces[05].setOwner(1);//Fabrik
-			provinces[05].setEntityCount(2);
-			provinces[06].setOwner(1);//Fabrik
-			provinces[06].setEntityCount(2);
-			provinces[07].setOwner(1);
-			provinces[07].setEntityCount(4);
-			provinces[08].setOwner(3);
-			provinces[08].setEntityCount(1);
-			provinces[09].setOwner(1);
-			provinces[09].setEntityCount(2);
+			provinces[1].setOwner(2);
+			provinces[1].setEntityCount(1);
+			provinces[2].setOwner(0);
+			provinces[2].setEntityCount(2);
+			provinces[3].setOwner(3);
+			provinces[3].setEntityCount(2);
+			provinces[4].setOwner(1);//Fabrik
+			provinces[4].setEntityCount(2);
+			provinces[5].setOwner(1);//Fabrik
+			provinces[5].setEntityCount(2);
+			provinces[6].setOwner(1);//Fabrik
+			provinces[6].setEntityCount(2);
+			provinces[7].setOwner(1);
+			provinces[7].setEntityCount(4);
+			provinces[8].setOwner(3);
+			provinces[8].setEntityCount(1);
+			provinces[9].setOwner(1);
+			provinces[9].setEntityCount(2);
 			provinces[10].setOwner(3);
 			provinces[10].setEntityCount(1);
 			provinces[11].setOwner(3);//Fabrik
