@@ -219,6 +219,10 @@ public class Player extends Actor
     public void redrawPlayer()
     {
         int textSize = 20;
+        if(n == null)
+        {
+            n = "leererSpieler";
+        }
         GreenfootImage statistics = new GreenfootImage(137,120);   
         GreenfootImage Name = new GreenfootImage(n,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));        
         statistics.drawImage(Name,0,0);
