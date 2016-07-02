@@ -11,8 +11,8 @@ public class Map extends World implements ButtonEvent
     private Button map1 = new Button ("map1",16,this);
     private Button map2 = new Button ("map2",16,this);
     private Button fertigst = new Button (" Fertigstellen",16,this);
-    int [] colour = new int[6];
-    String [] pn = new String [6];
+    int[] colour;
+    String[] pn;
     int pnu;
     //private int x;
     //private int y;
@@ -20,11 +20,12 @@ public class Map extends World implements ButtonEvent
     private Map_World MW ;
     // int [] newcolour = new int [pnu];
     // String [] newpn = new String [pnu];
-    public Map( int [] bunt, int zahl , String [] name)
+    public Map( int[] bunt, int zahl , String [] name)
     {
-
         super (1600,900,1);
-        for (int i=0; i<pnu; i++)
+        colour = new int[zahl];
+        pn = new String[zahl];        
+        for (int i=0; i<zahl; i++)
         {
             colour[i] = bunt[i];
             pn[i] = name[i];
@@ -38,14 +39,14 @@ public class Map extends World implements ButtonEvent
         fertigst.setSize(100, 50);
         // for ( int i=0; i<=pnu; i++)
         // {
-            // newpn[i] = pn[i];
-            // newcolour[i] = colour[i];
+        // newpn[i] = pn[i];
+        // newcolour[i] = colour[i];
         // }
     } 
     // Die Map Buttons geben der Variable m einen Wert
     public void buttonClicked(Button b)
     {
-        
+
         if (b== map1)
         {
             //x= ;
