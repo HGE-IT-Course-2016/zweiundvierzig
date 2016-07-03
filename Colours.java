@@ -50,7 +50,7 @@ public class Colours extends World implements ButtonEvent
         super(x, y, z);
         setBackground(Start_Load.backgroundImage);
         
-        Button[] bList = new Button[] {schwarz,gelb,blau,grün,rot,lila,weiter};
+        Button[] bList = new Button[] {schwarz,gelb,blau,grün,rot,lila,weiter,remove};
         Label[] lList = new Label[] {header,pl1,pl2,pl3,pl4,pl5,pl6};
         
         addObject(header,200,15);
