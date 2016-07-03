@@ -151,8 +151,11 @@ public class Button extends GUI_Interface {
 		}
 		GreenfootImage all = new GreenfootImage(sx,sy);
 		Color trans = new Color(0,0,0,0);
+		all.setColor(trans);
+		all.fill();
 		Graphics2D g = all.getAwtImage().createGraphics();
-		g.fillRoundRect(0,0,sx,sy,6,6);
+		g.setColor(backC);
+		g.fillRoundRect(0,0,sx,sy,12,12);
 		all.drawImage(tI,(sx-tI.getWidth())/2,(sy-tI.getHeight())/2);
 		setImage(all);
 	}
