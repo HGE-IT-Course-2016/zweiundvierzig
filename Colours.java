@@ -49,7 +49,7 @@ public class Colours extends World implements ButtonEvent
         super(x, y, z);
         setBackground(Start_Load.backgroundImage);
         
-        addObject(header,50, 20);
+        addObject(header,100,20);
         
         addObject(schwarz, 50, 50);
         addObject ( blau, 170, 50);
@@ -59,12 +59,12 @@ public class Colours extends World implements ButtonEvent
         addObject(lila, 610, 50);
         addObject (weiter, 335,110);
         
-        addObject(pl1,50,170);
-        addObject(pl2,50,190);
-        addObject(pl3,50,210);
-        addObject(pl4,50,230);
-        addObject(pl5,50,250);
-        addObject(pl6,50,270);
+        addObject(pl1,100,170);
+        addObject(pl2,100,190);
+        addObject(pl3,100,210);
+        addObject(pl4,100,230);
+        addObject(pl5,100,250);
+        addObject(pl6,100,270);
         
         schwarz.setSize(100, 50);
         gelb.setSize(100, 50);

@@ -149,13 +149,12 @@ public class Button extends GUI_Interface {
 			sy = tI.getHeight() + (6 * 2) + 4;
 		}
 		GreenfootImage all = new GreenfootImage(sx,sy);
-		Color gray = new Color(133,133,133,255);
-		Color black = new Color(0,0,0,255);
+		Color border = backC.brighter();
 		Color trans = new Color(0,0,0,0);
-		Utils.drawInsideRectangle(all,gray,0);
-		Utils.drawInsideRectangle(all,black,2);
-		Utils.drawInsideRectangle(all,gray,6);
-		Utils.drawInsideRectangle(all,black,7);
+		Utils.drawInsideRectangle(all,border,0);
+		Utils.drawInsideRectangle(all,backC,2);
+		Utils.drawInsideRectangle(all,border,6);
+		Utils.drawInsideRectangle(all,backC,7);
 		all.setColorAt(0,0,trans);
 		all.setColorAt(sx-1,0,trans);
 		all.setColorAt(0,sy-1,trans);
