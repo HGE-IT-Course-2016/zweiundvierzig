@@ -142,7 +142,7 @@ public class Colours extends World implements ButtonEvent
     }
     
     private Color getC(boolean pos) {
-        return (pos) ? Color.white : Color.gray;
+        return (pos) ? Color.lightGray : Color.gray;
     }
     
     /**
