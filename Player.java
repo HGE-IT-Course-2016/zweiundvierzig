@@ -105,7 +105,6 @@ public class Player extends Actor
     //eine Methode, die das Abziehen von Sternen testet und, wenn das Ergebnis >= 0 ist, die Sternenanzahl um eine gewählte Anzahl verringert
     public int removeFromStars(int sub)
     {
-        int stars;
         stars -= sub;
         checkStars();
         redrawPlayer();
