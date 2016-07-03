@@ -112,7 +112,7 @@ public class Player extends Actor
         return stars;
     }
     
-    public int canStarsRemoved(int s) {
+    public boolean canStarsRemoved(int s) {
         return (stars - s) >= 0;
     }
 
@@ -122,7 +122,7 @@ public class Player extends Actor
         int[] provinces = getWorld().getProvinceOwners();
         for (int x=1; x < provinces.length; x++)
         {
-            if (provinces[i] == id)
+            if (provinces[x] == id)
             {
                 p++;
                 redrawPlayer();
