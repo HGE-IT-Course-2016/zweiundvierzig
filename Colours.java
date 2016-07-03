@@ -57,12 +57,12 @@ public class Colours extends World implements ButtonEvent
         lila.setSize(100, 50);
         weiter.setSize(100, 50);
         
-        schwarz.setTextColor(Color.black);
-        gelb.setTextColor(Color.yellow);
-        blau.setTextColor(Color.blue);
-        grün.setTextColor(Color.green);
-        rot.setTextColor(Color.red);
-        lila.setTextColor(new Color(161,70,255));
+        schwarz.setForeColor(Color.black);
+        gelb.setForeColor(Color.yellow);
+        blau.setForeColor(Color.blue);
+        grün.setForeColor(Color.green);
+        rot.setForeColor(Color.red);
+        lila.setForeColor(new Color(161,70,255));
         
         redrawButtons();
     }
@@ -149,12 +149,12 @@ public class Colours extends World implements ButtonEvent
         Passt die Hintergrundfarbe der Buttons daran an, ob der Button noch gedrückt werden darf.
     */
     private void redrawButtons() {
-        schwarz.setTextColor(getC(possw));
-        blau.setTextColor(getC(posbl));
-        grün.setTextColor(getC(posgr));
-        rot.setTextColor(getC(posrt));
-        lila.setTextColor(getC(posli));
-        gelb.setTextColor(getC(posgb));
+        schwarz.setBackColor(getC(possw));
+        blau.setBackColor(getC(posbl));
+        grün.setBackColor(getC(posgr));
+        rot.setBackColor(getC(posrt));
+        lila.setBackColor(getC(posli));
+        gelb.setBackColor(getC(posgb));
     }
 }
 
