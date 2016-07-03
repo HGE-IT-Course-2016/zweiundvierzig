@@ -102,7 +102,7 @@ public class Colours extends World implements ButtonEvent
         {
             color[x] = sw;
             pn[x]=getName(x,"Schwarz");
-            if(pn[x].length() <= 0) {
+            if(pn[x].length() > 0) {
                 x+=1;
                 possw = false;
             }
@@ -111,7 +111,7 @@ public class Colours extends World implements ButtonEvent
         {
             color[x] = bl;
             pn[x]=getName(x,"Blau");
-            if(pn[x].length() <= 0) {
+            if(pn[x].length() > 0) {
                 x+=1;
                 posbl = false;
             }
@@ -120,7 +120,7 @@ public class Colours extends World implements ButtonEvent
         {
             color[x] = gr;
             pn[x]=getName(x,"Grün");
-            if(pn[x].length() <= 0) {
+            if(pn[x].length() > 0) {
                 x+=1;
                 posgr = false;
             }
@@ -129,7 +129,7 @@ public class Colours extends World implements ButtonEvent
         {
             color[x] = rt;
             pn[x]=getName(x,"Rot");
-            if(pn[x].length() <= 0) {
+            if(pn[x].length() > 0) {
                 x+=1;
                 posrt = false;
             }
@@ -138,7 +138,7 @@ public class Colours extends World implements ButtonEvent
         {
             color [x] = gb;
             pn[x]=getName(x,"Gelb");
-            if(pn[x].length() <= 0) {
+            if(pn[x].length() > 0) {
                 x+=1;
                 posgb = false;
             }
@@ -147,7 +147,7 @@ public class Colours extends World implements ButtonEvent
         {
             color [x] = li;
             pn[x]=getName(x,"Lila");
-            if(pn[x].length() <= 0) {
+            if(pn[x].length() > 0) {
                 x+=1;
                 posli = false;
             }
