@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.awt.Color;
 
 /**
  * Write a description of class Colors here.
@@ -62,6 +63,8 @@ public class Colours extends World implements ButtonEvent
         grün.setTextColor(Color.green);
         rot.setTextColor(Color.red);
         lila.setTextColor(new Color(161,70,255));
+        
+        redrawButtons();
     }
     // Überprüft, ob ein Farbbutton geklickt wurde
     //Überprüft, ob die Farbe noch nicht ausgewählt wurde
@@ -135,7 +138,23 @@ public class Colours extends World implements ButtonEvent
             World m = new Map(newcolor,x,newpn);
             Greenfoot.setWorld(m);
         }
-
+        redrawButtons();
+    }
+    
+    private Color getC(boolean pos) {
+        return (pos) ? Color.white : Color.gray;
+    }
+    
+    /**
+        Passt die Hintergrundfarbe der Buttons daran an, ob der Button noch gedrückt werden darf.
+    */
+    private void redrawButtons() {
+        schwarz.setTextColor(getC(possw));
+        blau.setTextColor(getC(posbl));
+        grün.setTextColor(getC(posgr));
+        rot.setTextColor(getC(posrt));
+        lila.setTextColor(getC(posli));
+        gelb.setTextColor(getC(posgb));
     }
 }
 
