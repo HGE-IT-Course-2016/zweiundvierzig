@@ -49,7 +49,10 @@ public class Colours extends World implements ButtonEvent
         super(x, y, z);
         setBackground(Start_Load.backgroundImage);
         
-        addObject(header,100,20);
+        Button[] bList = new Button[] {schwarz,gelb,blau,grün,rot,lila,weiter};
+        Label[] lList = new Label[] {pl1,pl2,pl3,pl4,pl5,pl6};
+        
+        addObject(header,200,20);
         
         addObject(schwarz, 50, 50);
         addObject ( blau, 170, 50);
@@ -66,20 +69,19 @@ public class Colours extends World implements ButtonEvent
         addObject(pl5,100,250);
         addObject(pl6,100,270);
         
-        schwarz.setSize(100, 50);
-        gelb.setSize(100, 50);
-        blau.setSize(100, 50);
-        grün.setSize(100, 50);
-        rot.setSize(100, 50);
-        lila.setSize(100, 50);
-        weiter.setSize(100, 50);
-        
         schwarz.setForeColor(Color.black);
         gelb.setForeColor(Color.yellow);
         blau.setForeColor(Color.blue);
         grün.setForeColor(Color.green);
         rot.setForeColor(Color.red);
         lila.setForeColor(new Color(161,70,255));
+        
+        for(int i = 0; i < bList.length; i++) {
+            bList[i].setSize(100,50);
+        }
+        for(int i = 0; i < lList.length; i++) {
+            lList[i].setBackColor(new Color(0,0,0,0));
+        }
         
         redraw();
     }
