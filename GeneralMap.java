@@ -3,6 +3,7 @@ import java.lang.Math;
 import java.util.Arrays;
 import greenfoot.MouseInfo.*;
 import javax.swing.JOptionPane;
+import java.awt.Color;
 
 /**
 Oberklasse für verschiedene Maps;
@@ -71,6 +72,43 @@ public abstract class GeneralMap extends World implements ButtonEvent
         }
 
         createPlayerObjects(playerList.length);
+    }
+
+    
+    public void redrawGameStates()
+    {
+        int textSize = 20;
+        int X = 422;
+        int Y = 677;
+
+        if(status == GameStates.KAMPF)
+        {
+            GreenfootImage GameStatesEmpty = new GreenfootImage(750,textSize);
+            GreenfootImage GameStates = new GreenfootImage("KAMPF!!! Wähle die Provinz aus, die du angreifen möchtest!",textSize,new Color(255,255,255),new Color(0,0,0));
+            GameStatesEmpty.drawImage(GameStates,0,0);
+            GreenfootImage States = new GreenfootImage("MapWorldFight.png");
+            States.drawImage(GameStatesEmpty,X,Y);
+            setBackground(States);
+        }
+        if(status == GameStates.VERSCHIEBEN)
+        {
+            GreenfootImage GameStatesEmpty = new GreenfootImage(500,textSize);
+            GreenfootImage GameStates = new GreenfootImage("VERSCHIEBEN! Wähle die Provinz aus!",textSize,new Color(255,255,255),new Color(0,0,0));
+            GameStatesEmpty.drawImage(GameStates,0,0);
+            GreenfootImage States = new GreenfootImage("MapWorldFight.png");
+            States.drawImage(GameStatesEmpty,X,Y);
+            setBackground(States);
+        }
+        if(status == GameStates.SETZEN)
+        {
+            GreenfootImage GameStatesEmpty = new GreenfootImage(500,textSize);
+            GreenfootImage GameStates = new GreenfootImage("Setzten! Wähle die Provinz aus!",textSize,new Color(255,255,255),new Color(0,0,0));
+            GameStatesEmpty.drawImage(GameStates,0,0);
+            GreenfootImage States = new GreenfootImage("MapWorldFight.png");
+            States.drawImage(GameStatesEmpty,X,Y);
+            setBackground(States);
+        }        
+
     }
 
     private void createPlayerObjects(int playerCount)
