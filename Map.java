@@ -23,6 +23,7 @@ public class Map extends World implements ButtonEvent
     public Map( int[] bunt, int zahl , String [] name)
     {
         super (1600,900,1);
+        setBackground(Start_Load.backgroundImage);
         colour = new int[zahl];
         pn = new String[zahl];        
         for (int i=0; i<zahl; i++)

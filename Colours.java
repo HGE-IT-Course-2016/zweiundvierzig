@@ -39,6 +39,7 @@ public class Colours extends World implements ButtonEvent
     {    
 
         super(x, y, z); 
+        setBackground(Start_Load.backgroundImage);
         addObject(schwarz, 50, 30);
         addObject ( blau, 170, 30);
         addObject ( grün, 280, 30);
