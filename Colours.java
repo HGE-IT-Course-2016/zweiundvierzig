@@ -33,6 +33,7 @@ public class Colours extends World implements ButtonEvent
     int li = 6;
     
     Label header = new Label("Klicke auf eine Farbe, um einen Spieler hinzuzufügen:",16);
+    Button remove = new Button("Rückgängig",16,this);
     Label pl1 = new Label("",16);
     Label pl2 = new Label("",16);
     Label pl3 = new Label("",16);
@@ -60,7 +61,8 @@ public class Colours extends World implements ButtonEvent
         addObject ( rot, 410, 50);
         addObject(gelb, 520, 50);
         addObject(lila, 630, 50);
-        addObject (weiter, 355,110);
+        addObject(remove,300,110);
+        addObject (weiter, 410,110);
         
         addObject(pl1,355,160);
         addObject(pl2,355,180);
@@ -137,6 +139,17 @@ public class Colours extends World implements ButtonEvent
             x+=1;
             posli = false;
         }
+        if(b == remove && x > 0) {
+            x -= 1;
+            switch(color[x]) {
+                case sw: possw = true; break;
+                case bl: posbl = true; break;
+                case gr: posgr = true; break;
+                case rt: posrt = true; break;
+                case gb: posgb = true; break;
+                case li: posli = true; break;
+            }
+        }
         if ( b == weiter && x > 2 )
         {
             String[] newpn = new String[x];
@@ -166,6 +179,7 @@ public class Colours extends World implements ButtonEvent
         rot.setBackColor(getC(posrt));
         lila.setBackColor(getC(posli));
         gelb.setBackColor(getC(posgb));
+        remove.setBackColor((x > 0) ? Color.black : Color.gray);
         switch(x) {
             case 6:
                 pl6.setText(pn[5]);
