@@ -8,7 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Start_Load extends World implements ButtonEvent 
 {
-     Button chulien = new Button("Neues Spiel", 16 , this);
+    static String backgroundImage = "backgroundLight.png"; // Gibt an, welches Bild in allen Menüs als Hintergrund gewählt werden soll.
+    // Light Theme: "backgroundLight.png"
+    // Dark Theme: "backgroundDark.png"
+    
+    Button chulien = new Button("Neues Spiel", 16 , this);
      
     /**
      * Constructor for objects of class Start_Load.
@@ -18,24 +22,25 @@ public class Start_Load extends World implements ButtonEvent
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1600, 900, 1); 
+        setBackground(backgroundImage);
         chulien.setSize(100,50);
         addObject (chulien, (1600-chulien.getWidth())/2, (900-chulien.getHeight())/2);
-	}
-	public void buttonClicked ( Button b)
-	{
-	    
-	   if ( b  == chulien)
-	   {
-	       World chean = new Colours (1600, 900, 1);
-	       Greenfoot.setWorld(chean);
-	       
-	   }
-	}
-	
-	
-	public void Load()
-	{
-	    
-	}
+    }
+    public void buttonClicked ( Button b)
+    {
+        
+       if ( b  == chulien)
+       {
+           World chean = new Colours (1600, 900, 1);
+           Greenfoot.setWorld(chean);
+           
+       }
+    }
+    
+    
+    public void Load()
+    {
+        
+    }
 }
 
