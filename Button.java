@@ -155,7 +155,7 @@ public class Button extends GUI_Interface {
 		all.fill();
 		Graphics2D g = all.getAwtImage().createGraphics();
 		g.setColor(backC);
-		g.fillRoundRect(0,0,sx,sy,12,12);
+		g.fillRoundRect(0,0,sx,sy,24,24);
 		all.drawImage(tI,(sx-tI.getWidth())/2,(sy-tI.getHeight())/2);
 		setImage(all);
 	}
