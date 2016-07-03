@@ -36,10 +36,10 @@ public class Colours extends World implements ButtonEvent
      * 
      */
     public Colours(int x, int y, int z)
-    {    
-
-        super(x, y, z); 
+    {
+        super(x, y, z);
         setBackground(Start_Load.backgroundImage);
+        
         addObject(schwarz, 50, 30);
         addObject ( blau, 170, 30);
         addObject ( grün, 280, 30);
@@ -47,6 +47,7 @@ public class Colours extends World implements ButtonEvent
         addObject(gelb, 500, 30);
         addObject(lila, 610, 30);
         addObject (weiter, 335,90);
+        
         schwarz.setSize(100, 50);
         gelb.setSize(100, 50);
         blau.setSize(100, 50);
@@ -54,7 +55,13 @@ public class Colours extends World implements ButtonEvent
         rot.setSize(100, 50);
         lila.setSize(100, 50);
         weiter.setSize(100, 50);
-
+        
+        schwarz.setTextColor(Color.black);
+        gelb.setTextColor(Color.yellow);
+        blau.setTextColor(Color.blue);
+        grün.setTextColor(Color.green);
+        rot.setTextColor(Color.red);
+        lila.setTextColor(new Color(161,70,255));
     }
     // Überprüft, ob ein Farbbutton geklickt wurde
     //Überprüft, ob die Farbe noch nicht ausgewählt wurde
