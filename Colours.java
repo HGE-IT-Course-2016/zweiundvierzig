@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  * Write a description of class Colors here.
@@ -100,44 +101,56 @@ public class Colours extends World implements ButtonEvent
         if ( b == schwarz && possw == true)
         {
             color[x] = sw;
-            pn[x]="Schwarz";
-            x+=1;
-            possw = false;
+            pn[x]=getName(x,"Schwarz");
+            if(pn[x] != null) {
+                x+=1;
+                possw = false;
+            }
         }
         if (b == blau && posbl == true)
         {
             color[x] = bl;
-            pn[x] = "Blau";
-            x+=1;
-            posbl = false;
+            pn[x]=getName(x,"Blau");
+            if(pn[x] != null) {
+                x+=1;
+                posbl = false;
+            }
         }
         if (b == grün && posgr == true )
         {
             color[x] = gr;
-            pn[x]="Grün";
-            x+=1;
-            posgr = false;
+            pn[x]=getName(x,"Grün");
+            if(pn[x] != null) {
+                x+=1;
+                posgr = false;
+            }
         }
         if ( b == rot && posrt == true)
         {
             color[x] = rt;
-            pn[x]="Rot";
-            x+=1;
-            posrt = false;
+            pn[x]=getName(x,"Rot");
+            if(pn[x] != null) {
+                x+=1;
+                posrt = false;
+            }
         }
         if ( b == gelb && posgb == true)
         {
             color [x] = gb;
-            pn[x]="Gelb";
-            x+=1;
-            posgb = false;
+            pn[x]=getName(x,"Gelb");
+            if(pn[x] != null) {
+                x+=1;
+                posgb = false;
+            }
         }
         if ( b == lila && posli == true)
         {
             color [x] = li;
-            pn[x]="Lila";
-            x+=1;
-            posli = false;
+            pn[x]=getName(x,"Lila");
+            if(pn[x] != null) {
+                x+=1;
+                posli = false;
+            }
         }
         if(b == remove && x > 0) {
             x -= 1;
@@ -200,6 +213,14 @@ public class Colours extends World implements ButtonEvent
             case 1:
                 pl1.setText(pn[0]);
         }
+    }
+    
+    private String getName(int id, String col) {
+        String name = JOptionPane.showInputDialog(null, "Wie soll Spieler Nr. "+id+" mit der Farbe "+col+" heißen?");
+        if(name == "") {
+            name = null;
+        }
+        return name;
     }
 }
 
