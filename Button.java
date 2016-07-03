@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
+import java.awt.Graphics2D;
 
 /**
 	Diese Klasse stellt einen Button dar.
@@ -149,17 +150,12 @@ public class Button extends GUI_Interface {
 			sy = tI.getHeight() + (6 * 2) + 4;
 		}
 		GreenfootImage all = new GreenfootImage(sx,sy);
-		Color gray = new Color(133,133,133,255);
-		Color black = new Color(0,0,0,255);
 		Color trans = new Color(0,0,0,0);
-		Utils.drawInsideRectangle(all,gray,0);
-		Utils.drawInsideRectangle(all,black,2);
-		Utils.drawInsideRectangle(all,gray,6);
-		Utils.drawInsideRectangle(all,black,7);
-		all.setColorAt(0,0,trans);
-		all.setColorAt(sx-1,0,trans);
-		all.setColorAt(0,sy-1,trans);
-		all.setColorAt(sx-1,sy-1,trans);
+		all.setColor(trans);
+		all.fill();
+		Graphics2D g = all.getAwtImage().createGraphics();
+		g.setColor(backC);
+		g.fillRoundRect(0,0,sx,sy,24,24);
 		all.drawImage(tI,(sx-tI.getWidth())/2,(sy-tI.getHeight())/2);
 		setImage(all);
 	}
