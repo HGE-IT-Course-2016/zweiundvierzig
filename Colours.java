@@ -180,6 +180,12 @@ public class Colours extends World implements ButtonEvent
         lila.setBackColor(getC(posli));
         gelb.setBackColor(getC(posgb));
         remove.setBackColor((x > 0) ? Color.black : Color.gray);
+        pl1.setText("");
+        pl2.setText("");
+        pl3.setText("");
+        pl4.setText("");
+        pl5.setText("");
+        pl6.setText("");
         switch(x) {
             case 6:
                 pl6.setText(pn[5]);
