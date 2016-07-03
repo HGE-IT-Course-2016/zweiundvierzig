@@ -142,12 +142,12 @@ public class Colours extends World implements ButtonEvent
         if(b == remove && x > 0) {
             x -= 1;
             switch(color[x]) {
-                case sw: possw = true; break;
-                case bl: posbl = true; break;
-                case gr: posgr = true; break;
-                case rt: posrt = true; break;
-                case gb: posgb = true; break;
-                case li: posli = true; break;
+                case 1: possw = true; break;
+                case 2: posbl = true; break;
+                case 3: posgr = true; break;
+                case 4: posrt = true; break;
+                case 5: posgb = true; break;
+                case 6: posli = true; break;
             }
         }
         if ( b == weiter && x > 2 )
