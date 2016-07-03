@@ -531,7 +531,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
     public int[] getProvinceOwners()
     {
         int[] prOwners = new int[provinces.length];
-        for (int i = 1; i > provinces.length; i++) {
+        for (int i = 1; i < provinces.length; i++) {
             prOwners[i] = provinces[i].getOwner();
         }
         return prOwners;

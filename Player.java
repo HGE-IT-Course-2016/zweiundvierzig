@@ -17,10 +17,7 @@ public class Player extends Actor
     int id=0;
     int provZahl=0;
     int provVgl=0;
-    int [] stats = new int [6];
-    boolean [] pBesitzer = new boolean [42];
-    boolean gotProv = false;
-    boolean lostProv = false;
+    int[] stats = new int [6];
     String n;
     int color;
     int textsize;
@@ -45,14 +42,16 @@ public class Player extends Actor
         return n;
     }
     //gibt die Sternenanzahl zurück
-    public int getStars ()
+    public int getStars()
     {
         return stars;
     }
-    // erhöht die Sternenzahl um eine random ausgewählte Anzahl von 1-3
-    public void  addToStars ()
-    {  
-
+    
+    // Von Felix: Methode nicht architektur-konform
+    
+    /* // erhöht die Sternenzahl um eine random ausgewählte Anzahl von 1-3
+    public void addToStars()
+    {
         int rand;
         int pre;
         rand = (int)(1+6*Math.random());
@@ -80,56 +79,55 @@ public class Player extends Actor
             System.out.println("Deine aktuelle Sternenanzahl beträgt " + stars + ".");
             redrawPlayer();
         }
-
+    } */
+    
+    private void checkStars() {
+        if(stars < 0) {
+            stars = 0;
+        }
     }
-    //eine Methode um addToStars zu testen
-    public void add ()
-    {
-        addToStars();
+    
+    // Von Felix: Architektur-konforme Funktion
+    public int addToStars(int s) {
+        stars += s;
+        checkStars();
         redrawPlayer();
+        return stars;
     }
     //eine für das Testen gedachte Methode, die die Anzahl der Sterne auf ein gewünschtes Maß setzt
     public int setStars (int set)
     {
         stars = set;
+        checkStars();
         redrawPlayer();
         return stars;
-
     }
     //eine Methode, die das Abziehen von Sternen testet und, wenn das Ergebnis >= 0 ist, die Sternenanzahl um eine gewählte Anzahl verringert
     public int removeFromStars(int sub)
     {
-        int s;
-
-        s = stars - sub;
-        if (s>=0)
-        {
-            stars = s;
-        }
-        else 
-        {
-            System.out.println ("Du hast nur " + stars + " Sterne, du kannst also nicht " + sub + " Sterne abziehen");
-        }
+        stars -= sub;
+        checkStars();
         redrawPlayer();
         return stars;
-
+    }
+    
+    public boolean canStarsRemoved(int s) {
+        return (stars - s) >= 0;
     }
 
-    public int getProvinceCount ()
+    public int getProvinceCount()
     { 
-        GeneralMap w= getWorld();
-        // int[] provinces = w.getProvinceOwners();
-        for (int x=1; x<=42; x++ )
+        int p = 0;
+        int[] provinces = getWorld().getProvinceOwners();
+        for (int x=1; x < provinces.length; x++)
         {
-            c = w.provinces[x].getOwner();
-            if (c ==id+1)
+            if (provinces[x] == id)
             {
-                provZahl++;
-                stats[2] = provZahl;
+                p++;
                 redrawPlayer();
             }
         }
-        return provZahl;
+        return p;
     }
 
     public void gotEntities(int gotEnt)
@@ -140,7 +138,6 @@ public class Player extends Actor
 
     public void lostEntity()
     {
-        
         stats[4]+=1;
         redrawPlayer();
     }
@@ -156,58 +153,22 @@ public class Player extends Actor
 
     public boolean[] getMyProvinces()
     {
-        GeneralMap w= getWorld();
-        int[] provinces = w.getProvinceOwners();
-        for (int x=0; x<=42; x++)
+        int[] provinces = getWorld().getProvinceOwners();
+        boolean[] myProvinces = new boolean[provinces.length];
+        for (int x=0; x < provinces.length; x++)
         {
             if (provinces[x]== id)
             {
-                pBesitzer[x]=true;
+                myProvinces[x]=true;
             }
             else 
             {
-                pBesitzer[x]=false;
+                myProvinces[x]=false;
             }
 
         }
         redrawPlayer();
-        return pBesitzer;
-    }
-
-    private void gotlostProvince()
-    {
-        if (provVgl== provZahl)
-        {
-            gotProv = false;
-            lostProv =false;
-
-        }
-        if(provVgl< provZahl)
-        {
-            gotProv = true;
-            lostProv = false;
-            stats[0]+=1;
-        }
-        if (provVgl > provZahl) 
-        {
-            gotProv = false;
-            lostProv = true;
-            stats[1]+=1;
-        }
-        redrawPlayer();
-        provVgl = provZahl;
-    }
-
-    public boolean getGotProvince ()
-    {
-        redrawPlayer();
-        return gotProv;  
-    }
-
-    public boolean getLostProvince()
-    {
-        redrawPlayer();
-        return lostProv; 
+        return myProvinces;
     }
 
     public int[] getStatistics()
