@@ -124,7 +124,7 @@ public class Colours extends World implements ButtonEvent
             posli = false;
             
         }
-        if ( b == weiter && x >=2 )
+        if ( b == weiter && x > 2 )
         {
             String[] newpn = new String[x];
             int[] newcolor = new int[x];
