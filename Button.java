@@ -1,6 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
-import java.awt.BufferedImage;
 import java.awt.Graphics2D;
 
 /**
