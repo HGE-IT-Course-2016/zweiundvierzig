@@ -50,24 +50,24 @@ public class Colours extends World implements ButtonEvent
         setBackground(Start_Load.backgroundImage);
         
         Button[] bList = new Button[] {schwarz,gelb,blau,grün,rot,lila,weiter};
-        Label[] lList = new Label[] {pl1,pl2,pl3,pl4,pl5,pl6};
+        Label[] lList = new Label[] {header,pl1,pl2,pl3,pl4,pl5,pl6};
         
-        addObject(header,200,20);
+        addObject(header,200,15);
         
-        addObject(schwarz, 50, 50);
-        addObject ( blau, 170, 50);
-        addObject ( grün, 280, 50);
-        addObject ( rot, 390, 50);
-        addObject(gelb, 500, 50);
-        addObject(lila, 610, 50);
-        addObject (weiter, 335,110);
+        addObject(schwarz, 70, 50);
+        addObject ( blau, 190, 50);
+        addObject ( grün, 300, 50);
+        addObject ( rot, 410, 50);
+        addObject(gelb, 520, 50);
+        addObject(lila, 630, 50);
+        addObject (weiter, 355,110);
         
-        addObject(pl1,100,170);
-        addObject(pl2,100,190);
-        addObject(pl3,100,210);
-        addObject(pl4,100,230);
-        addObject(pl5,100,250);
-        addObject(pl6,100,270);
+        addObject(pl1,355,160);
+        addObject(pl2,355,180);
+        addObject(pl3,355,200);
+        addObject(pl4,355,220);
+        addObject(pl5,355,240);
+        addObject(pl6,355,260);
         
         schwarz.setForeColor(Color.black);
         gelb.setForeColor(Color.yellow);
