@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Start_Load extends World implements ButtonEvent 
 {
-    static String backgroundImage = "backgroundLight.png" // Gibt an, welches Bild in allen Menüs als Hintergrund gewählt werden soll.
+    static String backgroundImage = "backgroundLight.png"; // Gibt an, welches Bild in allen Menüs als Hintergrund gewählt werden soll.
     // Light Theme: "backgroundLight.png"
     // Dark Theme: "backgroundDark.png"
     
