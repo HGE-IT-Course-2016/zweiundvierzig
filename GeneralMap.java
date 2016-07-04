@@ -294,7 +294,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
     private void actFight() {
         for(int i = 1; i <= (provinces.length - 1); i++) {
             if (provinces[i].hasClicked() == true) {
-                if(p.getOwner() == currentPlayer) {
+                if(provinces[i].getOwner() == currentPlayer) {
                     OffenderProvince(provinces[i]);
                 } else {
                     DefenderProvince(provinces[i]);
