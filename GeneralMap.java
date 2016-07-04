@@ -750,18 +750,25 @@ public abstract class GeneralMap extends World implements ButtonEvent
                 int armiesToUse = Utils.StringToInt(toUseString);
                 if ( armiesToUse <= freeArmies )
                 {
-                    provinces[i].addToEntities(armiesToUse);
-                    freeArmies = freeArmies- armiesToUse;
-                    JOptionPane.showMessageDialog(null,"Einheiten erfolgreich gesetzt, Kommandant " + getPlayerName() + ".");
+                    if ( armiesToUse > 0 )
+                    {
+                        provinces[i].addToEntities(armiesToUse);
+                        freeArmies = freeArmies- armiesToUse;
+                        JOptionPane.showMessageDialog(null,"Einheiten erfolgreich gesetzt, Kommandant " + getPlayerName() + ".");
+                    }
+                    if ( armiesToUse < 0 )
+                    {
+                        JOptionPane.showMessageDialog(null,"Willst du mich verarschen?");
+                    }
                 }
-                else if ( armiesToUse > freeArmies )
+                else
                 {
                     JOptionPane.showMessageDialog(null,"Nicht genügend freie Einheiten.");
                 }
             }
         }
     }
-    
+
     private int calculateArmies()
     {
         int armiesToPlace;
