@@ -42,7 +42,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
     protected Player[] players;
 
     protected int currentPlayer = 0;
-    protected GameStates status = GameStates.VERSCHIEBEN;
+    protected GameStates status = GameStates.SETZEN;
 
     protected int provinceCount;
     protected int armyMinimum;
@@ -137,47 +137,8 @@ public abstract class GeneralMap extends World implements ButtonEvent
         for(int i = 1; i < provinces.length; i++) {
             addObject(provinces[i],((int) Math.floor(provinces[i].getXPos() * SCALE_VALUE)) + X_OFFSET,((int) Math.floor(provinces[i].getYPos() * SCALE_VALUE)) + Y_OFFSET);
         }
-        /*
-        Legt die Startprovincen der Spieler fest.
-         */
-        int[] dataL = new int[(provinces.length-1)*2];
-        /*
-        dataL speichert folgende Daten:
-        0. Spieler-ID des Besitzers (Provinz 1)
-        1. Einheitenanzahl (Provinz 1)
-        2. Spieler-ID des Besitzers (Provinz 2)
-        3. [...]
-         */
-        if(players.length==3) {
-            /*
-            Spieler 1 darf beginnen; Hauptstadt: 40
-            Spieler 2 ist als zweites dran; Hauptstadt: 20
-            Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt: 9
-             */
-            dataL = new int[] {0,1,2,2,1,2,1,1,0,1,0,1,2,2,0,1,2,4,2,1,1,2,0,2,0,2,2,3,2,3,2,3,0,1,1,2,1,4,1,3,0,1,2,4,0,2,2,4,1,2,1,1,2,1,0,3,0,3,0,4,2,1,1,1,1,1,0,2,1,2,2,1,1,2,1,4,1,3,0,4,2,1,0,2};
-		} else if(players.length==4) {
-			/*
-				Spieler 1 darf beginnen; Hauptstadt:22
-				Spieler 2 ist als zweites dran; Hauptstadt:20
-				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt:2
-				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:39
-			*/
-            dataL = new int[] {0,1,2,3,2,3,2,2,2,2,2,3,1,2,0,2,1,2,2,2,1,3,2,2,1,3,0,3,0,3,0,3,2,2,3,2,1,4,1,4,0,1,0,2,0,5,0,3,1,2,3,3,3,1,3,2,1,2,1,2,3,1,1,1,3,5,2,2,2,2,2,2,3,1,3,1,3,4,3,1,0,2,3,4};
-		} else if(players.length==5) {
-			/*
-				Spieler 1 darf beginnen; Hauptstadt:13
-				Spieler 2 ist als zweites dran; Hauptstadt:7
-				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt:22
-				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:20
-				Spieler 5 ist als fünftes dran und bekommt zwei Karte; Hauptstadt:41
-			*/
-            dataL = new int[] {2,1,0,2,3,2,1,2,1,2,1,2,1,4,3,1,1,2,3,1,3,3,2,1,0,4,0,2,2,3,0,2,1,3,3,2,3,5,3,3,1,2,2,5,2,3,0,2,2,3,2,2,1,3,4,2,4,3,4,3,0,3,0,3,3,1,4,1,4,1,4,2,2,2,3,2,4,2,0,2,4,4,4,2};
-		}
         for(int i = 1; i < provinces.length; i++) {
-            Province p = provinces[i];
-            p.setOwner(dataL[(i-1)*2]);
-            p.setEntityCount(dataL[(i*2)-1]);
-			p.redrawProvince();
+			provinces[i].redrawProvince();
         }
     }
 
@@ -375,7 +336,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
     private void chooser()
     {
-        System.out.println("Es wird gewürfelt!");        
+        //System.out.println("Es wird gewürfelt!");        
         Dice_Offender diceOffender = new Dice_Offender();
         // System.out.println("Der Angreifer ereichte folgende Würfelzahlen:"); 
         int[] maxDiceOffenderArray = diceOffender.dice_offender(offenderProvince.getEntityCount());
