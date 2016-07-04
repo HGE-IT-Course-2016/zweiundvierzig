@@ -329,6 +329,14 @@ public abstract class GeneralMap extends World implements ButtonEvent
         if(offenderProvince == null || defenderProvince == null) {
             return;
         }
+        if(!offenderProvince.isProvinceNear(defenderProvince.getID())) {
+            JOptionPane.showMessageDialog(null,"Die Provinzen liegen nicht mal ansatzweise nebeneinander!");
+            offenderProvince.redrawProvince();
+            defenderProvince.redrawProvince();
+            offenderProvince = null;
+            defenderProvince = null;
+            return;
+        }
         //System.out.println("Es wird gewürfelt!");        
         Dice_Offender diceOffender = new Dice_Offender();
         // System.out.println("Der Angreifer ereichte folgende Würfelzahlen:"); 
