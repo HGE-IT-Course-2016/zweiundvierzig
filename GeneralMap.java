@@ -462,25 +462,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
     }
 
     public void act() {
-        if(status == GameStates.KAMPF) {
-            setBackground("MapWorldMove.png");
-
-            if(offenderProvince == null) {
-                OffenderProvince();
-            } else {
-                defenderProvince();
-            }
-        } else if (status == GameStates.VERSCHIEBEN) {
-            setBackground("MapWorldFight.png");
-            Province clickedProvince; 
-            for ( int i = 1; i <= (provinces.length - 1); i++) {
-                if (provinces[i].hasClicked() == true) {
-                    clickedProvince = provinces[i];
-                    useProvincesToMove(clickedProvince);
-                    break;
-                }
-            }
-        }
+       redrawGameStates();
     }
 
     /**
