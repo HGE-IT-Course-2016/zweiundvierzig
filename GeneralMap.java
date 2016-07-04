@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
     neue Maps werden als Unterklasse dieser Klasse eingefügt.
 
     @author GruenerWal, MaxiJohl, Felix Stupp
-    @version 0.3.0
+    @version 1.1.0
 */
 public abstract class GeneralMap extends World implements ButtonEvent
 {
@@ -435,6 +435,15 @@ public abstract class GeneralMap extends World implements ButtonEvent
     public int getPlayerCount()
     {
         return players.length;
+    }
+    
+    /**
+     * Gibt die Farbe des angefragten Spielers heraus.
+     * @param int pID -> Farbe des Spielers
+     */
+    public int getPlayerColor(int pID)
+    {
+        return players[pID].getColor();
     }
 
     /**

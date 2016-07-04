@@ -5,7 +5,7 @@ import java.awt.Color;
  * Write a description of class Province here.
  * 
  * @author GruenerWal, Felix Stupp
- * @version 0.0.2
+ * @version 1.1.0
  */
 public class Province extends Actor
 {
@@ -198,36 +198,41 @@ public class Province extends Actor
         }
 
     }
+    
+    /**
+     * Weist dem Owner der Provinz sein entsprechendes Color-Tag zu.
+     */
+    
     public void oDecide(GreenfootImage province,int textSize, int owner, int eCount)
     {
         String ownerString;
-        if(owner == 0)
+        if(getWorld().getPlayerColor(owner) == 0)
         {
             ownerString = "schwarz";
             eCalculate(province,ownerString,textSize);
         }
         else
         {
-            switch(owner)
+            switch(getWorld().getPlayerColor(owner))
             {
                 case 1:
                 ownerString = "schwarz";
                 eCalculate(province,ownerString,textSize);
                 break;
                 case 2:
-                ownerString = "rot";
-                eCalculate(province,ownerString,textSize);
-                break;
-                case 3:
                 ownerString = "blau";
                 eCalculate(province,ownerString,textSize);
                 break;
+                case 3:
+                ownerString = "gruen";
+                eCalculate(province,ownerString,textSize);
+                break;
                 case 4:
-                ownerString = "gelb";
+                ownerString = "rot";
                 eCalculate(province,ownerString,textSize);
                 break;
                 case 5:
-                ownerString = "gruen";
+                ownerString = "gelb";
                 eCalculate(province,ownerString,textSize);
                 break;
                 case 6:

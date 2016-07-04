@@ -4,8 +4,8 @@ import java.awt.Color;
 /**
  * Write a description of class Player here.
  * 
- * @author (Genosse Betakevin und Genosse Julien) 
- * @version (version 666)
+ * @author (Genosse Betakevin und Genosse Julien und Genosse GruenerWal) 
+ * @version 6.6.6-build2
  */
 public class Player extends Actor
 {
@@ -45,6 +45,16 @@ public class Player extends Actor
     public int getStars()
     {
         return stars;
+    }
+    
+    /**
+     * Gibt die Farbe des Spielers als int-Wert heraus.
+     * Wahnsinn, dass du dir den Scheiß hier grad durchliest.
+     * ~GruenerWal
+     */
+    public int getColor()
+    {
+        return color;
     }
     
     // Von Felix: Methode nicht architektur-konform
