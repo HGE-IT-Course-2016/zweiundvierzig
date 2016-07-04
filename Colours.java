@@ -178,7 +178,7 @@ public class Colours extends World implements ButtonEvent
     
     private Color getC(boolean pos) {
         if(x >= 5) {
-            return false;
+            return Color.gray;
         }
         return (pos) ? Color.lightGray : Color.gray;
     }
