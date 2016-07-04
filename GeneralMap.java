@@ -349,8 +349,9 @@ public abstract class GeneralMap extends World implements ButtonEvent
         {
             if (provinces[i].hasClicked() == true)
             {   
-                offenderProvince = provinces[i];
                 provinces[i].redrawProvince(2);
+                offenderProvince = provinces[i];
+                
                 // System.out.println("Die Provinz " + provinces[i].getDisplayName() + " wurde als angreifende Provinz ausgewählt! Sie gehört Spieler" + provinces[i].getOwner());                
             }
         }
@@ -363,8 +364,9 @@ public abstract class GeneralMap extends World implements ButtonEvent
             {
                 if (provinces[i].hasClicked() == true)//&& defenderProvince != offenderProvince)
                 {
-                    defenderProvince = provinces[i];
                     provinces[i].redrawProvince(3);
+                    defenderProvince = provinces[i];
+                    
                     // System.out.println("Die Provinz " + provinces[i].getDisplayName() + " wurde als verteidigende Provinz ausgewählt! Sie gehört Spieler" + provinces[i].getOwner()); 
                     chooser();                
                     break;
@@ -375,7 +377,8 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
     private void chooser()
     {
-        System.out.println("Es wird gewürfelt!");        
+        // System.out.println("Es wird gewürfelt!");        
+       defenderProvince.redrawProvince(3);
         Dice_Offender diceOffender = new Dice_Offender();
         // System.out.println("Der Angreifer ereichte folgende Würfelzahlen:"); 
         int[] maxDiceOffenderArray = diceOffender.dice_offender(offenderProvince.getEntityCount());
@@ -409,6 +412,8 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
         }
         JOptionPane.showMessageDialog(null,"Es wurde gewürfelt. Der Angreifer erreichte folgende Würfelzahlen: " + maxDiceOffender + "\n Der Verteidiger erreichte diese Würfelzahlen: " + maxDiceDefender);
+        offenderProvince.redrawProvince(1);
+        defenderProvince.redrawProvince(1);
         diceOffender = null;
         diceDefender = null;
         decider(maxDiceOffenderArray, maxDiceDefenderArray);
