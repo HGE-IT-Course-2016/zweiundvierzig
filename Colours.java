@@ -96,58 +96,49 @@ public class Colours extends World implements ButtonEvent
     //der per Konstruktor die Daten der Colorklasse übertragen werden, dannach wird die Map die aktive Welt
     public void buttonClicked (Button b)
     {
-        if ( b == schwarz && possw == true)
-        {
-            color[x] = sw;
-            pn[x]=getName(x,"Schwarz");
-            if(pn[x].length() > 0) {
-                x+=1;
-                possw = false;
-            }
-        }
-        if (b == blau && posbl == true)
-        {
-            color[x] = bl;
-            pn[x]=getName(x,"Blau");
-            if(pn[x].length() > 0) {
-                x+=1;
-                posbl = false;
-            }
-        }
-        if (b == grün && posgr == true )
-        {
-            color[x] = gr;
-            pn[x]=getName(x,"Grün");
-            if(pn[x].length() > 0) {
-                x+=1;
-                posgr = false;
-            }
-        }
-        if ( b == rot && posrt == true)
-        {
-            color[x] = rt;
-            pn[x]=getName(x,"Rot");
-            if(pn[x].length() > 0) {
-                x+=1;
-                posrt = false;
-            }
-        }
-        if ( b == gelb && posgb == true)
-        {
-            color [x] = gb;
-            pn[x]=getName(x,"Gelb");
-            if(pn[x].length() > 0) {
-                x+=1;
-                posgb = false;
-            }
-        }
-        if ( b == lila && posli == true)
-        {
-            color [x] = li;
-            pn[x]=getName(x,"Lila");
-            if(pn[x].length() > 0) {
-                x+=1;
-                posli = false;
+        if (x < 5) {
+            if (b == schwarz && possw == true) {
+                color[x] = sw;
+                pn[x]=getName(x,"Schwarz");
+                if(pn[x].length() > 0) {
+                    x+=1;
+                    possw = false;
+                }
+            } else if (b == blau && posbl == true) {
+                color[x] = bl;
+                pn[x]=getName(x,"Blau");
+                if(pn[x].length() > 0) {
+                    x+=1;
+                    posbl = false;
+                }
+            } else if (b == grün && posgr == true )  {
+                color[x] = gr;
+                pn[x]=getName(x,"Grün");
+                if(pn[x].length() > 0) {
+                    x+=1;
+                    posgr = false;
+                }
+            } else if (b == rot && posrt == true) {
+                color[x] = rt;
+                pn[x]=getName(x,"Rot");
+                if(pn[x].length() > 0) {
+                    x+=1;
+                    posrt = false;
+                }
+            } else if (b == gelb && posgb == true) {
+                color [x] = gb;
+                pn[x]=getName(x,"Gelb");
+                if(pn[x].length() > 0) {
+                    x+=1;
+                    posgb = false;
+                }
+            } else if (b == lila && posli == true) {
+                color [x] = li;
+                pn[x]=getName(x,"Lila");
+                if(pn[x].length() > 0) {
+                    x+=1;
+                    posli = false;
+                }
             }
         }
         if(b == remove && x > 0) {
