@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math;
 import java.util.Arrays;
+import java.awt.Color;
 import greenfoot.MouseInfo.*;
 import javax.swing.JOptionPane;
 
