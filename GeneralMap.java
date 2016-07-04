@@ -418,20 +418,9 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
     public void act() {
         if(status == GameStates.KAMPF) {
-            if(offenderProvince == null) {
-                OffenderProvince();
-            } else {
-                defenderProvince();
-            }
+            actFight();
         } else if (status == GameStates.VERSCHIEBEN) {
-            Province clickedProvince; 
-            for ( int i = 1; i <= (provinces.length - 1); i++) {
-                if (provinces[i].hasClicked() == true) {
-                    clickedProvince = provinces[i];
-                    useProvincesToMove(clickedProvince);
-                    break;
-                }
-            }
+            actMove();
         }
     }
 
@@ -548,6 +537,14 @@ public abstract class GeneralMap extends World implements ButtonEvent
     }
     
     // Kampfsystem
+    
+    private void actFight() {
+        if(offenderProvince == null) {
+            OffenderProvince();
+        } else {
+            defenderProvince();
+        }
+    }
 
     private void OffenderProvince()
     {
@@ -662,6 +659,17 @@ public abstract class GeneralMap extends World implements ButtonEvent
     }
 
     // Einheiten verschieben
+    
+    private void actMove() {
+        Province clickedProvince; 
+        for ( int i = 1; i <= (provinces.length - 1); i++) {
+            if (provinces[i].hasClicked() == true) {
+                clickedProvince = provinces[i];
+                useProvincesToMove(clickedProvince);
+                break;
+            }
+        }
+    }
 
     /**
         Nimmt zwei Provinzen entgegen, und fragt, wieviele Einheiten vom ersten zum zweiten Eintrag verschoben werden sollen.
