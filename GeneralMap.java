@@ -404,7 +404,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         {
             defenderProvince.setOwner(offenderProvince.getOwner());
             defenderProvince.setEntityCount(1);
-            JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Die Provinz gehört fortan dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) ").");
+            JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Die Provinz gehört fortan dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ").");
         }
         offenderProvince.redrawProvince();
         defenderProvince.redrawProvince();
