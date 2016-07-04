@@ -106,7 +106,7 @@ public class Map_World extends GeneralMap
         /*
         Legt die Startprovincen der Spieler fest.
          */
-        dataL = new int[(provinces.length-1)*2];
+        int[] dataL = new int[(provinces.length-1)*2];
         /*
         dataL speichert folgende Daten:
         0. Spieler-ID des Besitzers (Provinz 1)
