@@ -447,7 +447,8 @@ public abstract class GeneralMap extends World implements ButtonEvent
         if (maxOffender>maxDefender && defenderProvince.getEntityCount()==1)
         {
             defenderProvince.setOwner(offenderProvince.getOwner());
-            defenderProvince.setEntityCount(0);
+            defenderProvince.setEntityCount(1);
+            offenderProvince.setEntityCount(offenderProvince.getEntityCount() -1);
             JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (Spieler " + offenderProvince.getOwner() + "). Die Provinz gehört fortan dem Angreifer (" + offenderProvince.getOwner() + ")");
         }
         offenderProvince = null;
