@@ -752,7 +752,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
                         JOptionPane.showMessageDialog(null,"Willst du mich verarschen?");
                     }
                 }
-                if ( armiesToUse > freeArmies )
+                else
                 {
                     JOptionPane.showMessageDialog(null,"Nicht genügend freie Einheiten.");
                 }
