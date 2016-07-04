@@ -386,11 +386,17 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
         int maxDefender = maxDiceDefender[1];
         int maxOffender = maxDiceOffender[2];
-        if (maxOffender > maxDefender && defenderProvince.getEntityCount()>1)
+        if (maxOffender > maxDefender)
         {
             defenderProvince.removeFromEntities(1);
             JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Dem Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + defenderProvince.getEntityCount() + " Einheiten.");
-
+            if (defenderProvince.getEntityCount() <= 0)
+            {
+                defenderProvince.setOwner(offenderProvince.getOwner());
+                offenderProvince.removeFromEntities(1);
+                defenderProvince.setEntityCount(1);
+                JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Die Provinz gehört fortan dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ").");
+            }
         }
 
         if (maxOffender < maxDefender && offenderProvince.getEntityCount()>1)
@@ -405,13 +411,6 @@ public abstract class GeneralMap extends World implements ButtonEvent
             JOptionPane.showMessageDialog(null,"Da es unentschieden ist, gewinnt der Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + "). Dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + offenderProvince.getEntityCount() + " Einheiten.");
         }
 
-        if (maxOffender > maxDefender && defenderProvince.getEntityCount() <= 1)
-        {
-            defenderProvince.setOwner(offenderProvince.getOwner());
-            offenderProvince.removeFromEntities(1);
-            defenderProvince.setEntityCount(1);
-            JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Die Provinz gehört fortan dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ").");
-        }
         offenderProvince.redrawProvince();
         defenderProvince.redrawProvince();
         offenderProvince = null;
