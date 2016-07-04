@@ -137,9 +137,6 @@ public abstract class GeneralMap extends World implements ButtonEvent
         for(int i = 1; i < provinces.length; i++) {
             addObject(provinces[i],((int) Math.floor(provinces[i].getXPos() * SCALE_VALUE)) + X_OFFSET,((int) Math.floor(provinces[i].getYPos() * SCALE_VALUE)) + Y_OFFSET);
         }
-        for(int i = 1; i < provinces.length; i++) {
-			provinces[i].redrawProvince();
-        }
     }
 
     /**

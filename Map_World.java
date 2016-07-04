@@ -103,6 +103,8 @@ public class Map_World extends GeneralMap
         provinces[41] = new Province(41 , 6 , 1000, 595 , 1 , "Ost Australien" , new int[] {40 , 42});
         provinces[42] = new Province(42 , 6 , 934 , 628 , 1 , "West Australien" , new int[] {40 , 41 , 39});
 
+        initProvinces();
+        
         /*
         Legt die Startprovincen der Spieler fest.
          */
@@ -144,7 +146,5 @@ public class Map_World extends GeneralMap
             p.setOwner(dataL[(i-1)*2]);
             p.setEntityCount(dataL[(i*2)-1]);
         }
-        
-        initProvinces();
     }
 }
