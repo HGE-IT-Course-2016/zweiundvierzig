@@ -8,10 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Spielanleitung extends Actor 
 {
+    
+    
     public void act() 
     {
-        
-        getImage();
+        setImage ("Spielanleitung.png");
         
     }    
     
