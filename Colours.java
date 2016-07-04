@@ -17,8 +17,8 @@ public class Colours extends World implements ButtonEvent
     Button lila = new Button ("Lila", 16, this);
     Button gelb = new Button ("Gelb", 16, this);
     Button weiter = new Button ("Weiter", 16, this);
-    int[] color = new int [6];
-    String[] pn = new String [6];
+    int[] color = new int [5];
+    String[] pn = new String [5];
     int x = 0;
     boolean possw = true; // schwarz
     boolean posbl = true; // blau
@@ -40,7 +40,6 @@ public class Colours extends World implements ButtonEvent
     Label pl3 = new Label("",16);
     Label pl4 = new Label("",16);
     Label pl5 = new Label("",16);
-    Label pl6 = new Label("",16);
 
     /**
      * Constructor for objects of class Colors.
@@ -52,7 +51,7 @@ public class Colours extends World implements ButtonEvent
         setBackground(Start_Load.backgroundImage);
         
         Button[] bList = new Button[] {schwarz,gelb,blau,grün,rot,lila,weiter,remove};
-        Label[] lList = new Label[] {header,pl1,pl2,pl3,pl4,pl5,pl6};
+        Label[] lList = new Label[] {header,pl1,pl2,pl3,pl4,pl5};
         
         addObject(header,200,15);
         
@@ -70,7 +69,6 @@ public class Colours extends World implements ButtonEvent
         addObject(pl3,355,200);
         addObject(pl4,355,220);
         addObject(pl5,355,240);
-        addObject(pl6,355,260);
         
         schwarz.setForeColor(Color.black);
         gelb.setForeColor(Color.yellow);
@@ -179,6 +177,9 @@ public class Colours extends World implements ButtonEvent
     }
     
     private Color getC(boolean pos) {
+        if(x >= 5) {
+            return false;
+        }
         return (pos) ? Color.lightGray : Color.gray;
     }
     
@@ -198,10 +199,7 @@ public class Colours extends World implements ButtonEvent
         pl3.setText("");
         pl4.setText("");
         pl5.setText("");
-        pl6.setText("");
         switch(x) {
-            case 6:
-                pl6.setText(pn[5]);
             case 5:
                 pl5.setText(pn[4]);
             case 4:
