@@ -346,7 +346,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         int[] maxDiceDefenderArray = diceDefender.dice_defender(defenderProvince.getEntityCount());
         Arrays.sort(maxDiceOffenderArray);
         Arrays.sort(maxDiceDefenderArray);
-
+        maxDiceOffender = "";
         for(int i = 0;i<3;i++)
         {
             if(maxDiceOffenderArray[i] != 0) {
@@ -360,6 +360,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
                 }
             }
         }
+        maxDiceDefender = "";
         for(int i = 0;i<2;i++)
         {
             if(maxDiceDefenderArray[i] != 0) {
