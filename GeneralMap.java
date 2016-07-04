@@ -53,6 +53,9 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
     // Einheiten verschieben
     Province savedProvince = null;
+    
+    // Einheiten setzen
+    int freeArmies = -1;
 
     /**
         Erstellt eine GeneralMap mit allen Eigenschaften und initialisiert die Arrays für Provinzen und Spieler.
