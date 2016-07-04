@@ -22,6 +22,7 @@ public class Player extends Actor
     int color;
     int textsize;
     int c;
+    public int active;
 
     //definiert die ID und Namens Variable
     public Player(int identity,String name, int c)
@@ -46,47 +47,47 @@ public class Player extends Actor
     {
         return stars;
     }
-    
+
     // Von Felix: Methode nicht architektur-konform
-    
+
     /* // erhöht die Sternenzahl um eine random ausgewählte Anzahl von 1-3
     public void addToStars()
     {
-        int rand;
-        int pre;
-        rand = (int)(1+6*Math.random());
-        if (rand == 1 || rand == 2|| rand == 3)
-        {
-            add = 1;
-            redrawPlayer();
-        }
-        if (rand == 4|| rand == 5)
-        {
-            add = 2;
-            redrawPlayer();
-        }
-        if (rand == 6)
-        {
-            add = 3;
-            redrawPlayer();
-        }
-        if (gotProv== true)
-        {
-            pre = stars;
-            stars+=add;
-            System.out.println("Deine vorherige Sternenanzahl betrug " + pre + ".");
-            System.out.println("Du hast " + add + " Sterne erhalten.");
-            System.out.println("Deine aktuelle Sternenanzahl beträgt " + stars + ".");
-            redrawPlayer();
-        }
+    int rand;
+    int pre;
+    rand = (int)(1+6*Math.random());
+    if (rand == 1 || rand == 2|| rand == 3)
+    {
+    add = 1;
+    redrawPlayer();
+    }
+    if (rand == 4|| rand == 5)
+    {
+    add = 2;
+    redrawPlayer();
+    }
+    if (rand == 6)
+    {
+    add = 3;
+    redrawPlayer();
+    }
+    if (gotProv== true)
+    {
+    pre = stars;
+    stars+=add;
+    System.out.println("Deine vorherige Sternenanzahl betrug " + pre + ".");
+    System.out.println("Du hast " + add + " Sterne erhalten.");
+    System.out.println("Deine aktuelle Sternenanzahl beträgt " + stars + ".");
+    redrawPlayer();
+    }
     } */
-    
+
     private void checkStars() {
         if(stars < 0) {
             stars = 0;
         }
     }
-    
+
     // Von Felix: Architektur-konforme Funktion
     public int addToStars(int s) {
         stars += s;
@@ -110,7 +111,7 @@ public class Player extends Actor
         redrawPlayer();
         return stars;
     }
-    
+
     public boolean canStarsRemoved(int s) {
         return (stars - s) >= 0;
     }
@@ -233,16 +234,31 @@ public class Player extends Actor
             break;
             case 3:
             flag = new GreenfootImage("images\\GrueneArmee.jpg");
-
-            redraw(statistics,flag,textSize);
+            redrawArrow(statistics,flag,textSize);
             break;
         }
 
     }
 
+    private void redrawArrow(GreenfootImage statistics,GreenfootImage flag, int textSize)
+    {
+        // redraw(statistics,flag,textSize);
+        GreenfootImage Arrow = new GreenfootImage(137,120);           
+        if(id == 0 || id == 1|| id == 2)
+        {
+            Arrow.setColor(Color.GRAY);    
+            Arrow.fill();
+            Arrow.drawImage(statistics,0,0);
+            redraw(Arrow,flag,textSize);
+        }
+        else
+        {
+            redraw(statistics,flag,textSize);
+        }
+    }
+
     private void redraw(GreenfootImage statistics,GreenfootImage flag, int textSize)
     {
-
         flag.scale(137,83);
         statistics.drawImage(flag,0,textSize);
         GreenfootImage playerStatistics = new GreenfootImage(stats[0] + "||" + stats[1] + "||" + stats[2] + "||" +stats[3] + "||" + stats[4] + "||" + stats[5],textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));

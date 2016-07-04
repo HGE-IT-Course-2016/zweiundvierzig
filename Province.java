@@ -22,6 +22,7 @@ public class Province extends Actor
     private int xPos;
     private int yPos;
     private int eCount;
+    public int textSize;
 
     private boolean clicked = false;
     /**
@@ -171,13 +172,14 @@ public class Province extends Actor
 
     public void redrawProvince(int ColorInt)
     {
-        int textSize;
+        
         textSize = 20;
-        GreenfootImage province = new GreenfootImage(120,100);   
+         
 
         if(ColorInt ==1)
         {
             GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
+            GreenfootImage province = new GreenfootImage(120,2*textSize);  
             province.drawImage(provinceName,0,0);
             setImage(province);
             oDecide(province,textSize,owner,eCount);
@@ -185,6 +187,7 @@ public class Province extends Actor
         if(ColorInt ==2)
         {
             GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),Color.GREEN);
+            GreenfootImage province = new GreenfootImage(120,2*textSize);  
             province.drawImage(provinceName,0,0);
             setImage(province);
             oDecide(province,textSize,owner,eCount);
@@ -192,6 +195,7 @@ public class Province extends Actor
         if(ColorInt == 3)
         {
             GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),Color.RED);
+            GreenfootImage province = new GreenfootImage(120,2*textSize);  
             province.drawImage(provinceName,0,0);
             setImage(province);
             oDecide(province,textSize,owner,eCount);
