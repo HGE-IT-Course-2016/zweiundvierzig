@@ -17,7 +17,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         Felder, im Moment nur Anzahl der Provinzen
         Später evtl. weitere Werte wie Schwierigkeit denkbar
     */
-    Button modus = new Button("Kampf",25,this);
+    Button modus = new Button("Kampf beginnen",25,this);
     
     private final int X_OFFSET = 200; // Verschiebt die Provinzen nach rechts
     private final int Y_OFFSET = 25; // Verschiebt die Provinzen nach unten
@@ -30,9 +30,9 @@ public abstract class GeneralMap extends World implements ButtonEvent
     private final double SCALE_VALUE = 1;
 
     protected enum GameStates {
+        SETZEN,
         KAMPF,
-        VERSCHIEBEN,
-        SETZEN
+        VERSCHIEBEN
     }
 
     protected Province[] provinces;
@@ -44,18 +44,6 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
     protected int provinceCount;
     protected int armyMinimum;
-    
-    // Kampfsystem
-    Province offenderProvince;
-    Province defenderProvince;
-    String maxDiceOffender = "";
-    String maxDiceDefender = "";
-
-    // Einheiten verschieben
-    Province savedProvince = null;
-    
-    // Einheiten setzen
-    int freeArmies = -1;
 
     /**
         Erstellt eine GeneralMap mit allen Eigenschaften und initialisiert die Arrays für Provinzen und Spieler.
@@ -67,6 +55,9 @@ public abstract class GeneralMap extends World implements ButtonEvent
     {    
         super(1600,900,1);
         players = new Player[playerList.length];
+        modus.setSize(100,100);
+        modus.setBackColor(Color.white);
+        modus.setForeColor(Color.black);
         addObject( modus, 1500, 808);
         for (int i = 0; i < playerList.length; i++) {
             players[i] = new Player(i,playerList[i],colorList[i]);
@@ -121,90 +112,6 @@ public abstract class GeneralMap extends World implements ButtonEvent
 				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt: 9
 			*/
             dataL = new int[] {0,1,2,2,1,2,1,1,0,1,0,1,2,2,0,1,2,4,2,1,1,2,0,2,0,2,2,3,2,3,2,3,0,1,1,2,1,4,1,3,0,1,2,4,0,2,2,4,1,2,1,1,2,1,0,3,0,3,0,4,2,1,1,1,1,1,0,2,1,2,2,1,1,2,1,4,1,3,0,4,2,1,0,2};
-			provinces[1].setOwner(0);
-			provinces[1].setEntityCount(1);
-			provinces[2].setOwner(2);
-			provinces[2].setEntityCount(2);
-			provinces[3].setOwner(1); 
-			provinces[3].setEntityCount(2);
-			provinces[4].setOwner(1); //Fabrik
-			provinces[4].setEntityCount(1);
-			provinces[5].setOwner(0);//Fabrik
-			provinces[5].setEntityCount(1);
-			provinces[6].setOwner(0);//Fabrik
-			provinces[6].setEntityCount(1);
-			provinces[7].setOwner(2);
-			provinces[7].setEntityCount(2);
-			provinces[8].setOwner(0);
-			provinces[8].setEntityCount(1);
-			provinces[9].setOwner(2);
-			provinces[9].setEntityCount(4);
-			provinces[10].setOwner(2);
-			provinces[10].setEntityCount(1);
-			provinces[11].setOwner(1);//Fabrik
-			provinces[11].setEntityCount(2);
-			provinces[12].setOwner(0);
-			provinces[12].setEntityCount(2);
-			provinces[13].setOwner(0);//Fabrik
-			provinces[13].setEntityCount(2);
-			provinces[14].setOwner(2);//Fabrik
-			provinces[14].setEntityCount(3);
-			provinces[15].setOwner(2);//Fabrik
-			provinces[15].setEntityCount(3);
-			provinces[16].setOwner(2);//Fabrik
-			provinces[16].setEntityCount(3);
-			provinces[17].setOwner(0);
-			provinces[17].setEntityCount(1);
-			provinces[18].setOwner(1);
-			provinces[18].setEntityCount(2);
-			provinces[19].setOwner(1);//Fabrik
-			provinces[19].setEntityCount(4);
-			provinces[20].setOwner(1);
-			provinces[20].setEntityCount(3);
-			provinces[21].setOwner(0);
-			provinces[21].setEntityCount(1);
-			provinces[22].setOwner(2);//Fabrik
-			provinces[22].setEntityCount(4);
-			provinces[23].setOwner(0);
-			provinces[23].setEntityCount(2);
-			provinces[24].setOwner(2);
-			provinces[24].setEntityCount(4);
-			provinces[25].setOwner(1);
-			provinces[25].setEntityCount(2);
-			provinces[26].setOwner(1);//Fabrik
-			provinces[26].setEntityCount(1);
-			provinces[27].setOwner(2);
-			provinces[27].setEntityCount(1);
-			provinces[28].setOwner(0);//Fabrik
-			provinces[28].setEntityCount(3);
-			provinces[29].setOwner(0);//Fabrik
-			provinces[29].setEntityCount(3);
-			provinces[30].setOwner(0);
-			provinces[30].setEntityCount(4);
-			provinces[31].setOwner(2);
-			provinces[31].setEntityCount(1);
-			provinces[32].setOwner(1);
-			provinces[32].setEntityCount(1);
-			provinces[33].setOwner(1);
-			provinces[33].setEntityCount(1);
-			provinces[34].setOwner(0);
-			provinces[34].setEntityCount(2);
-			provinces[35].setOwner(1);
-			provinces[35].setEntityCount(2);
-			provinces[36].setOwner(2);
-			provinces[36].setEntityCount(1);
-			provinces[37].setOwner(1);
-			provinces[37].setEntityCount(2);
-			provinces[38].setOwner(1);//Fabrik
-			provinces[38].setEntityCount(4);
-			provinces[39].setOwner(1);
-			provinces[39].setEntityCount(3);
-			provinces[40].setOwner(0);
-			provinces[40].setEntityCount(4);
-			provinces[41].setOwner(2);//Fabrik
-			provinces[41].setEntityCount(1);
-			provinces[42].setOwner(0);
-			provinces[42].setEntityCount(2);
 		} else if(players.length==4) {
 			/*
 				Spieler 1 darf beginnen; Hauptstadt:22
@@ -213,90 +120,6 @@ public abstract class GeneralMap extends World implements ButtonEvent
 				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:39
 			*/
             dataL = new int[] {0,1,2,3,2,3,2,2,2,2,2,3,1,2,0,2,1,2,2,2,1,3,2,2,1,3,0,3,0,3,0,3,2,2,3,2,1,4,1,4,0,1,0,2,0,5,0,3,1,2,3,3,3,1,3,2,1,2,1,2,3,1,1,1,3,5,2,2,2,2,2,2,3,1,3,1,3,4,3,1,0,2,3,4};
-			provinces[1].setOwner(0);
-			provinces[1].setEntityCount(1);
-			provinces[2].setOwner(2);
-			provinces[2].setEntityCount(3);
-			provinces[3].setOwner(2);
-			provinces[3].setEntityCount(3);
-			provinces[4].setOwner(2);//Fabrik
-			provinces[4].setEntityCount(2);
-			provinces[5].setOwner(2);//Fabrik
-			provinces[5].setEntityCount(2);
-			provinces[6].setOwner(2);//Fabrik
-			provinces[6].setEntityCount(3);
-			provinces[7].setOwner(1);
-			provinces[7].setEntityCount(2);
-			provinces[8].setOwner(0);
-			provinces[8].setEntityCount(2);
-			provinces[9].setOwner(1);
-			provinces[9].setEntityCount(2);
-			provinces[10].setOwner(2);//Fabrik
-			provinces[10].setEntityCount(2);
-			provinces[11].setOwner(1);//Fabrik
-			provinces[11].setEntityCount(3);
-			provinces[12].setOwner(2);
-			provinces[12].setEntityCount(2);
-			provinces[13].setOwner(1);//Fabrik
-			provinces[13].setEntityCount(3);
-			provinces[14].setOwner(0);//Fabrik
-			provinces[14].setEntityCount(3);
-			provinces[15].setOwner(0);//Fabrik
-			provinces[15].setEntityCount(3);
-			provinces[16].setOwner(0);//Fabrik
-			provinces[16].setEntityCount(3);
-			provinces[17].setOwner(2);
-			provinces[17].setEntityCount(2);
-			provinces[18].setOwner(3);
-			provinces[18].setEntityCount(2);
-			provinces[19].setOwner(1);//Fabrik
-			provinces[19].setEntityCount(4);
-			provinces[20].setOwner(1);
-			provinces[20].setEntityCount(4);
-			provinces[21].setOwner(0);
-			provinces[21].setEntityCount(1);
-			provinces[22].setOwner(0);//Fabrik
-			provinces[22].setEntityCount(2);
-			provinces[23].setOwner(0);
-			provinces[23].setEntityCount(5);
-			provinces[24].setOwner(0);
-			provinces[24].setEntityCount(3);
-			provinces[25].setOwner(1);
-			provinces[25].setEntityCount(2);
-			provinces[26].setOwner(3);//Fabrik
-			provinces[26].setEntityCount(3);
-			provinces[27].setOwner(3);
-			provinces[27].setEntityCount(1);
-			provinces[28].setOwner(3);//Fabrik
-			provinces[28].setEntityCount(2);
-			provinces[29].setOwner(1);//Fabrik
-			provinces[29].setEntityCount(2);
-			provinces[30].setOwner(1);
-			provinces[30].setEntityCount(2);
-			provinces[31].setOwner(3);
-			provinces[31].setEntityCount(1);
-			provinces[32].setOwner(1);
-			provinces[32].setEntityCount(1);
-			provinces[33].setOwner(3);
-			provinces[33].setEntityCount(5);
-			provinces[34].setOwner(2);
-			provinces[34].setEntityCount(2);
-			provinces[35].setOwner(2);
-			provinces[35].setEntityCount(2);
-			provinces[36].setOwner(2);
-			provinces[36].setEntityCount(2);
-			provinces[37].setOwner(3);
-			provinces[37].setEntityCount(1);
-			provinces[38].setOwner(3);//Fabrik
-			provinces[38].setEntityCount(1);
-			provinces[39].setOwner(3);
-			provinces[39].setEntityCount(4);
-			provinces[40].setOwner(3);
-			provinces[40].setEntityCount(1);
-			provinces[41].setOwner(0);//Fabrik
-			provinces[41].setEntityCount(2);
-			provinces[42].setOwner(3);
-			provinces[42].setEntityCount(4);
 		} else if(players.length==5) {
 			/*
 				Spieler 1 darf beginnen; Hauptstadt:13
@@ -306,108 +129,12 @@ public abstract class GeneralMap extends World implements ButtonEvent
 				Spieler 5 ist als fünftes dran und bekommt zwei Karte; Hauptstadt:41
 			*/
             dataL = new int[] {2,1,0,2,3,2,1,2,1,2,1,2,1,4,3,1,1,2,3,1,3,3,2,1,0,4,0,2,2,3,0,2,1,3,3,2,3,5,3,3,1,2,2,5,2,3,0,2,2,3,2,2,1,3,4,2,4,3,4,3,0,3,0,3,3,1,4,1,4,1,4,2,2,2,3,2,4,2,0,2,4,4,4,2};
-			provinces[1].setOwner(2);
-			provinces[1].setEntityCount(1);
-			provinces[2].setOwner(0);
-			provinces[2].setEntityCount(2);
-			provinces[3].setOwner(3);
-			provinces[3].setEntityCount(2);
-			provinces[4].setOwner(1);//Fabrik
-			provinces[4].setEntityCount(2);
-			provinces[5].setOwner(1);//Fabrik
-			provinces[5].setEntityCount(2);
-			provinces[6].setOwner(1);//Fabrik
-			provinces[6].setEntityCount(2);
-			provinces[7].setOwner(1);
-			provinces[7].setEntityCount(4);
-			provinces[8].setOwner(3);
-			provinces[8].setEntityCount(1);
-			provinces[9].setOwner(1);
-			provinces[9].setEntityCount(2);
-			provinces[10].setOwner(3);
-			provinces[10].setEntityCount(1);
-			provinces[11].setOwner(3);//Fabrik
-			provinces[11].setEntityCount(3);
-			provinces[12].setOwner(2);
-			provinces[12].setEntityCount(1);
-			provinces[13].setOwner(0);
-			provinces[13].setEntityCount(4);
-			provinces[14].setOwner(0);//Fabrik
-			provinces[14].setEntityCount(2);
-			provinces[15].setOwner(2);//Fabrik
-			provinces[15].setEntityCount(3);
-			provinces[16].setOwner(0);//Fabrik
-			provinces[16].setEntityCount(2);
-			provinces[17].setOwner(1);
-			provinces[17].setEntityCount(3);
-			provinces[18].setOwner(3);
-			provinces[18].setEntityCount(2);
-			provinces[19].setOwner(3);//Fabrik
-			provinces[19].setEntityCount(5);
-			provinces[20].setOwner(3);
-			provinces[20].setEntityCount(3);
-			provinces[21].setOwner(1);
-			provinces[21].setEntityCount(2);
-			provinces[22].setOwner(2);//Fabrik
-			provinces[22].setEntityCount(5);
-			provinces[23].setOwner(2);
-			provinces[23].setEntityCount(3);
-			provinces[24].setOwner(0);
-			provinces[24].setEntityCount(2);
-			provinces[25].setOwner(2);
-			provinces[25].setEntityCount(3);
-			provinces[26].setOwner(2);//Fabrik
-			provinces[26].setEntityCount(2);
-			provinces[27].setOwner(1);
-			provinces[27].setEntityCount(3);
-			provinces[28].setOwner(4);//Fabrik
-			provinces[28].setEntityCount(2);
-			provinces[29].setOwner(4);//Fabrik
-			provinces[29].setEntityCount(3);
-			provinces[30].setOwner(4);
-			provinces[30].setEntityCount(3);
-			provinces[31].setOwner(0);
-			provinces[31].setEntityCount(3);
-			provinces[32].setOwner(0);
-			provinces[32].setEntityCount(3);
-			provinces[33].setOwner(3);
-			provinces[33].setEntityCount(1);
-			provinces[34].setOwner(4);
-			provinces[34].setEntityCount(1);
-			provinces[35].setOwner(4);
-			provinces[35].setEntityCount(1);
-			provinces[36].setOwner(4);
-			provinces[36].setEntityCount(2);
-			provinces[37].setOwner(2);
-			provinces[37].setEntityCount(2);
-			provinces[38].setOwner(3);//Fabrik
-			provinces[38].setEntityCount(2);
-			provinces[39].setOwner(4);
-			provinces[39].setEntityCount(2);
-			provinces[40].setOwner(0);
-			provinces[40].setEntityCount(2);
-			provinces[41].setOwner(4);//Fabrik
-			provinces[41].setEntityCount(4);
-			provinces[42].setOwner(4);
-			provinces[42].setEntityCount(2);
 		}
-        int errors = 0;
         for(int i = 1; i < provinces.length; i++) {
             Province p = provinces[i];
+            p.setOwner(dataL[(i-1)*2]);
+            p.setEntityCount(dataL[(i*2)-1]);
 			p.redrawProvince();
-            int oI = (i-1)*2; // ownerID inside dataL
-            int eI = oI+1; // entitiesCountID inside dataL
-            // Dieser Code überprüft die Datenliste mit den Daten, die die alte Methode (mit den vielen Zeilen) bereits hinterlegt haben sollte. Nur für Debugging!
-            if(p.getOwner() != dataL[oI]) {
-                errors++;
-                showDialog("dataL-Index " + oI + ", got " + dataL[oI] + ", expected " + p.getOwner());
-            } else if(p.getEntityCount() != dataL[eI]) {
-                errors++;
-                showDialog("dataL-Index " + eI + ", got " + dataL[eI] + ", expected " + p.getEntityCount());
-            }
-        }
-        if(errors == 0) {
-            showDialog("No errors found!");
         }
     }
 
@@ -524,33 +251,42 @@ public abstract class GeneralMap extends World implements ButtonEvent
             if(currentPlayer >= players.length) {
                 currentPlayer = 0;
             }
+        } else if ( modus == b ) {
+            if(status==GameStates.SETZEN && freeArmies == 0 ) {
+                status=GameStates.KAMPF;
+                offenderProvince = null;
+                defenderProvince = null;
+                maxDiceOffender = "";
+                maxDiceDefender = "";
+                modus.setBackColor(Color.white);
+                modus.setForeColor(Color.black);
+                modus.setText("Kampf\nbeenden");
+            } else if (status==GameStates.KAMPF) {
+                status=GameStates.VERSCHIEBEN;
+                savedProvince = null;
+                modus.setText("Nächster\nSpieler");
+            } else if (status==GameStates.VERSCHIEBEN) {
+                freeArmies = -1;
+                if(currentPlayer >= players.length-1)
+                {
+                    currentPlayer=0;
+                }
+                else
+                {
+                    currentPlayer+=1;   
+                }
+                status=GameStates.SETZEN;
+                modus.setText("Kampf\nbeginnen");
+            }
         }
-		if ( modus == b && status==GameStates.SETZEN)
-		{
-		    status=GameStates.KAMPF;
-		    modus.setText("Kampf beenden");
-		}
-		if ( modus == b && status== GameStates.KAMPF)
-		{
-		    status=GameStates.VERSCHIEBEN;
-		    modus.setText("Nächster Spieler");
-		}
-		if ( modus == b && status==GameStates.VERSCHIEBEN)
-		{
-		    if( currentPlayer== players.length-1)
-		    {
-		        currentPlayer=0;
-			}
-		    else
-		    {
-		        currentPlayer+=1;   
-		    }
-			status=GameStates.SETZEN;
-		    modus.setText("Kampf beginnen");
-		}
     }
     
     // Kampfsystem
+    
+    Province offenderProvince;
+    Province defenderProvince;
+    String maxDiceOffender = "";
+    String maxDiceDefender = "";
     
     private void actFight() {
         if(offenderProvince == null) {
@@ -674,6 +410,8 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
     // Einheiten verschieben
     
+    Province savedProvince = null;
+    
     private void actMove() {
         Province clickedProvince; 
         for ( int i = 1; i <= (provinces.length - 1); i++) {
@@ -737,11 +475,18 @@ public abstract class GeneralMap extends World implements ButtonEvent
     
     // Einheiten setzen
     
+    int freeArmies = -1;
+    
     private void actPlace()
     {
-        if ( freeArmies == -1 )
-        {
+        if ( freeArmies == -1 ) {
             freeArmies = calculateArmies();
+        } else if ( freeArmies == 0 ) {
+            modus.setBackColor(Color.white);
+            modus.setForeColor(Color.black);
+        } else {
+            modus.setBackColor(Color.black);
+            modus.setForeColor(Color.black);
         }
         for ( int i = 1; i <= (provinces.length - 1); i++) {
             if (provinces[i].hasClicked() == true && provinces[i].getOwner() == currentPlayer)

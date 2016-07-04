@@ -62,16 +62,16 @@ public class Map_World extends GeneralMap
         provinces[6] =  new Province( 6 , 1 , 232 , 273 , 2 , "Oststaaten" , new int[] {4 , 5 , 7 , 8});
         provinces[7] =  new Province( 7 , 1 , 300 , 180 , 2 , "Quebec" , new int[] {4 , 6 , 9});
         provinces[8] =  new Province( 8 , 1 , 181 , 347 , 1 , "Mittelamerika" , new int[] {5 , 6 , 17});
-        provinces[9] =  new Province( 9 , 1 , 365 ,  55 , 1 , "Groenland" , new int[] {2 , 4 , 7 , 10});
+        provinces[9] =  new Province( 9 , 1 , 365 ,  55 , 1 , "Grönland" , new int[] {2 , 4 , 7 , 10});
 
         // cID 2 - Europa
         provinces[10] = new Province(10 , 2 , 454 , 142 , 1 , "Island" , new int[] {9 , 11 , 12});
-        provinces[11] = new Province(11 , 2 , 424 , 221 , 2 , "Grossbritannien" , new int[] {10 , 12 , 14 , 15});
+        provinces[11] = new Province(11 , 2 , 424 , 221 , 2 , "Großbritannien" , new int[] {10 , 12 , 14 , 15});
         provinces[12] = new Province(12 , 2 , 520 , 153 , 1 , "Skandinavien" , new int[] {10 , 11 , 13 , 14});
         provinces[13] = new Province(13 , 2 , 636 , 180 , 2 , "Russland" , new int[] {12 , 14 , 16 , 27 , 31 , 32});
         provinces[14] = new Province(14 , 2 , 528 , 232 , 2 , "Nordeuropa" , new int[] {11 , 12 , 13 , 15 , 16});
         provinces[15] = new Province(15 , 2 , 449 , 335 , 2 , "Westeuropa" , new int[] {11 , 14 , 16 , 25});
-        provinces[16] = new Province(16 , 2 , 537 , 296 , 2 , "Suedeuropa" , new int[] {13 , 14 , 15 , 25 , 26 , 27});
+        provinces[16] = new Province(16 , 2 , 537 , 296 , 2 , "Südeuropa" , new int[] {13 , 14 , 15 , 25 , 26 , 27});
 
         // cID 3 - Suedamerika
         provinces[17] = new Province(17 , 3 , 245 , 396 , 1 , "Venezuela" , new int[] {8 , 18 , 19});
@@ -85,7 +85,7 @@ public class Map_World extends GeneralMap
         provinces[23] = new Province(23 , 4 , 572 , 537 , 2 , "Zentralafrika" , new int[] {22 , 25 , 24});
         provinces[24] = new Province(24 , 4 , 632 , 500 , 2 , "Ostafrika" , new int[] {21 , 22 , 25 , 23 , 26});
         provinces[25] = new Province(25 , 4 , 491 , 444 , 1 , "Nordafrika" , new int[] {15 , 16 , 26 , 23 , 24});
-        provinces[26] = new Province(26 , 4 , 574 , 414 , 1 , "Aegypten" , new int[] {27 , 25 , 24 , 16});
+        provinces[26] = new Province(26 , 4 , 574 , 414 , 1 , "Ägypten" , new int[] {27 , 25 , 24 , 16});
 
         // cID 5 - Asien
         provinces[27] = new Province(27 , 5 , 664 , 345 , 2 , "Mittlerer Osten" , new int[] {24 , 26 , 16 , 23 , 31 , 28});
