@@ -18,7 +18,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         Felder, im Moment nur Anzahl der Provinzen
         Später evtl. weitere Werte wie Schwierigkeit denkbar
     */
-    Button modus = new Button("Kampf beginnen",25,this);
+    Button modus = new Button("Kampf\nbeginnen",25,this);
     
     private final int X_OFFSET = 200; // Verschiebt die Provinzen nach rechts
     private final int Y_OFFSET = 25; // Verschiebt die Provinzen nach unten
@@ -262,10 +262,12 @@ public abstract class GeneralMap extends World implements ButtonEvent
                 modus.setBackColor(Color.white);
                 modus.setForeColor(Color.black);
                 modus.setText("Kampf\nbeenden");
+                System.out.println("KAMPF");
             } else if (status==GameStates.KAMPF) {
                 status=GameStates.VERSCHIEBEN;
                 savedProvince = null;
                 modus.setText("Nächster\nSpieler");
+                System.out.println("VERSCHIEBEN");
             } else if (status==GameStates.VERSCHIEBEN) {
                 freeArmies = -1;
                 if(currentPlayer >= players.length-1)
@@ -278,6 +280,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
                 }
                 status=GameStates.SETZEN;
                 modus.setText("Kampf\nbeginnen");
+                System.out.println("SETZEN");
             }
         }
     }
