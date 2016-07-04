@@ -83,7 +83,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         if(status == GameStates.KAMPF)
         {
             GreenfootImage GameStatesEmpty = new GreenfootImage(750,textSize);
-            GreenfootImage GameStates = new GreenfootImage("KAMPF!!! Wähle die Provinz aus, die du angreifen möchtest!",textSize,new Color(255,255,255),new Color(0,0,0));
+            GreenfootImage GameStates = new GreenfootImage("KAMPF!!! Wähle die Provinzen aus, die kämpfen sollen, " + getPlayerName(),textSize,new Color(255,255,255),new Color(0,0,0));
             GameStatesEmpty.drawImage(GameStates,0,0);
             GreenfootImage States = new GreenfootImage("MapWorldFight.png");
             States.drawImage(GameStatesEmpty,X,Y);
@@ -92,7 +92,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         if(status == GameStates.VERSCHIEBEN)
         {
             GreenfootImage GameStatesEmpty = new GreenfootImage(500,textSize);
-            GreenfootImage GameStates = new GreenfootImage("VERSCHIEBEN! Wähle die Provinz aus!",textSize,new Color(255,255,255),new Color(0,0,0));
+            GreenfootImage GameStates = new GreenfootImage("VERSCHIEBEN! Wähle die Provinzen aus, bei denen du schubsen möchtest, " + getPlayerName(),new Color(255,255,255),new Color(0,0,0));
             GameStatesEmpty.drawImage(GameStates,0,0);
             GreenfootImage States = new GreenfootImage("MapWorldMove.png");
             States.drawImage(GameStatesEmpty,X,Y);
@@ -101,7 +101,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         if(status == GameStates.SETZEN)
         {
             GreenfootImage GameStatesEmpty = new GreenfootImage(500,textSize);
-            GreenfootImage GameStates = new GreenfootImage("SETZEN! Wähle die Provinz aus!",textSize,new Color(255,255,255),new Color(0,0,0)); // "Setzten" Lern Deutsch, Samuel
+            GreenfootImage GameStates = new GreenfootImage("SETZEN! Wähle die Provinz aus, der du schenken möchtest, " + getPlayerName(),textSize,new Color(255,255,255),new Color(0,0,0)); // "Setzten" Lern Deutsch, Samuel
             GameStatesEmpty.drawImage(GameStates,0,0);
             GreenfootImage States = new GreenfootImage("MapWorld.png");
             States.drawImage(GameStatesEmpty,X,Y);
@@ -405,7 +405,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
             JOptionPane.showMessageDialog(null,"Da es unentschieden ist, gewinnt der Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + "). Dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + offenderProvince.getEntityCount() + " Einheiten.");
         }
 
-        if (defenderProvince.getEntityCount() <= 0)
+        if (maxOffender > maxDefender && defenderProvince.getEntityCount() <= 1)
         {
             defenderProvince.setOwner(offenderProvince.getOwner());
             offenderProvince.removeFromEntities(1);
