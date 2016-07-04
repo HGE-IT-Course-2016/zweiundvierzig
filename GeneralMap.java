@@ -261,12 +261,10 @@ public abstract class GeneralMap extends World implements ButtonEvent
                 modus.setBackColor(Color.white);
                 modus.setForeColor(Color.black);
                 modus.setText("Kampf\nbeenden");
-                System.out.println("KAMPF");
             } else if (status==GameStates.KAMPF) {
                 status=GameStates.VERSCHIEBEN;
                 savedProvince = null;
                 modus.setText("Nächster\nSpieler");
-                System.out.println("VERSCHIEBEN");
             } else if (status==GameStates.VERSCHIEBEN) {
                 freeArmies = -1;
                 if(currentPlayer >= players.length-1)
@@ -279,7 +277,6 @@ public abstract class GeneralMap extends World implements ButtonEvent
                 }
                 status=GameStates.SETZEN;
                 modus.setText("Kampf\nbeginnen");
-                System.out.println("SETZEN");
             }
         }
     }
@@ -305,13 +302,15 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
     private void OffenderProvince(Province p)
     {
-        if(offenderProvince != null) {
-            offenderProvince.redrawProvince();
+        if(p.getEntityCount() > 1) {
+            if(offenderProvince != null) {
+                offenderProvince.redrawProvince();
+            }
+            offenderProvince = p;
+            p.redrawProvince(2);
+            // System.out.println("Die Provinz " + provinces[i].getDisplayName() + " wurde als angreifende Provinz ausgewählt! Sie gehört Spieler" + provinces[i].getOwner());
+            chooser();
         }
-        offenderProvince = p;
-        p.redrawProvince(2);
-        // System.out.println("Die Provinz " + provinces[i].getDisplayName() + " wurde als angreifende Provinz ausgewählt! Sie gehört Spieler" + provinces[i].getOwner());
-        chooser();
     }
 
     private void DefenderProvince(Province p)
@@ -342,28 +341,31 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
         for(int i = 0;i<3;i++)
         {
-            if(i == 0)
-            {
-                maxDiceOffender = "" + maxDiceOffenderArray[i];
-            }
-            else
-            {
-                maxDiceOffender = maxDiceOffender + ";" + maxDiceOffenderArray[i];
+            if(maxDiceOffenderArray[i] != 0) {
+                if(i == 0)
+                {
+                    maxDiceOffender = "" + maxDiceOffenderArray[i];
+                }
+                else
+                {
+                    maxDiceOffender = maxDiceOffender + ", " + maxDiceOffenderArray[i];
+                }
             }
         }
         for(int i = 0;i<2;i++)
         {
-            if(i == 0)
-            {
-                maxDiceDefender = "" + maxDiceDefenderArray[i];
+            if(maxDiceDefenderArray[i] != 0) {
+                if(i == 0)
+                {
+                    maxDiceDefender = "" + maxDiceDefenderArray[i];
+                }
+                else
+                {
+                    maxDiceDefender = maxDiceDefender + ", " + maxDiceDefenderArray[i];
+                }
             }
-            else
-            {
-                maxDiceDefender = maxDiceDefender + ";" + maxDiceDefenderArray[i];
-            }
-
         }
-        JOptionPane.showMessageDialog(null,"Es wurde gewürfelt. Der Angreifer erreichte folgende Würfelzahlen: " + maxDiceOffender + "\n Der Verteidiger erreichte diese Würfelzahlen: " + maxDiceDefender);
+        JOptionPane.showMessageDialog(null,"Es wurde gewürfelt. Der Angreifer erreichte folgende Würfelzahlen: " + maxDiceOffender + "\nDer Verteidiger erreichte diese Würfelzahlen: " + maxDiceDefender);
         diceOffender = null;
         diceDefender = null;
         decider(maxDiceOffenderArray, maxDiceDefenderArray);
@@ -377,32 +379,27 @@ public abstract class GeneralMap extends World implements ButtonEvent
         int maxOffender = maxDiceOffender[2];
         if (maxOffender > maxDefender && defenderProvince.getEntityCount()>1)
         {
-            int EntitiesOffender = offenderProvince.getEntityCount();
-            int EntitiesDefender = defenderProvince.getEntityCount();
-            defenderProvince.setEntityCount(EntitiesDefender - 1);
+            defenderProvince.removeFromEntities(1);
             JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Dem Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + defenderProvince.getEntityCount() + " Einheiten.");
 
         }
 
         if (maxOffender < maxDefender && offenderProvince.getEntityCount()>1)
         {
-            int EntitiesOffender = offenderProvince.getEntityCount();
-            int EntitiesDefender = defenderProvince.getEntityCount();
-            offenderProvince.setEntityCount(EntitiesOffender - 1);
+            offenderProvince.removeFromEntities(1);
             JOptionPane.showMessageDialog(null,"Somit gewinnt der Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + "). Dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + offenderProvince.getEntityCount() + " Einheiten.");            
         }
 
         if (maxOffender == maxDefender && offenderProvince.getEntityCount()>1)
         {
-            int EntitiesOffender = offenderProvince.getEntityCount();
-            int EntitiesDefender = defenderProvince.getEntityCount();
-            offenderProvince.setEntityCount(EntitiesOffender - 1);
+            offenderProvince.removeFromEntities(1);
             JOptionPane.showMessageDialog(null,"Da es unentschieden ist, gewinnt der Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + "). Dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + offenderProvince.getEntityCount() + " Einheiten.");
         }
 
-        if (maxOffender>maxDefender && defenderProvince.getEntityCount()==1)
+        if (defenderProvince.getEntityCount() <= 0)
         {
             defenderProvince.setOwner(offenderProvince.getOwner());
+            offenderProvince.removeFromEntities(1);
             defenderProvince.setEntityCount(1);
             JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Die Provinz gehört fortan dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ").");
         }
