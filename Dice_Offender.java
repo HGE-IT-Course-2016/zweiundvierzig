@@ -13,7 +13,7 @@ import java.util.Arrays;   // (World, Actor, GreenfootImage, Greenfoot and Mouse
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Dice_Offender extends Dice
+public class Dice_Offender
 {
 	/**
 	 * Act - do whatever the Dice_Offender wants to do. This method is called whenever
@@ -32,6 +32,7 @@ public class Dice_Offender extends Dice
 	 */
 	public int[] dice_offender(int troupNumberOffender)
 	{
+		diceEyesOffender = new int[3];
 		if(troupNumberOffender == 1)
 		{
 			System.out.println("Mit einer verbleibenden Truppe auff dem Feld kann man nicht angreifen!");

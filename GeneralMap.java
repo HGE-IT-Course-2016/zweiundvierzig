@@ -42,7 +42,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
     protected Player[] players;
 
     protected int currentPlayer = 0;
-    protected GameStates status = GameStates.VERSCHIEBEN;
+    protected GameStates status = GameStates.SETZEN;
 
     protected int provinceCount;
     protected int armyMinimum;
@@ -83,7 +83,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         if(status == GameStates.KAMPF)
         {
             GreenfootImage GameStatesEmpty = new GreenfootImage(750,textSize);
-            GreenfootImage GameStates = new GreenfootImage("KAMPF!!! Wähle die Provinz aus, die du angreifen möchtest!",textSize,new Color(255,255,255),new Color(0,0,0));
+            GreenfootImage GameStates = new GreenfootImage("KAMPF!!! Wähle die Provinzen aus, die kämpfen sollen, " + getPlayerName() + ".",textSize,new Color(255,255,255),new Color(0,0,0));
             GameStatesEmpty.drawImage(GameStates,0,0);
             GreenfootImage States = new GreenfootImage("MapWorldFight.png");
             States.drawImage(GameStatesEmpty,X,Y);
@@ -92,7 +92,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         if(status == GameStates.VERSCHIEBEN)
         {
             GreenfootImage GameStatesEmpty = new GreenfootImage(500,textSize);
-            GreenfootImage GameStates = new GreenfootImage("VERSCHIEBEN! Wähle die Provinz aus!",textSize,new Color(255,255,255),new Color(0,0,0));
+            GreenfootImage GameStates = new GreenfootImage("VERSCHIEBEN! Wähle die Provinzen aus, bei denen du schubsen möchtest, " + getPlayerName() + ".",textSize,new Color(255,255,255),new Color(0,0,0));
             GameStatesEmpty.drawImage(GameStates,0,0);
             GreenfootImage States = new GreenfootImage("MapWorldMove.png");
             States.drawImage(GameStatesEmpty,X,Y);
@@ -101,7 +101,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         if(status == GameStates.SETZEN)
         {
             GreenfootImage GameStatesEmpty = new GreenfootImage(500,textSize);
-            GreenfootImage GameStates = new GreenfootImage("Setzten! Wähle die Provinz aus!",textSize,new Color(255,255,255),new Color(0,0,0));
+            GreenfootImage GameStates = new GreenfootImage("SETZEN! Wähle die Provinz aus, der du schenken möchtest, " + getPlayerName() + ".",textSize,new Color(255,255,255),new Color(0,0,0)); // "Setzten" Lern Deutsch, Samuel
             GameStatesEmpty.drawImage(GameStates,0,0);
             GreenfootImage States = new GreenfootImage("MapWorld.png");
             States.drawImage(GameStatesEmpty,X,Y);
@@ -136,48 +136,6 @@ public abstract class GeneralMap extends World implements ButtonEvent
     protected void initProvinces() {
         for(int i = 1; i < provinces.length; i++) {
             addObject(provinces[i],((int) Math.floor(provinces[i].getXPos() * SCALE_VALUE)) + X_OFFSET,((int) Math.floor(provinces[i].getYPos() * SCALE_VALUE)) + Y_OFFSET);
-        }
-        /*
-        Legt die Startprovincen der Spieler fest.
-         */
-        int[] dataL = new int[(provinces.length-1)*2];
-        /*
-        dataL speichert folgende Daten:
-        0. Spieler-ID des Besitzers (Provinz 1)
-        1. Einheitenanzahl (Provinz 1)
-        2. Spieler-ID des Besitzers (Provinz 2)
-        3. [...]
-         */
-        if(players.length==3) {
-            /*
-            Spieler 1 darf beginnen; Hauptstadt: 40
-            Spieler 2 ist als zweites dran; Hauptstadt: 20
-            Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt: 9
-             */
-            dataL = new int[] {0,1,2,2,1,2,1,1,0,1,0,1,2,2,0,1,2,4,2,1,1,2,0,2,0,2,2,3,2,3,2,3,0,1,1,2,1,4,1,3,0,1,2,4,0,2,2,4,1,2,1,1,2,1,0,3,0,3,0,4,2,1,1,1,1,1,0,2,1,2,2,1,1,2,1,4,1,3,0,4,2,1,0,2};
-		} else if(players.length==4) {
-			/*
-				Spieler 1 darf beginnen; Hauptstadt:22
-				Spieler 2 ist als zweites dran; Hauptstadt:20
-				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt:2
-				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:39
-			*/
-            dataL = new int[] {0,1,2,3,2,3,2,2,2,2,2,3,1,2,0,2,1,2,2,2,1,3,2,2,1,3,0,3,0,3,0,3,2,2,3,2,1,4,1,4,0,1,0,2,0,5,0,3,1,2,3,3,3,1,3,2,1,2,1,2,3,1,1,1,3,5,2,2,2,2,2,2,3,1,3,1,3,4,3,1,0,2,3,4};
-		} else if(players.length==5) {
-			/*
-				Spieler 1 darf beginnen; Hauptstadt:13
-				Spieler 2 ist als zweites dran; Hauptstadt:7
-				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt:22
-				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:20
-				Spieler 5 ist als fünftes dran und bekommt zwei Karte; Hauptstadt:41
-			*/
-            dataL = new int[] {2,1,0,2,3,2,1,2,1,2,1,2,1,4,3,1,1,2,3,1,3,3,2,1,0,4,0,2,2,3,0,2,1,3,3,2,3,5,3,3,1,2,2,5,2,3,0,2,2,3,2,2,1,3,4,2,4,3,4,3,0,3,0,3,3,1,4,1,4,1,4,2,2,2,3,2,4,2,0,2,4,4,4,2};
-		}
-        for(int i = 1; i < provinces.length; i++) {
-            Province p = provinces[i];
-            p.setOwner(dataL[(i-1)*2]);
-            p.setEntityCount(dataL[(i*2)-1]);
-			p.redrawProvince();
         }
     }
 
@@ -286,16 +244,14 @@ public abstract class GeneralMap extends World implements ButtonEvent
         return c;
     }
 
+    private void resetClicked() {
+        for(int i = 1; i <= (provinces.length - 1); i++) {
+            provinces[i].hasClicked();
+        }
+    }
+
     public void buttonClicked(Button b) {
-        if(status == GameStates.KAMPF) {
-            status = GameStates.VERSCHIEBEN;
-        } else if(status == GameStates.VERSCHIEBEN) {
-            status = GameStates.KAMPF;
-            currentPlayer++;
-            if(currentPlayer >= players.length) {
-                currentPlayer = 0;
-            }
-        } else if ( modus == b ) {
+        if ( modus == b ) {
             if(status==GameStates.SETZEN && freeArmies == 0 ) {
                 status=GameStates.KAMPF;
                 offenderProvince = null;
@@ -305,12 +261,10 @@ public abstract class GeneralMap extends World implements ButtonEvent
                 modus.setBackColor(Color.white);
                 modus.setForeColor(Color.black);
                 modus.setText("Kampf\nbeenden");
-                System.out.println("KAMPF");
             } else if (status==GameStates.KAMPF) {
                 status=GameStates.VERSCHIEBEN;
                 savedProvince = null;
                 modus.setText("Nächster\nSpieler");
-                System.out.println("VERSCHIEBEN");
             } else if (status==GameStates.VERSCHIEBEN) {
                 freeArmies = -1;
                 if(currentPlayer >= players.length-1)
@@ -323,7 +277,6 @@ public abstract class GeneralMap extends World implements ButtonEvent
                 }
                 status=GameStates.SETZEN;
                 modus.setText("Kampf\nbeginnen");
-                System.out.println("SETZEN");
             }
         }
     }
@@ -336,46 +289,55 @@ public abstract class GeneralMap extends World implements ButtonEvent
     String maxDiceDefender = "";
     
     private void actFight() {
-        if(offenderProvince == null) {
-            OffenderProvince();
-        } else {
-            defenderProvince();
-        }
-    }
-
-    private void OffenderProvince()
-    {
-        for ( int i = 1; i <= (provinces.length - 1); i++)
-        {
-            if (provinces[i].hasClicked() == true)
-            {   
-                offenderProvince = provinces[i];
-                provinces[i].redrawProvince(2);
-                // System.out.println("Die Provinz " + provinces[i].getDisplayName() + " wurde als angreifende Provinz ausgewählt! Sie gehört Spieler" + provinces[i].getOwner());                
+        for(int i = 1; i <= (provinces.length - 1); i++) {
+            if (provinces[i].hasClicked() == true) {
+                if(provinces[i].getOwner() == currentPlayer) {
+                    OffenderProvince(provinces[i]);
+                } else {
+                    DefenderProvince(provinces[i]);
+                }
             }
         }
     }
 
-    private void defenderProvince()
+    private void OffenderProvince(Province p)
     {
-        {
-            for (int i = 1; i <= (provinces.length - 1); i++)
-            {
-                if (provinces[i].hasClicked() == true)//&& defenderProvince != offenderProvince)
-                {
-                    defenderProvince = provinces[i];
-                    provinces[i].redrawProvince(3);
-                    // System.out.println("Die Provinz " + provinces[i].getDisplayName() + " wurde als verteidigende Provinz ausgewählt! Sie gehört Spieler" + provinces[i].getOwner()); 
-                    chooser();                
-                    break;
-                } 
+        if(p.getEntityCount() > 1) {
+            if(offenderProvince != null) {
+                offenderProvince.redrawProvince();
             }
+            offenderProvince = p;
+            p.redrawProvince(2);
+            // System.out.println("Die Provinz " + provinces[i].getDisplayName() + " wurde als angreifende Provinz ausgewählt! Sie gehört Spieler" + provinces[i].getOwner());
+            chooser();
         }
+    }
+
+    private void DefenderProvince(Province p)
+    {
+        if(defenderProvince != null) {
+            defenderProvince.redrawProvince();
+        }
+        defenderProvince = p;
+        p.redrawProvince(3);
+        // System.out.println("Die Provinz " + provinces[i].getDisplayName() + " wurde als verteidigende Provinz ausgewählt! Sie gehört Spieler" + provinces[i].getOwner());
+        chooser();
     }
 
     private void chooser()
     {
-        System.out.println("Es wird gewürfelt!");        
+        if(offenderProvince == null || defenderProvince == null) {
+            return;
+        }
+        if(!offenderProvince.isProvinceNear(defenderProvince.getID())) {
+            JOptionPane.showMessageDialog(null,"Die Provinzen liegen nicht mal ansatzweise nebeneinander!");
+            offenderProvince.redrawProvince();
+            defenderProvince.redrawProvince();
+            offenderProvince = null;
+            defenderProvince = null;
+            return;
+        }
+        //System.out.println("Es wird gewürfelt!");        
         Dice_Offender diceOffender = new Dice_Offender();
         // System.out.println("Der Angreifer ereichte folgende Würfelzahlen:"); 
         int[] maxDiceOffenderArray = diceOffender.dice_offender(offenderProvince.getEntityCount());
@@ -384,75 +346,75 @@ public abstract class GeneralMap extends World implements ButtonEvent
         int[] maxDiceDefenderArray = diceDefender.dice_defender(defenderProvince.getEntityCount());
         Arrays.sort(maxDiceOffenderArray);
         Arrays.sort(maxDiceDefenderArray);
-
+        maxDiceOffender = "";
         for(int i = 0;i<3;i++)
         {
-            if(i == 0)
-            {
-                maxDiceOffender = "" + maxDiceOffenderArray[i];
-            }
-            else
-            {
-                maxDiceOffender = maxDiceOffender + ";" + maxDiceOffenderArray[i];
+            if(maxDiceOffenderArray[i] != 0) {
+                if(i == 0)
+                {
+                    maxDiceOffender = "" + maxDiceOffenderArray[i];
+                }
+                else
+                {
+                    maxDiceOffender = maxDiceOffender + ", " + maxDiceOffenderArray[i];
+                }
             }
         }
+        maxDiceDefender = "";
         for(int i = 0;i<2;i++)
         {
-            if(i == 0)
-            {
-                maxDiceDefender = "" + maxDiceDefenderArray[i];
+            if(maxDiceDefenderArray[i] != 0) {
+                if(i == 0)
+                {
+                    maxDiceDefender = "" + maxDiceDefenderArray[i];
+                }
+                else
+                {
+                    maxDiceDefender = maxDiceDefender + ", " + maxDiceDefenderArray[i];
+                }
             }
-            else
-            {
-                maxDiceDefender = maxDiceDefender + ";" + maxDiceDefenderArray[i];
-            }
-
         }
-        JOptionPane.showMessageDialog(null,"Es wurde gewürfelt. Der Angreifer erreichte folgende Würfelzahlen: " + maxDiceOffender + "\n Der Verteidiger erreichte diese Würfelzahlen: " + maxDiceDefender);
+        JOptionPane.showMessageDialog(null,"Es wurde gewürfelt. Der Angreifer erreichte folgende Würfelzahlen: " + maxDiceOffender + "\nDer Verteidiger erreichte diese Würfelzahlen: " + maxDiceDefender);
         diceOffender = null;
         diceDefender = null;
         decider(maxDiceOffenderArray, maxDiceDefenderArray);
     }
-
+    
+    // berechnet Zahlen und findet Gewinner; führt Konsequenz aus
     private void decider(int[] maxDiceOffender, int [] maxDiceDefender)
     {
 
         int maxDefender = maxDiceDefender[1];
         int maxOffender = maxDiceOffender[2];
-        if (maxOffender > maxDefender && defenderProvince.getEntityCount()>1)
+        if (maxOffender > maxDefender)
         {
-            int EntitiesOffender = offenderProvince.getEntityCount();
-            int EntitiesDefender = defenderProvince.getEntityCount();
-            defenderProvince.setEntityCount(EntitiesDefender - 1);
-            JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (Spieler " + offenderProvince.getOwner() + ").Dem Verteidiger (Spieler " + defenderProvince.getOwner() +  ") wird eine Einheit abgezogen. Er hat nun noch " + defenderProvince.getEntityCount() + " Einheiten");
-
+            defenderProvince.removeFromEntities(1);
+            if (defenderProvince.getEntityCount() <= 0) {
+                defenderProvince.setOwner(offenderProvince.getOwner());
+                offenderProvince.removeFromEntities(1);
+                defenderProvince.setEntityCount(1);
+                JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Die Provinz gehört fortan dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ").");
+            } else {
+                JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Dem Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + defenderProvince.getEntityCount() + " Einheiten.");
+            }
         }
 
         if (maxOffender < maxDefender && offenderProvince.getEntityCount()>1)
         {
-            int EntitiesOffender = offenderProvince.getEntityCount();
-            int EntitiesDefender = defenderProvince.getEntityCount();
-            offenderProvince.setEntityCount(EntitiesOffender - 1);
-            JOptionPane.showMessageDialog(null,"Somit gewinnt der Verteidiger (Spieler " + defenderProvince.getOwner() + ").Dem Angreifer (Spieler " + defenderProvince.getOwner() +  ") wird eine Einheit abgezogen. Er hat nun noch " + offenderProvince.getEntityCount() + " Einheiten");            
+            offenderProvince.removeFromEntities(1);
+            JOptionPane.showMessageDialog(null,"Somit gewinnt der Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + "). Dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + offenderProvince.getEntityCount() + " Einheiten.");            
         }
 
         if (maxOffender == maxDefender && offenderProvince.getEntityCount()>1)
         {
-            int EntitiesOffender = offenderProvince.getEntityCount();
-            int EntitiesDefender = defenderProvince.getEntityCount();
-            offenderProvince.setEntityCount(EntitiesOffender - 1);
-            JOptionPane.showMessageDialog(null,"Da es unentschieden ist, gewinnt der Verteidiger (Spieler " + defenderProvince.getOwner() + ").Dem Angreifer (Spieler " + defenderProvince.getOwner() +  ") wird eine Einheit abgezogen. Er hat nun noch " + offenderProvince.getEntityCount() + " Einheiten");
+            offenderProvince.removeFromEntities(1);
+            JOptionPane.showMessageDialog(null,"Da es unentschieden ist, gewinnt der Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + "). Dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + offenderProvince.getEntityCount() + " Einheiten.");
         }
 
-        if (maxOffender>maxDefender && defenderProvince.getEntityCount()==1)
-        {
-            defenderProvince.setOwner(offenderProvince.getOwner());
-            defenderProvince.setEntityCount(0);
-            JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (Spieler " + offenderProvince.getOwner() + "). Die Provinz gehört fortan dem Angreifer (" + offenderProvince.getOwner() + ")");
-        }
+        offenderProvince.redrawProvince();
+        defenderProvince.redrawProvince();
         offenderProvince = null;
         defenderProvince = null;
-
     }
 
     // Einheiten verschieben
@@ -460,11 +422,9 @@ public abstract class GeneralMap extends World implements ButtonEvent
     Province savedProvince = null;
     
     private void actMove() {
-        Province clickedProvince; 
         for ( int i = 1; i <= (provinces.length - 1); i++) {
             if (provinces[i].hasClicked() == true) {
-                clickedProvince = provinces[i];
-                useProvincesToMove(clickedProvince);
+                useProvincesToMove(provinces[i]);
                 break;
             }
         }
@@ -504,18 +464,21 @@ public abstract class GeneralMap extends World implements ButtonEvent
      */
     private void useProvincesToMove(Province givenProvince)
     {
+        if(givenProvince.getOwner() != currentPlayer) {
+            return;
+        }
         if (savedProvince == null)
         {
             savedProvince = givenProvince;
+            givenProvince.redrawProvince(2);
         }
-
-        else if ((savedProvince != null) && (givenProvince != savedProvince) && (savedProvince.getOwner() == givenProvince.getOwner()) && (savedProvince.getOwner() == currentPlayer) )
+        else if ((savedProvince != null) && (givenProvince != savedProvince))
         {
             if (givenProvince.isProvinceNear(savedProvince.getID()) == true)
             {
                 moveEntities(savedProvince,givenProvince);
             }
-
+            savedProvince.redrawProvince();
             savedProvince = null;
         } 
     }

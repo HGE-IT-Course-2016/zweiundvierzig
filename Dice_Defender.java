@@ -13,7 +13,7 @@ import java.util.Arrays;   // (World, Actor, GreenfootImage, Greenfoot and Mouse
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Dice_Defender extends Dice
+public class Dice_Defender
 {
 	/**
 	 * Act - do whatever the Dice_Offender wants to do. This method is called whenever
@@ -32,6 +32,7 @@ public class Dice_Defender extends Dice
 	 */
 	public int[] dice_defender(int troupNumberDefender)
 	{
+		diceEyesDefender = new int[2];
 		if(troupNumberDefender == 1)
 		{
 			diceEyesDefender[0] = (int) (Math.random() * 6 +1);
