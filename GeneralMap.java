@@ -111,7 +111,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
             GreenfootImage GameStatesEmpty = new GreenfootImage(500,textSize);
             GreenfootImage GameStates = new GreenfootImage("Setzten! Wähle die Provinz aus!",textSize,new Color(255,255,255),new Color(0,0,0));
             GameStatesEmpty.drawImage(GameStates,0,0);
-            GreenfootImage States = new GreenfootImage("MapWorldFigh.png");
+            GreenfootImage States = new GreenfootImage("MapWorld.png");
             States.drawImage(GameStatesEmpty,X,Y);
             setBackground(States);
         }        
