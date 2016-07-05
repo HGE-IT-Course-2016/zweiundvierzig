@@ -82,8 +82,8 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
         if(status == GameStates.KAMPF)
         {
-            GreenfootImage GameStatesEmpty = new GreenfootImage(750,textSize);
-            GreenfootImage GameStates = new GreenfootImage("KAMPF!!! Wähle die Provinzen aus, die kämpfen sollen, " + getPlayerName() + ".",textSize,new Color(255,255,255),new Color(0,0,0));
+            GreenfootImage GameStates = new GreenfootImage("KAMPF!!! Wähle die Provinzen aus, die kämpfen sollen, " + getPlayerName() + ".",textSize,new Color(255,255,255),new Color(0,0,0))
+            GreenfootImage GameStatesEmpty = new GreenfootImage(GameStates.getWidth(),textSize);
             GameStatesEmpty.drawImage(GameStates,0,0);
             GreenfootImage States = new GreenfootImage("MapWorldFight.png");
             States.drawImage(GameStatesEmpty,X,Y);
@@ -91,8 +91,9 @@ public abstract class GeneralMap extends World implements ButtonEvent
         }
         if(status == GameStates.VERSCHIEBEN)
         {
-            GreenfootImage GameStatesEmpty = new GreenfootImage(500,textSize);
             GreenfootImage GameStates = new GreenfootImage("VERSCHIEBEN! Wähle die Provinzen aus, bei denen du schubsen möchtest, " + getPlayerName() + ".",textSize,new Color(255,255,255),new Color(0,0,0));
+            GreenfootImage GameStatesEmpty = new GreenfootImage(GameStes.getWidth(),textSize);
+            
             GameStatesEmpty.drawImage(GameStates,0,0);
             GreenfootImage States = new GreenfootImage("MapWorldMove.png");
             States.drawImage(GameStatesEmpty,X,Y);
@@ -100,8 +101,8 @@ public abstract class GeneralMap extends World implements ButtonEvent
         }
         if(status == GameStates.SETZEN)
         {
-            GreenfootImage GameStatesEmpty = new GreenfootImage(500,textSize);
             GreenfootImage GameStates = new GreenfootImage("SETZEN! Wähle die Provinz aus, der du schenken möchtest, " + getPlayerName() + ".",textSize,new Color(255,255,255),new Color(0,0,0)); // "Setzten" Lern Deutsch, Samuel
+            GreenfootImage GameStatesEmpty = new GreenfootImage(GameStates.getWidth(),textSize);
             GameStatesEmpty.drawImage(GameStates,0,0);
             GreenfootImage States = new GreenfootImage("MapWorld.png");
             States.drawImage(GameStatesEmpty,X,Y);
