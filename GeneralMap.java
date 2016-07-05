@@ -82,7 +82,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
         if(status == GameStates.KAMPF)
         {
-            GreenfootImage GameStates = new GreenfootImage("KAMPF!!! Wähle die Provinzen aus, die kämpfen sollen, " + getPlayerName() + ".",textSize,new Color(255,255,255),new Color(0,0,0))
+            GreenfootImage GameStates = new GreenfootImage("KAMPF!!! Wähle die Provinzen aus, die kämpfen sollen, " + getPlayerName() + ".",textSize,new Color(255,255,255),new Color(0,0,0));
             GreenfootImage GameStatesEmpty = new GreenfootImage(GameStates.getWidth(),textSize);
             GameStatesEmpty.drawImage(GameStates,0,0);
             GreenfootImage States = new GreenfootImage("MapWorldFight.png");
@@ -92,7 +92,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         if(status == GameStates.VERSCHIEBEN)
         {
             GreenfootImage GameStates = new GreenfootImage("VERSCHIEBEN! Wähle die Provinzen aus, bei denen du schubsen möchtest, " + getPlayerName() + ".",textSize,new Color(255,255,255),new Color(0,0,0));
-            GreenfootImage GameStatesEmpty = new GreenfootImage(GameStes.getWidth(),textSize);
+            GreenfootImage GameStatesEmpty = new GreenfootImage(GameStates.getWidth(),textSize);
             
             GameStatesEmpty.drawImage(GameStates,0,0);
             GreenfootImage States = new GreenfootImage("MapWorldMove.png");
