@@ -47,7 +47,7 @@ public class Player extends Actor
     {
         return stars;
     }
-    
+
     /**
      * Gibt die Farbe des Spielers als int-Wert heraus.
      * Wahnsinn, dass du dir den Scheiß hier grad durchliest.
@@ -57,7 +57,7 @@ public class Player extends Actor
     {
         return color;
     }
-    
+
     // Von Felix: Methode nicht architektur-konform
 
     /* // erhöht die Sternenzahl um eine random ausgewählte Anzahl von 1-3
@@ -253,18 +253,7 @@ public class Player extends Actor
     private void redrawArrow(GreenfootImage statistics,GreenfootImage flag, int textSize)
     {
         // redraw(statistics,flag,textSize);
-        GreenfootImage Arrow = new GreenfootImage(137,120);           
-        if(id == 0 || id == 1|| id == 2)
-        {
-            Arrow.setColor(Color.GRAY);    
-            Arrow.fill();
-            Arrow.drawImage(statistics,0,0);
-            redraw(Arrow,flag,textSize);
-        }
-        else
-        {
-            redraw(statistics,flag,textSize);
-        }
+        redraw(statistics,flag,textSize);
     }
 
     private void redraw(GreenfootImage statistics,GreenfootImage flag, int textSize)
