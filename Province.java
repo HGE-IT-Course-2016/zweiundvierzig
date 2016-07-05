@@ -5,7 +5,7 @@ import java.awt.Color;
  * Write a description of class Province here.
  * 
  * @author GruenerWal, Felix Stupp
- * @version 0.0.2
+ * @version 1.1.0
  */
 public class Province extends Actor
 {
@@ -22,7 +22,8 @@ public class Province extends Actor
     private int xPos;
     private int yPos;
     private int eCount;
-
+    public int textSize;
+    private GreenfootImage province;
     private boolean clicked = false;
     /**
      * Überprüft, ob die Provinz angeklickt wurde.
@@ -171,63 +172,77 @@ public class Province extends Actor
 
     public void redrawProvince(int ColorInt)
     {
-        int textSize;
         textSize = 20;
-        GreenfootImage province = new GreenfootImage(120,100);   
+        GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
+        int eCountTanks = eCount / 5;
+        GreenfootImage LenghtCalculate = new GreenfootImage((eCount / 5) + "x",textSize, new Color(0,0,0), new Color(0,0,0));
+        int lenght = LenghtCalculate.getWidth() + (textSize *3); 
+
+        if(lenght < provinceName.getWidth())
+        {
+            province = new GreenfootImage(provinceName.getWidth(),2*textSize);
+        }
+        else
+        {
+            province = new GreenfootImage(lenght,2*textSize); 
+        }
 
         if(ColorInt ==1)
         {
-            GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
             province.drawImage(provinceName,0,0);
             setImage(province);
             oDecide(province,textSize,owner,eCount);
         }
         if(ColorInt ==2)
         {
-            GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),Color.GREEN);
+            provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),Color.GREEN);
             province.drawImage(provinceName,0,0);
             setImage(province);
             oDecide(province,textSize,owner,eCount);
         }
         if(ColorInt == 3)
         {
-            GreenfootImage provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),Color.RED);
+            provinceName = new GreenfootImage(displayName,textSize,new Color(0,0,0),Color.RED);  
             province.drawImage(provinceName,0,0);
             setImage(province);
             oDecide(province,textSize,owner,eCount);
         }
 
     }
+    
+    /**
+     * Weist dem Owner der Provinz sein entsprechendes Color-Tag zu.
+     */
     public void oDecide(GreenfootImage province,int textSize, int owner, int eCount)
     {
         String ownerString;
-        if(owner == 0)
+        if(getWorld().getPlayerColor(owner) == 0)
         {
             ownerString = "schwarz";
             eCalculate(province,ownerString,textSize);
         }
         else
         {
-            switch(owner)
+            switch(getWorld().getPlayerColor(owner))
             {
                 case 1:
                 ownerString = "schwarz";
                 eCalculate(province,ownerString,textSize);
                 break;
                 case 2:
-                ownerString = "rot";
-                eCalculate(province,ownerString,textSize);
-                break;
-                case 3:
                 ownerString = "blau";
                 eCalculate(province,ownerString,textSize);
                 break;
+                case 3:
+                ownerString = "gruen";
+                eCalculate(province,ownerString,textSize);
+                break;
                 case 4:
-                ownerString = "gelb";
+                ownerString = "rot";
                 eCalculate(province,ownerString,textSize);
                 break;
                 case 5:
-                ownerString = "gruen";
+                ownerString = "gelb";
                 eCalculate(province,ownerString,textSize);
                 break;
                 case 6:

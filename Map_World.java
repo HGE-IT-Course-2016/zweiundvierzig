@@ -10,15 +10,11 @@ Klasse der Standard-Welt
 
 public class Map_World extends GeneralMap
 {
-    /**
-    Anzahl der Provinzen.
-     */
 
     /** 
     Konstruktor der Weltkarte;
     konstruiert eine GeneralMap mit den Ausmassen 1600 auf 900 Pixel.
      */
-
     public Map_World(String[] playerList, int[] colorList)
     {
         super(playerList,colorList);
@@ -62,16 +58,16 @@ public class Map_World extends GeneralMap
         provinces[6] =  new Province( 6 , 1 , 232 , 273 , 2 , "Oststaaten" , new int[] {4 , 5 , 7 , 8});
         provinces[7] =  new Province( 7 , 1 , 300 , 180 , 2 , "Quebec" , new int[] {4 , 6 , 9});
         provinces[8] =  new Province( 8 , 1 , 181 , 347 , 1 , "Mittelamerika" , new int[] {5 , 6 , 17});
-        provinces[9] =  new Province( 9 , 1 , 365 ,  55 , 1 , "Groenland" , new int[] {2 , 4 , 7 , 10});
+        provinces[9] =  new Province( 9 , 1 , 365 ,  55 , 1 , "Grönland" , new int[] {2 , 4 , 7 , 10});
 
         // cID 2 - Europa
         provinces[10] = new Province(10 , 2 , 454 , 142 , 1 , "Island" , new int[] {9 , 11 , 12});
-        provinces[11] = new Province(11 , 2 , 424 , 221 , 2 , "Grossbritannien" , new int[] {10 , 12 , 14 , 15});
+        provinces[11] = new Province(11 , 2 , 424 , 221 , 2 , "Großbritannien" , new int[] {10 , 12 , 14 , 15});
         provinces[12] = new Province(12 , 2 , 520 , 153 , 1 , "Skandinavien" , new int[] {10 , 11 , 13 , 14});
         provinces[13] = new Province(13 , 2 , 636 , 180 , 2 , "Russland" , new int[] {12 , 14 , 16 , 27 , 31 , 32});
         provinces[14] = new Province(14 , 2 , 528 , 232 , 2 , "Nordeuropa" , new int[] {11 , 12 , 13 , 15 , 16});
         provinces[15] = new Province(15 , 2 , 449 , 335 , 2 , "Westeuropa" , new int[] {11 , 14 , 16 , 25});
-        provinces[16] = new Province(16 , 2 , 537 , 296 , 2 , "Suedeuropa" , new int[] {13 , 14 , 15 , 25 , 26 , 27});
+        provinces[16] = new Province(16 , 2 , 537 , 296 , 2 , "Südeuropa" , new int[] {13 , 14 , 15 , 25 , 26 , 27});
 
         // cID 3 - Suedamerika
         provinces[17] = new Province(17 , 3 , 245 , 396 , 1 , "Venezuela" , new int[] {8 , 18 , 19});
@@ -85,7 +81,7 @@ public class Map_World extends GeneralMap
         provinces[23] = new Province(23 , 4 , 572 , 537 , 2 , "Zentralafrika" , new int[] {22 , 25 , 24});
         provinces[24] = new Province(24 , 4 , 632 , 500 , 2 , "Ostafrika" , new int[] {21 , 22 , 25 , 23 , 26});
         provinces[25] = new Province(25 , 4 , 491 , 444 , 1 , "Nordafrika" , new int[] {15 , 16 , 26 , 23 , 24});
-        provinces[26] = new Province(26 , 4 , 574 , 414 , 1 , "Aegypten" , new int[] {27 , 25 , 24 , 16});
+        provinces[26] = new Province(26 , 4 , 574 , 414 , 1 , "Ägypten" , new int[] {27 , 25 , 24 , 16});
 
         // cID 5 - Asien
         provinces[27] = new Province(27 , 5 , 664 , 345 , 2 , "Mittlerer Osten" , new int[] {24 , 26 , 16 , 23 , 31 , 28});
@@ -108,5 +104,47 @@ public class Map_World extends GeneralMap
         provinces[42] = new Province(42 , 6 , 934 , 628 , 1 , "West Australien" , new int[] {40 , 41 , 39});
 
         initProvinces();
+        
+        /*
+        Legt die Startprovincen der Spieler fest.
+         */
+        int[] dataL = new int[(provinces.length-1)*2];
+        /*
+        dataL speichert folgende Daten:
+        0. Spieler-ID des Besitzers (Provinz 1)
+        1. Einheitenanzahl (Provinz 1)
+        2. Spieler-ID des Besitzers (Provinz 2)
+        3. [...]
+         */
+        if(players.length==3) {
+            /*
+            Spieler 1 darf beginnen; Hauptstadt: 40
+            Spieler 2 ist als zweites dran; Hauptstadt: 20
+            Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt: 9
+             */
+            dataL = new int[] {0,1,2,2,1,2,1,1,0,1,0,1,2,2,0,1,2,4,2,1,1,2,0,2,0,2,2,3,2,3,2,3,0,1,1,2,1,4,1,3,0,1,2,4,0,2,2,4,1,2,1,1,2,1,0,3,0,3,0,4,2,1,1,1,1,1,0,2,1,2,2,1,1,2,1,4,1,3,0,4,2,1,0,2};
+		} else if(players.length==4) {
+			/*
+				Spieler 1 darf beginnen; Hauptstadt:22
+				Spieler 2 ist als zweites dran; Hauptstadt:20
+				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt:2
+				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:39
+			*/
+            dataL = new int[] {0,1,2,3,2,3,2,2,2,2,2,3,1,2,0,2,1,2,2,2,1,3,2,2,1,3,0,3,0,3,0,3,2,2,3,2,1,4,1,4,0,1,0,2,0,5,0,3,1,2,3,3,3,1,3,2,1,2,1,2,3,1,1,1,3,5,2,2,2,2,2,2,3,1,3,1,3,4,3,1,0,2,3,4};
+		} else if(players.length==5) {
+			/*
+				Spieler 1 darf beginnen; Hauptstadt:13
+				Spieler 2 ist als zweites dran; Hauptstadt:7
+				Spieler 3 ist als drittes dran und bekommt eine Karte; Hauptstadt:22
+				Spieler 4 ist als viertes dran und bekommt eine Karte; Hauptstadt:20
+				Spieler 5 ist als fünftes dran und bekommt zwei Karte; Hauptstadt:41
+			*/
+            dataL = new int[] {2,1,0,2,3,2,1,2,1,2,1,2,1,4,3,1,1,2,3,1,3,3,2,1,0,4,0,2,2,3,0,2,1,3,3,2,3,5,3,3,1,2,2,5,2,3,0,2,2,3,2,2,1,3,4,2,4,3,4,3,0,3,0,3,3,1,4,1,4,1,4,2,2,2,3,2,4,2,0,2,4,4,4,2};
+		}
+        for(int i = 1; i < provinces.length; i++) {
+            Province p = provinces[i];
+            p.setOwner(dataL[(i-1)*2]);
+            p.setEntityCount(dataL[(i*2)-1]);
+        }
     }
 }

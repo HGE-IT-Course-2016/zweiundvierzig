@@ -90,6 +90,11 @@ public class Label extends GUI_Interface {
 	*/
 	public void redraw() {
 		GreenfootImage tI = new GreenfootImage(text,textSize,foreC,backC);
+		if(text == "") {
+			tI = new GreenfootImage(1,1);
+			tI.setColor(new Color(0,0,0,0));
+			tI.fill();
+		}
 		if(autoSize) {
 			sx = tI.getWidth();
 			sy = tI.getHeight();
