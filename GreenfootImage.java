@@ -1,4 +1,4 @@
- 
+package greenfootReplacement;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -25,10 +25,6 @@ public class GreenfootImage {
 	}
 	
 	public GreenfootImage(String txt, int size, Color foreCol, Color backCol) {
-		
-	}
-	
-	public GreenfootImage(String txt, int size, Color foreCol, Color backCol, Color outline) {
 		
 	}
 	
