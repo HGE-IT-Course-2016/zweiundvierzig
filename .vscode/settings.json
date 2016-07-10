@@ -9,9 +9,16 @@
 		"project.greenfoot": true,
 		"*.class": true,
 		"*.ctxt": true,
+		"doc": true,
+		"sounds": true,
 		// Excel Tabellen
 		"**/*.ods": true,
 		"**/*.xls": true,
-		"**/*.xlsx": true
+		"**/*.xlsx": true,
+		// Dokumente
+		"**/*.doc": true,
+		"**/*.docx": true,
+		"**/*.pdf": true,
+		"**/*.xcf": true
 	}
 }
