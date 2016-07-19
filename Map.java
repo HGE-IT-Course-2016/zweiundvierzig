@@ -45,7 +45,7 @@ public class Map extends World implements ButtonEvent
         // }
     } 
     // Die Map Buttons geben der Variable m einen Wert
-    public void buttonClicked(Button b)
+    public void buttonClicked(Bildbutton b)
     {
 
         if (b== map1)

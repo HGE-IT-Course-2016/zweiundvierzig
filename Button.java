@@ -9,13 +9,10 @@ import java.awt.Graphics2D;
 	@author Felix Stupp
 	@version 20.05.2016
 */
-public class Button extends GUI_Interface {
+public class Button extends Bildbutton {
 	
-	private boolean autoSize = false;
 	private int textSize = 32; // as default text size
 	private String text = "";
-	
-	private ButtonEvent handler;
 	
 	/**
 		Erstellt einen Button mit dem gegebenen Text und der zugehörigen Textgröße.
@@ -23,6 +20,7 @@ public class Button extends GUI_Interface {
 		@param size Die Textgröße, in der der Button den Text darstellen soll.
 	*/
 	public Button(String txt, int size) {
+	    super(new GreenfootImage(txt,size,Color.WHITE,Color.BLACK));
 		text = txt;
 		textSize = size;
 		redraw();
@@ -32,7 +30,7 @@ public class Button extends GUI_Interface {
 		@param h Der Handler mit dem Interface ButtonEvent implementiert.
 	*/
 	public Button(ButtonEvent h) {
-		handler = h;
+	    super(h);
 		redraw();
 	}
 	/**
@@ -42,39 +40,10 @@ public class Button extends GUI_Interface {
 		@param h Der Handler mit dem Interface ButtonEvent implementiert.
 	*/
 	public Button(String txt, int size, ButtonEvent h) {
+	    super(new GreenfootImage(txt,size,Color.WHITE,Color.BLACK),h);
 		text = txt;
 		textSize = size;
-		handler = h;
 		redraw();
-	}
-	
-	/**
-		Fragt ab, ob ein Klick auf den Button gekommen ist.
-		Wird intern von Greenfoot benötigt.
-	*/
-	public void act() {
-		if(Greenfoot.mouseClicked(this) && handler != this) {
-			handler.buttonClicked(this);
-		}
-	}
-	
-	/**
-		Gibt zurück, ob die Größe des Buttons von dem Text bestimmt werden soll.
-		@return Wert der AutoSize-Eigenschaft
-	*/
-	public boolean getAutoSize() {
-		return autoSize;
-	}
-	/**
-		Legt fest, ob die Größe des Buttons von dem Text bestimmt werden soll.
-		Wird der Wert auf TRUE geändert, erfolgt automatisch ein Redraw des Objekts.
-		@param b Der neue Wert der AutoSize-Eigenschaft.
-	*/
-	public void setAutoSize(boolean b) {
-		autoSize = b;
-		if(autoSize) {
-			redraw();
-		}
 	}
 	
 	/**
@@ -119,44 +88,20 @@ public class Button extends GUI_Interface {
 		return false;
 	}
 	
-	/**
-		Gibt den aktuellen EventHandler des Buttons zurück.
-		@return Der Handler als ButtonEvent
-	*/
-	public ButtonEvent getHandler() {
-		return handler;
+	public GreenfootImage getPicture() {
+	    return null;
 	}
-	/**
-		Setzt den EventHandler auf ein neues Objekt.
-		@param h Der Handler mit implementiertem ButtonEvent-Interface
-	*/
-	public void setHandler(ButtonEvent h) {
-		handler = h;
-	}
-	/**
-		Entfernt den aktuellen EventHandler, um die Ausführung zukünftiger Events zu verhindern.
-	*/
-	public void removeHandler() {
-		handler = null;
+	
+	public boolean setPicture(GreenfootImage i) {
+	    return false;
 	}
 	
 	/**
 		Zeichnet das GreenfootImage des Buttons erneut und zeigt es an.
 	*/
 	public void redraw() {
-		GreenfootImage tI = new GreenfootImage(text,textSize,foreC,backC);
-		if(autoSize) {
-			sx = tI.getWidth() + (6 * 2) + 4;
-			sy = tI.getHeight() + (6 * 2) + 4;
-		}
-		GreenfootImage all = new GreenfootImage(sx,sy);
-		Color trans = new Color(0,0,0,0);
-		all.setColor(trans);
-		all.fill();
-		Graphics2D g = all.getAwtImage().createGraphics();
-		g.setColor(backC);
-		g.fillRoundRect(0,0,sx,sy,24,24);
-		all.drawImage(tI,(sx-tI.getWidth())/2,(sy-tI.getHeight())/2);
-		setImage(all);
+	    //picture = new GreenfootImage(text,textSize,Color.BLACK,Color.WHITE);
+		picture = new GreenfootImage(text,textSize,foreC,backC);
+		super.redraw();
 	}
 }

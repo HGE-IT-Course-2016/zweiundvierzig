@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  */
 public class Colours extends World implements ButtonEvent
 {
-    Button schwarz = new Button ("Schwarz", 16, this);
+    Bildbutton schwarz = new Bildbutton (new GreenfootImage("SchwarzeArmeeSkal.png"), this);
     Button blau = new Button ("Blau", 16, this);
     Button grün = new Button ("Grün", 16, this);
     Button rot = new Button ("Rot", 16, this);
@@ -50,7 +50,7 @@ public class Colours extends World implements ButtonEvent
         super(x, y, z);
         setBackground(Start_Load.backgroundImage);
         
-        Button[] bList = new Button[] {schwarz,gelb,blau,grün,rot,lila,weiter,remove};
+        Bildbutton[] bList = new Bildbutton[] {schwarz,gelb,blau,grün,rot,lila,weiter,remove};
         Label[] lList = new Label[] {header,pl1,pl2,pl3,pl4,pl5};
         
         addObject(header,200,15);
@@ -78,7 +78,7 @@ public class Colours extends World implements ButtonEvent
         lila.setForeColor(new Color(161,70,255));
         
         for(int i = 0; i < bList.length; i++) {
-            bList[i].setSize(100,50);
+            bList[i].setSize(164,100);
         }
         for(int i = 0; i < lList.length; i++) {
             lList[i].setBackColor(new Color(0,0,0,0));
@@ -94,7 +94,7 @@ public class Colours extends World implements ButtonEvent
     // verhindert durch falschsetzten einer Variable die Wiederauswahl einer Farbe
     // wenn Weiter geklickt wurde und x größer 1 ist wird eine neue Welt Map erzeugt, 
     //der per Konstruktor die Daten der Colorklasse übertragen werden, dannach wird die Map die aktive Welt
-    public void buttonClicked (Button b)
+    public void buttonClicked (Bildbutton b)
     {
         if (x < 5) {
             if (b == schwarz && possw == true) {

@@ -251,7 +251,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         }
     }
 
-    public void buttonClicked(Button b) {
+    public void buttonClicked(Bildbutton b) {
         if ( modus == b ) {
             if(status==GameStates.SETZEN && freeArmies == 0 ) {
                 status=GameStates.KAMPF;

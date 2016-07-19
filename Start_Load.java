@@ -12,9 +12,9 @@ public class Start_Load extends World implements ButtonEvent
     // Light Theme: "backgroundLight.png"
     // Dark Theme: "backgroundDark.png"
     
-    Button chulien = new Button("Neues Spiel", 16 , this);
-    Button spielanleitung = new Button("Spielanleitung", 16, this);
-    Button zurück = new Button("zurück", 16, this);
+    Button chulien;
+    Button spielanleitung;
+    Button zurück;
     /**
      * Constructor for objects of class Start_Load.
      * 
@@ -23,6 +23,9 @@ public class Start_Load extends World implements ButtonEvent
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1600, 900, 1); 
+        chulien = new Button("Neues Spiel", 16 , this);
+        spielanleitung = new Button("Spielanleitung", 16, this);
+        zurück = new Button("zurück", 16, this);
         setBackground(backgroundImage);
         chulien.setSize(100,50);
         spielanleitung.setSize(100,50);
@@ -31,7 +34,7 @@ public class Start_Load extends World implements ButtonEvent
         addObject (spielanleitung, (1600-spielanleitung.getWidth())/2+100, (900-spielanleitung.getHeight())/2 + 80);
         
     }
-    public void buttonClicked ( Button b)
+    public void buttonClicked ( Bildbutton b)
     {
        if ( b  == chulien)
        {
