@@ -19,6 +19,8 @@
 		"**/*.doc": true,
 		"**/*.docx": true,
 		"**/*.pdf": true,
-		"**/*.xcf": true
+		"**/*.xcf": true,
+		// Sonstiges
+		"**/*.mht": true
 	}
 }
