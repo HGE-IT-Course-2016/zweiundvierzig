@@ -30,6 +30,8 @@ public class Start_Load extends World implements ButtonEvent
         addObject (chulien, (1600-chulien.getWidth())/2+100, (900-chulien.getHeight())/2);
         addObject (spielanleitung, (1600-spielanleitung.getWidth())/2+100, (900-spielanleitung.getHeight())/2 + 80);
         
+        Greenfoot.setSpeed(100);
+        Greenfoot.start();
     }
     public void buttonClicked ( Button b)
     {
