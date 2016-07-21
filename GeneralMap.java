@@ -234,7 +234,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
     @param playerID Die ID des Spielers, für den die Einheiten gezählt werden sollen.
     @return Die Anzahl der Einheiten, die dem Spieler gehören.
      */
-    public int getProvinceEntityCount(int playerID)
+    public int getPlayerEntityCount(int playerID)
     {
         int c = 0;
         for (int i = 1; i > provinces.length; i++) {
