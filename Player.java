@@ -153,6 +153,25 @@ public class Player extends Actor
         redrawPlayer();
     }
 
+    public void gotProvince() {
+        stats[0]++;
+        redrawPlayer();
+    }
+
+    public void lostProvince() {
+        stats[1]++;
+        redrawPlayer();
+    }
+
+    public void maxInfluence (int influCount) 
+    {
+        if(stats[2]< influCount)
+        {
+            stats[2]=influCount;
+            redrawPlayer();
+        }
+    }
+
     private void maxEntities(int entNumber)
     {
         if (stats[5]< entNumber)
