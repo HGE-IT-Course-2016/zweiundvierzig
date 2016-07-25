@@ -127,7 +127,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
             case 3:
             players[2].setLocation(82,350);
             case 2:
-            players[1].setLocation(,82,230);
+            players[1].setLocation(82,230);
         }
         players[0].setLocation(82,110);
     }
