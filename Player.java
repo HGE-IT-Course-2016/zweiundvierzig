@@ -224,11 +224,11 @@ public class Player extends Actor
     }
 
     private Color getTextCol() {
-        return (getWorld().getCurrentPlayerID() == id) ? new Color(255,255,255) : new Color(0,0,0);
+        return (getWorld().getCurrentPlayerID() == id) ? new Color(0,0,0) : new Color(255,255,255);
     }
 
     private Color getTransBackCol() {
-        return (getWorld().getCurrentPlayerID() == id) ? new Color(0.0f,0.0f,0.0f,0.5f) : new Color(1.0f,1.0f,1.0f,0.5f);
+        return (getWorld().getCurrentPlayerID() == id) ? new Color(255,255,255) : new Color(0,0,0);
     }
 
     public void redrawPlayer()
