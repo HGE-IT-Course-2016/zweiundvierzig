@@ -63,6 +63,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         addObject( modus, 1500, 808);
         for (int i = 0; i < playerList.length; i++) {
             players[i] = new Player(i,playerList[i],colorList[i]);
+            addObject(players[i],0,0);
             players[i].redrawPlayer();
         }
 
@@ -118,17 +119,17 @@ public abstract class GeneralMap extends World implements ButtonEvent
         }
         switch (playerCount) {
             case 6:
-            addObject(players[5],1512,350);
+            players[5].setLocation(1512,350);
             case 5:
-            addObject(players[4],1512,230);
+            players[4].setLocation(1512,230);
             case 4:
-            addObject(players[3],1512,110);
+            players[3].setLocation(1512,110);
             case 3:
-            addObject(players[2],82,350);
+            players[2].setLocation(82,350);
             case 2:
-            addObject(players[1],82,230);
+            players[1].setLocation(82,230);
         }
-        addObject(players[0],82,110);
+        players[0].setLocation(82,110);
     }
 
     /**
@@ -137,6 +138,20 @@ public abstract class GeneralMap extends World implements ButtonEvent
     protected void initProvinces() {
         for(int i = 1; i < provinces.length; i++) {
             addObject(provinces[i],((int) Math.floor(provinces[i].getXPos() * SCALE_VALUE)) + X_OFFSET,((int) Math.floor(provinces[i].getYPos() * SCALE_VALUE)) + Y_OFFSET);
+        }
+    }
+    
+    private void redrawProvinces() {
+        for(int i = 1; i < provinces.length; i++) {
+            provinces[i].redrawProvince();
+        }
+    }
+    
+    protected void redrawPlayers() {
+        for(int i = 0; i < players.length; i++) {
+            players[i].reloadMaxInfluence();
+            players[i].reloadMaxEntities();
+            players[i].redrawPlayer();
         }
     }
 
@@ -174,6 +189,14 @@ public abstract class GeneralMap extends World implements ButtonEvent
     public int getPlayerColor(int pID)
     {
         return players[pID].getColor();
+    }
+
+    /**
+        Gibt die PlayerID des aktuellen Spielers an.
+        @return PlayerID des aktuellen Spielers
+    */
+    public int getCurrentPlayerID() {
+        return currentPlayer;
     }
 
     /**
@@ -234,10 +257,10 @@ public abstract class GeneralMap extends World implements ButtonEvent
     @param playerID Die ID des Spielers, für den die Einheiten gezählt werden sollen.
     @return Die Anzahl der Einheiten, die dem Spieler gehören.
      */
-    public int getProvinceEntityCount(int playerID)
+    public int getPlayerEntityCount(int playerID)
     {
         int c = 0;
-        for (int i = 1; i > provinces.length; i++) {
+        for (int i = 1; i < provinces.length; i++) {
             if(provinces[i].getOwner() == playerID) {
                 c = c + provinces[i].getEntityCount();
             }
@@ -279,6 +302,8 @@ public abstract class GeneralMap extends World implements ButtonEvent
                 status=GameStates.SETZEN;
                 modus.setText("Kampf\nbeginnen");
             }
+            redrawProvinces();
+            redrawPlayers();
         }
     }
 
@@ -384,16 +409,21 @@ public abstract class GeneralMap extends World implements ButtonEvent
     // berechnet Zahlen und findet Gewinner; führt Konsequenz aus
     private void decider(int[] maxDiceOffender, int [] maxDiceDefender)
     {
-
+        Player offPl = players[offenderProvince.getOwner()];
+        Player defPl = players[defenderProvince.getOwner()];
+        
         int maxDefender = maxDiceDefender[1];
         int maxOffender = maxDiceOffender[2];
         if (maxOffender > maxDefender)
         {
             defenderProvince.removeFromEntities(1);
+            defPl.lostEntity();
             if (defenderProvince.getEntityCount() <= 0) {
                 defenderProvince.setOwner(offenderProvince.getOwner());
                 offenderProvince.removeFromEntities(1);
                 defenderProvince.setEntityCount(1);
+                offPl.gotProvince();
+                defPl.lostProvince();
                 JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Die Provinz gehört fortan dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ").");
             } else {
                 JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Dem Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + defenderProvince.getEntityCount() + " Einheiten.");
@@ -403,12 +433,14 @@ public abstract class GeneralMap extends World implements ButtonEvent
         if (maxOffender < maxDefender && offenderProvince.getEntityCount()>1)
         {
             offenderProvince.removeFromEntities(1);
+            offPl.lostEntity();
             JOptionPane.showMessageDialog(null,"Somit gewinnt der Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + "). Dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + offenderProvince.getEntityCount() + " Einheiten.");            
         }
 
         if (maxOffender == maxDefender && offenderProvince.getEntityCount()>1)
         {
             offenderProvince.removeFromEntities(1);
+            offPl.lostEntity();
             JOptionPane.showMessageDialog(null,"Da es unentschieden ist, gewinnt der Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + "). Dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + offenderProvince.getEntityCount() + " Einheiten.");
         }
 
@@ -492,6 +524,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
     {
         if ( freeArmies == -1 ) {
             freeArmies = calculateArmies();
+            players[currentPlayer].gotEntities(freeArmies);
         } else if ( freeArmies == 0 ) {
             modus.setBackColor(Color.white);
             modus.setForeColor(Color.black);
