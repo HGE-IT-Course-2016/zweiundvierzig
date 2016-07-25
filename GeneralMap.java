@@ -191,6 +191,14 @@ public abstract class GeneralMap extends World implements ButtonEvent
     }
 
     /**
+        Gibt die PlayerID des aktuellen Spielers an.
+        @return PlayerID des aktuellen Spielers
+    */
+    public int getCurrentPlayerID() {
+        return currentPlayer;
+    }
+
+    /**
     Gibt den Namen des aktuellen Spielers aus.
     @return Der Name des aktuellen Spielers
      */
