@@ -63,6 +63,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
         addObject( modus, 1500, 808);
         for (int i = 0; i < playerList.length; i++) {
             players[i] = new Player(i,playerList[i],colorList[i]);
+            addObject(players[i],0,0);
             players[i].redrawPlayer();
         }
 
@@ -118,17 +119,17 @@ public abstract class GeneralMap extends World implements ButtonEvent
         }
         switch (playerCount) {
             case 6:
-            addObject(players[5],1512,350);
+            players[5].setLocation(1512,350);
             case 5:
-            addObject(players[4],1512,230);
+            players[4].setLocation(1512,230);
             case 4:
-            addObject(players[3],1512,110);
+            players[3].setLocation(1512,110);
             case 3:
-            addObject(players[2],82,350);
+            players[2].setLocation(82,350);
             case 2:
-            addObject(players[1],82,230);
+            players[1].setLocation(,82,230);
         }
-        addObject(players[0],82,110);
+        players[0].setLocation(82,110);
     }
 
     /**
