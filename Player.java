@@ -148,7 +148,7 @@ public class Player extends Actor
     public void gotEntities(int gotEnt)
     {
         stats[3]+= gotEnt;
-        maxEntities(getEntitiesCount());
+        reloadMaxEntities();
         redrawPlayer();
     }
 
@@ -160,7 +160,7 @@ public class Player extends Actor
 
     public void gotProvince() {
         stats[0]++;
-        maxInfluence(getProvinceCount());
+        reloadMaxInfluence();
         redrawPlayer();
     }
 
@@ -169,20 +169,22 @@ public class Player extends Actor
         redrawPlayer();
     }
 
-    private void maxInfluence (int influCount) 
+    public void reloadMaxInfluence() 
     {
-        if(stats[2]< influCount)
+        int c = getProvinceCount();
+        if(stats[2]< c)
         {
-            stats[2]=influCount;
+            stats[2]=c;
             redrawPlayer();
         }
     }
 
-    private void maxEntities(int entNumber)
+    public void reloadMaxEntities()
     {
-        if (stats[5]< entNumber)
+        int c = getEntitiesCount();
+        if (stats[5]< c)
         {
-            stats[5]=entNumber;
+            stats[5]=c;
             redrawPlayer();
         }
     }

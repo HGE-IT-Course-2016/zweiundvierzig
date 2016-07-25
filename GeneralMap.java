@@ -139,6 +139,20 @@ public abstract class GeneralMap extends World implements ButtonEvent
             addObject(provinces[i],((int) Math.floor(provinces[i].getXPos() * SCALE_VALUE)) + X_OFFSET,((int) Math.floor(provinces[i].getYPos() * SCALE_VALUE)) + Y_OFFSET);
         }
     }
+    
+    private void redrawProvinces() {
+        for(int i = 1; i < provinces.length; i++) {
+            provinces[i].redrawProvince();
+        }
+    }
+    
+    protected void redrawPlayers() {
+        for(int i = 0; i < players.length; i++) {
+            players[i].reloadMaxInfluence();
+            players[i].reloadMaxEntities();
+            players[i].redrawPlayer();
+        }
+    }
 
     /**
     Zeigt die angegebene Nachricht in einem JOptionPane Dialogfeld an.
@@ -237,7 +251,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
     public int getPlayerEntityCount(int playerID)
     {
         int c = 0;
-        for (int i = 1; i > provinces.length; i++) {
+        for (int i = 1; i < provinces.length; i++) {
             if(provinces[i].getOwner() == playerID) {
                 c = c + provinces[i].getEntityCount();
             }
@@ -279,6 +293,8 @@ public abstract class GeneralMap extends World implements ButtonEvent
                 status=GameStates.SETZEN;
                 modus.setText("Kampf\nbeginnen");
             }
+            redrawProvinces();
+            redrawPlayers();
         }
     }
 
@@ -384,16 +400,21 @@ public abstract class GeneralMap extends World implements ButtonEvent
     // berechnet Zahlen und findet Gewinner; führt Konsequenz aus
     private void decider(int[] maxDiceOffender, int [] maxDiceDefender)
     {
-
+        Player offPl = players[offenderProvince.getOwner()];
+        Player defPl = players[defenderProvince.getOwner()];
+        
         int maxDefender = maxDiceDefender[1];
         int maxOffender = maxDiceOffender[2];
         if (maxOffender > maxDefender)
         {
             defenderProvince.removeFromEntities(1);
+            defPl.lostEntity();
             if (defenderProvince.getEntityCount() <= 0) {
                 defenderProvince.setOwner(offenderProvince.getOwner());
                 offenderProvince.removeFromEntities(1);
                 defenderProvince.setEntityCount(1);
+                offPl.gotProvince();
+                defPl.lostProvince();
                 JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Die Provinz gehört fortan dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ").");
             } else {
                 JOptionPane.showMessageDialog(null,"Somit gewinnt der Angreifer (" + getPlayerName(offenderProvince.getOwner()) + "). Dem Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + defenderProvince.getEntityCount() + " Einheiten.");
@@ -403,12 +424,14 @@ public abstract class GeneralMap extends World implements ButtonEvent
         if (maxOffender < maxDefender && offenderProvince.getEntityCount()>1)
         {
             offenderProvince.removeFromEntities(1);
+            offPl.lostEntity();
             JOptionPane.showMessageDialog(null,"Somit gewinnt der Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + "). Dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + offenderProvince.getEntityCount() + " Einheiten.");            
         }
 
         if (maxOffender == maxDefender && offenderProvince.getEntityCount()>1)
         {
             offenderProvince.removeFromEntities(1);
+            offPl.lostEntity();
             JOptionPane.showMessageDialog(null,"Da es unentschieden ist, gewinnt der Verteidiger (" + getPlayerName(defenderProvince.getOwner()) + "). Dem Angreifer (" + getPlayerName(offenderProvince.getOwner()) + ") wird eine Einheit abgezogen. Er hat nun noch " + offenderProvince.getEntityCount() + " Einheiten.");
         }
 
@@ -492,6 +515,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
     {
         if ( freeArmies == -1 ) {
             freeArmies = calculateArmies();
+            players[currentPlayer].gotEntities(freeArmies);
         } else if ( freeArmies == 0 ) {
             modus.setBackColor(Color.white);
             modus.setForeColor(Color.black);

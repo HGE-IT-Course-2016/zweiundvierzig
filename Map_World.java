@@ -146,5 +146,6 @@ public class Map_World extends GeneralMap
             p.setOwner(dataL[(i-1)*2]);
             p.setEntityCount(dataL[(i*2)-1]);
         }
+        redrawPlayers();
     }
 }
