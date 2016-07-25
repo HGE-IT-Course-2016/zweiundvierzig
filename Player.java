@@ -140,10 +140,15 @@ public class Player extends Actor
         }
         return p;
     }
+    
+    public int getEntitiesCount() {
+        return getWorld().getPlayerEntityCount(id);
+    }
 
     public void gotEntities(int gotEnt)
     {
         stats[3]+= gotEnt;
+        reloadMaxEntities();
         redrawPlayer();
     }
 
@@ -153,11 +158,33 @@ public class Player extends Actor
         redrawPlayer();
     }
 
-    private void maxEntities(int entNumber)
+    public void gotProvince() {
+        stats[0]++;
+        reloadMaxInfluence();
+        redrawPlayer();
+    }
+
+    public void lostProvince() {
+        stats[1]++;
+        redrawPlayer();
+    }
+
+    public void reloadMaxInfluence() 
     {
-        if (stats[5]< entNumber)
+        int c = getProvinceCount();
+        if(stats[2]< c)
         {
-            stats[5]=entNumber;
+            stats[2]=c;
+            redrawPlayer();
+        }
+    }
+
+    public void reloadMaxEntities()
+    {
+        int c = getEntitiesCount();
+        if (stats[5]< c)
+        {
+            stats[5]=c;
             redrawPlayer();
         }
     }
