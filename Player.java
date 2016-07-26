@@ -23,7 +23,6 @@ public class Player extends Actor
     int textsize;
     int c;
     public int active;
-    boolean starsNeeded = false;
 
     //definiert die ID und Namens Variable
     public Player(int identity,String name, int c)
@@ -140,15 +139,10 @@ public class Player extends Actor
         }
         return p;
     }
-    
-    public int getEntitiesCount() {
-        return getWorld().getPlayerEntityCount(id);
-    }
 
     public void gotEntities(int gotEnt)
     {
         stats[3]+= gotEnt;
-        reloadMaxEntities();
         redrawPlayer();
     }
 
@@ -158,34 +152,11 @@ public class Player extends Actor
         redrawPlayer();
     }
 
-    public void gotProvince() {
-        stats[0]++;
-        reloadMaxInfluence();
-        redrawPlayer();
-        starsNeeded = true;
-    }
-
-    public void lostProvince() {
-        stats[1]++;
-        redrawPlayer();
-    }
-
-    public void reloadMaxInfluence() 
+    private void maxEntities(int entNumber)
     {
-        int c = getProvinceCount();
-        if(stats[2]< c)
+        if (stats[5]< entNumber)
         {
-            stats[2]=c;
-            redrawPlayer();
-        }
-    }
-
-    public void reloadMaxEntities()
-    {
-        int c = getEntitiesCount();
-        if (stats[5]< c)
-        {
-            stats[5]=c;
+            stats[5]=entNumber;
             redrawPlayer();
         }
     }
@@ -223,14 +194,6 @@ public class Player extends Actor
 
     }
 
-    private Color getTextCol() {
-        return (getWorld().getCurrentPlayerID() == id) ? new Color(0,0,0) : new Color(255,255,255);
-    }
-
-    private Color getTransBackCol() {
-        return (getWorld().getCurrentPlayerID() == id) ? new Color(255,255,255) : new Color(0,0,0);
-    }
-
     public void redrawPlayer()
     {
         getWorld().reloadPlayerStat();
@@ -239,6 +202,9 @@ public class Player extends Actor
         {
             n = "leererSpieler";
         }
+        GreenfootImage statistics = new GreenfootImage(137,120);   
+        GreenfootImage Name = new GreenfootImage(n,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));        
+        statistics.drawImage(Name,0,0);
         GreenfootImage statistics = new GreenfootImage(137,120);
         if(getWorld().getCurrentPlayerID() == id) {
             statistics.setColor(new Color(255,255,255));
@@ -254,27 +220,45 @@ public class Player extends Actor
     private void oDecide(GreenfootImage statistics,int textSize)
     {
         GreenfootImage flag = new GreenfootImage("images\\BlaueArmee.jpg");
+        redraw(statistics,flag,textSize);
         switch(color)
         {
             case 2:
             flag = new GreenfootImage("images\\BlaueArmee.jpg");
+
+            redraw(statistics,flag,textSize);
             break;
             case 5:
             flag = new GreenfootImage("images\\GelbeArmee.jpg");
+
+            redraw(statistics,flag,textSize);
             break;
             case 6:
             flag = new GreenfootImage("images\\LilaArmee.jpg");
+
+            redraw(statistics,flag,textSize);
             break;
             case 4:
             flag = new GreenfootImage("images\\RoteArmee.jpg");
+
+            redraw(statistics,flag,textSize);
             break;
             case 1:
             flag = new GreenfootImage("images\\SchwarzeArmee.jpg");
+
+            redraw(statistics,flag,textSize);
             break;
             case 3:
             flag = new GreenfootImage("images\\GrueneArmee.jpg");
+            redrawArrow(statistics,flag,textSize);
             break;
         }
+
+    }
+
+    private void redrawArrow(GreenfootImage statistics,GreenfootImage flag, int textSize)
+    {
+        // redraw(statistics,flag,textSize);
         redraw(statistics,flag,textSize);
     }
 

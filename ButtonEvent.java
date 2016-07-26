@@ -9,6 +9,6 @@ import greenfoot.*;
  */
 public interface ButtonEvent {
 	
-	public void buttonClicked(Button obj);
+	public void buttonClicked(Bildbutton obj);
 	
 }

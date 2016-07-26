@@ -66,7 +66,7 @@ public class InputDialogWorld extends World implements ButtonEvent {
 		}
 	}
 	
-	public void buttonClicked(Button b) {
+	public void buttonClicked(Bildbutton b) {
 		if(b == abort) {
 			inputS = null;
 		} else if(b == okay) {
