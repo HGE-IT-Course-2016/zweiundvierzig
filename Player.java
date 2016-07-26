@@ -23,6 +23,7 @@ public class Player extends Actor
     int textsize;
     int c;
     public int active;
+    boolean starsNeeded = false;
 
     //definiert die ID und Namens Variable
     public Player(int identity,String name, int c)
@@ -162,6 +163,7 @@ public class Player extends Actor
         stats[0]++;
         reloadMaxInfluence();
         redrawPlayer();
+        starsNeeded = true;
     }
 
     public void lostProvince() {
