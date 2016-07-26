@@ -212,7 +212,7 @@ public class Colours extends World implements ButtonEvent
     }
     
     private String getName(int id, String col) {
-        String name = JOptionPane.showInputDialog(null, "Wie soll Spieler Nr. "+id+" mit der Farbe "+col+" heißen?");
+        String name = JOptionPane.showInputDialog(null, "Wie soll Spieler Nr. "+(id+1)+" mit der Farbe "+col+" heißen?");
         if(name == null) {
             name = "";
         }
