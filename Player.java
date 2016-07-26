@@ -135,7 +135,6 @@ public class Player extends Actor
             if (provinces[x] == id)
             {
                 p++;
-                redrawPlayer();
             }
         }
         return p;
@@ -184,7 +183,6 @@ public class Player extends Actor
 
     public int[] getStatistics()
     {
-        redrawPlayer();
         return stats;
     }
 
@@ -198,6 +196,7 @@ public class Player extends Actor
 
     public void redrawPlayer()
     {
+        getWorld().reloadPlayerStat();
         int textSize = 20;
         if(n == null)
         {
@@ -206,6 +205,13 @@ public class Player extends Actor
         GreenfootImage statistics = new GreenfootImage(137,120);   
         GreenfootImage Name = new GreenfootImage(n,textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));        
         statistics.drawImage(Name,0,0);
+        GreenfootImage statistics = new GreenfootImage(137,120);
+        if(getWorld().getCurrentPlayerID() == id) {
+            statistics.setColor(new Color(255,255,255));
+            statistics.fill();
+        }
+        GreenfootImage name = new GreenfootImage(n,textSize,getTextCol(),getTransBackCol());        
+        statistics.drawImage(name,0,0);
 
         setImage(statistics);
         oDecide(statistics,textSize);        
@@ -260,7 +266,8 @@ public class Player extends Actor
     {
         flag.scale(137,83);
         statistics.drawImage(flag,0,textSize);
-        GreenfootImage playerStatistics = new GreenfootImage(stats[0] + "||" + stats[1] + "||" + stats[2] + "||" +stats[3] + "||" + stats[4] + "||" + stats[5],textSize,new Color(0,0,0),new Color(1.0f,1.0f,1.0f,0.5f));
+        String statTxt = (getWorld().getCurrentPlayerID() == id) ? "Du bist dran!" : stats[0] + " | " + stats[1] + " | " + stats[2] + " | " +stats[3] + " | " + stats[4] + " | " + stats[5];
+        GreenfootImage playerStatistics = new GreenfootImage(statTxt,textSize,getTextCol(),getTransBackCol());
         statistics.drawImage(playerStatistics, 0, 103);
 
         setImage(statistics);
