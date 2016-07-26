@@ -10,12 +10,12 @@ import javax.swing.JOptionPane;
  */
 public class Colours extends World implements ButtonEvent
 {
-    Button schwarz = new Button ("Schwarz", 16, this);
-    Button blau = new Button ("Blau", 16, this);
-    Button grün = new Button ("Grün", 16, this);
-    Button rot = new Button ("Rot", 16, this);
-    Button lila = new Button ("Lila", 16, this);
-    Button gelb = new Button ("Gelb", 16, this);
+    Bildbutton schwarz = new Bildbutton (new GreenfootImage("SchwarzeArmeeSkal.png"), this);
+    Bildbutton blau = new Bildbutton (new GreenfootImage("BlaueArmeeSkal.png"), this);
+    Bildbutton rot = new Bildbutton (new GreenfootImage("RoteArmeeSkal.png"), this);
+    Bildbutton gelb = new Bildbutton (new GreenfootImage("GelbeArmeeSkal.png"), this);
+    Bildbutton lila = new Bildbutton (new GreenfootImage("LilaArmeeSkal.png"), this);
+    Bildbutton grün = new Bildbutton (new GreenfootImage("GrueneArmeeSkal.png"), this);
     Button weiter = new Button ("Weiter", 16, this);
     int[] color = new int [5];
     String[] pn = new String [5];
@@ -35,11 +35,11 @@ public class Colours extends World implements ButtonEvent
     
     Label header = new Label("Klicke auf eine Farbe, um einen Spieler hinzuzufügen:",16);
     Button remove = new Button("Rückgängig",16,this);
-    Label pl1 = new Label("",16);
-    Label pl2 = new Label("",16);
-    Label pl3 = new Label("",16);
-    Label pl4 = new Label("",16);
-    Label pl5 = new Label("",16);
+    Label pl1 = new Label("",22);
+    Label pl2 = new Label("",22);
+    Label pl3 = new Label("",22);
+    Label pl4 = new Label("",22);
+    Label pl5 = new Label("",22);
 
     /**
      * Constructor for objects of class Colors.
@@ -50,35 +50,41 @@ public class Colours extends World implements ButtonEvent
         super(x, y, z);
         setBackground(Start_Load.backgroundImage);
         
-        Button[] bList = new Button[] {schwarz,gelb,blau,grün,rot,lila,weiter,remove};
+        Bildbutton[] bList = new Bildbutton[] {schwarz,gelb,blau,grün,rot,lila,weiter,remove};
         Label[] lList = new Label[] {header,pl1,pl2,pl3,pl4,pl5};
         
         addObject(header,200,15);
         
-        addObject(schwarz, 70, 50);
-        addObject ( blau, 190, 50);
-        addObject ( grün, 300, 50);
-        addObject ( rot, 410, 50);
-        addObject(gelb, 520, 50);
-        addObject(lila, 630, 50);
-        addObject(remove,300,110);
-        addObject (weiter, 410,110);
+        addObject(schwarz, 80, 50);
+        addObject ( blau, 240, 50);
+        addObject ( grün, 400, 50);
+        addObject ( rot, 560, 50);
+        addObject(gelb, 720, 50);
+        addObject(lila, 880, 50);
+        addObject(remove,300,160);
+        addObject (weiter, 510,160);
         
-        addObject(pl1,355,160);
-        addObject(pl2,355,180);
-        addObject(pl3,355,200);
-        addObject(pl4,355,220);
-        addObject(pl5,355,240);
+        addObject(pl1,355,360);
+        addObject(pl2,355,380);
+        addObject(pl3,355,400);
+        addObject(pl4,355,420);
+        addObject(pl5,355,440);
         
-        schwarz.setForeColor(Color.black);
-        gelb.setForeColor(Color.yellow);
-        blau.setForeColor(Color.blue);
-        grün.setForeColor(Color.green);
-        rot.setForeColor(Color.red);
-        lila.setForeColor(new Color(161,70,255));
+        //schwarz.setForeColor(Color.black);
+        //gelb.setForeColor(Color.yellow);
+        //blau.setForeColor(Color.blue);
+        //grün.setForeColor(Color.green);
+        //rot.setForeColor(Color.red);
+        //lila.setForeColor(new Color(161,70,255));
+        
+        pl1.setForeColor(Color.black);
+        pl2.setForeColor(Color.black);
+        pl3.setForeColor(Color.black);
+        pl4.setForeColor(Color.black);
+        pl5.setForeColor(Color.black);
         
         for(int i = 0; i < bList.length; i++) {
-            bList[i].setSize(100,50);
+            bList[i].setSize(164,100);
         }
         for(int i = 0; i < lList.length; i++) {
             lList[i].setBackColor(new Color(0,0,0,0));
@@ -94,7 +100,7 @@ public class Colours extends World implements ButtonEvent
     // verhindert durch falschsetzten einer Variable die Wiederauswahl einer Farbe
     // wenn Weiter geklickt wurde und x größer 1 ist wird eine neue Welt Map erzeugt, 
     //der per Konstruktor die Daten der Colorklasse übertragen werden, dannach wird die Map die aktive Welt
-    public void buttonClicked (Button b)
+    public void buttonClicked (Bildbutton b)
     {
         if (x < 5) {
             if (b == schwarz && possw == true) {

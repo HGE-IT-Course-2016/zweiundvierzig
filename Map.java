@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Map extends World implements ButtonEvent
 {
-    private Button map1 = new Button ("map1",16,this);
-    private Button map2 = new Button ("map2",16,this);
+    Bildbutton map1 = new Bildbutton (new GreenfootImage("WeltkarteSkal.png"), this);
+    Bildbutton map2 = new Bildbutton (new GreenfootImage("USAKarteSkal.png"), this);
     private Button fertigst = new Button (" Fertigstellen",16,this);
     int[] colour;
     String[] pn;
@@ -32,11 +32,11 @@ public class Map extends World implements ButtonEvent
             pn[i] = name[i];
         }
         pnu=zahl;
-        addObject(map1, 50, 30);
-        addObject(map2, 170, 30);
-        addObject(fertigst,110,90 );
-        map1.setSize(100, 50);
-        map2.setSize(100, 50);
+        addObject(map1, 200, 80);
+        addObject(map2, 470, 80);
+        addObject(fertigst,330,200 );
+        map1.setSize(164, 100);
+        map2.setSize(164, 100);
         fertigst.setSize(100, 50);
         // for ( int i=0; i<=pnu; i++)
         // {
@@ -45,7 +45,7 @@ public class Map extends World implements ButtonEvent
         // }
     } 
     // Die Map Buttons geben der Variable m einen Wert
-    public void buttonClicked(Button b)
+    public void buttonClicked(Bildbutton b)
     {
 
         if (b== map1)
