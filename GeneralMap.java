@@ -78,7 +78,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
 
         if ( playerList.length > 4 )
         {
-                players[4].addToStars(2);
+            players[4].addToStars(2);
         }
     }
 
@@ -586,23 +586,29 @@ public abstract class GeneralMap extends World implements ButtonEvent
         // 3. Einheiten durch Kontinente
 
         // Kontinente durchgehen
-        for ( int i = 1; i < continentBoni.length; i++ )
+        for ( int i = 1; i <= (continentBoni.length -1); i++ )
         {
             continentArray = giveContinentArray(i);
+
             // Provinzen des aktuellen Kontinents durchgehen
-            for ( int p = 1; p >= continentArray.length; p++ )
+            for ( int p = 0; p < continentArray.length; p++ )
             {
                 // Prüfen, ob eine Provinz NICHT dem aktuellen Spieler gehört
-                if ( continentArray[p].getOwner() != currentPlayer )
+                /** if ( continentArray[p].getOwner() != currentPlayer )
                 {
-                    break;
+                break;
                 }
                 // Wenn nicht, wird der Kontinent als gecheckt markiert
                 else
                 {
-                    continentChecked = true;
-                }
+                continentChecked = true;
+                } */
+
+                System.out.println( continentArray[p].getOwner() );
+                System.out.println( continentArray[p].getDisplayName() );
+                System.out.println("===============");
             }
+
             if ( continentChecked == true )
             {
                 armiesToPlace = armiesToPlace + continentBoni[i];
@@ -639,7 +645,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
                     JOptionPane.showMessageDialog(null,"Ungültige Zahl. Bitte eine Zahl zwischen 0 und 10 eingeben");
                 }
             }
-            
+
             else
             {
                 JOptionPane.showMessageDialog(null,"Du besitzt nicht die erforderliche Anzahl an Sternen! \n Verarschen kannst du jemand anderen.");
