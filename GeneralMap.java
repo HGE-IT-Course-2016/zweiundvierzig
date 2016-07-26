@@ -37,15 +37,19 @@ public abstract class GeneralMap extends World implements ButtonEvent
         VERSCHIEBEN
     }
 
-    protected Province[] provinces;
+    protected Province[] provinces = new Province[] {null};
     protected int[] continentBoni;
     protected Player[] players;
 
     protected int currentPlayer = 0;
+    private int statPlayer = -1;
     protected GameStates status = GameStates.SETZEN;
 
     protected int provinceCount;
     protected int armyMinimum;
+    
+    private Label statLabel1 = new Label("Lade Statistiken ...",20);
+    private Label statLabel2 = new Label("Lade Statistiken ...",20);
 
     /**
     Erstellt eine GeneralMap mit allen Eigenschaften und initialisiert die Arrays für Provinzen und Spieler.
@@ -60,11 +64,12 @@ public abstract class GeneralMap extends World implements ButtonEvent
         modus.setSize(100,100);
         modus.setBackColor(Color.white);
         modus.setForeColor(Color.black);
+        addObject(statLabel1, 270, 800);
+        addObject(statLabel2, 500, 800);
         addObject( modus, 1500, 808);
         for (int i = 0; i < playerList.length; i++) {
             players[i] = new Player(i,playerList[i],colorList[i]);
             addObject(players[i],0,0);
-            players[i].redrawPlayer();
         }
 
         createPlayerObjects(playerList.length);
@@ -131,15 +136,15 @@ public abstract class GeneralMap extends World implements ButtonEvent
         }
         switch (playerCount) {
             case 6:
-            players[5].setLocation(1512,350);
+            players[5].setLocation(1512,450);
             case 5:
-            players[4].setLocation(1512,230);
+            players[4].setLocation(1512,280);
             case 4:
             players[3].setLocation(1512,110);
             case 3:
-            players[2].setLocation(82,350);
+            players[2].setLocation(82,450);
             case 2:
-            players[1].setLocation(82,230);
+            players[1].setLocation(82,280);
         }
         players[0].setLocation(82,110);
     }
@@ -286,6 +291,28 @@ public abstract class GeneralMap extends World implements ButtonEvent
         }
     }
 
+    public void reloadPlayerStat() {
+        Player cP = players[(statPlayer == -1) ? currentPlayer : statPlayer];
+        cP.reloadMaxInfluence();
+        cP.reloadMaxEntities();
+        int[] stats = cP.getStatistics();
+        statLabel1.setText(
+            "Provinz-Statistik" +
+            "\nAktuell: " + cP.getProvinceCount() +
+            "\nErobert: " + stats[0] +
+            "\nVerloren: " + stats[1] +
+            "\nMaximum: " + stats[2]
+        );
+        statLabel2.setLocation(statLabel1.getX() + statLabel1.getWidth() + 20, statLabel2.getY());
+        statLabel2.setText(
+            "Einheiten-Statistik" +
+            "\nAktuell: " + cP.getEntitiesCount() +
+            "\nAusgebildet: " + stats[3] +
+            "\nGefallen: " + stats[4] +
+            "\nMaximum: " + stats[5]
+        );
+    }
+    
     public void buttonClicked(Button b) {
         if ( modus == b ) {
             if(status==GameStates.SETZEN && freeArmies == 0 ) {
@@ -317,6 +344,7 @@ public abstract class GeneralMap extends World implements ButtonEvent
             }
             redrawProvinces();
             redrawPlayers();
+            reloadPlayerStat();
         }
     }
 
